@@ -1,5 +1,5 @@
 # Conteúdo das pastas:
-## 1. [Portfólio](github.com/TheChronoTimer/TheChronoTimer/tree/main/Portfólio):
+## 1. [Portfólio](Portfólio):
 - Projetos que eu já fiz anteriormente
-## 2. [Certificados](github.com/TheChronoTimer/TheChronoTimer/tree/main/Certificados):
+## 2. [Certificados](Certificados):
 - Certificados obtidos anteriormente, assim como o histórico escolar
