@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Registration Form</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body>
+		<h1 id="title">Registre-se</h1>
+		<p id="description">Deixe-nos conhecer quem é você</p>
+
+		<form id="survey-form">
+			<fieldset placeholder="OI">
+			<label id="name-label" for="name">Digite seu nome:
+				<input required id="name" type="text" placeholder="Digite seu nome:">
+			</label>
+
+			<label id="email-label" for="email">Digite seu E-mail:
+				<input required id="email" type="email" placeholder="Digite seu email:">
+			</label>
+
+			<label id="number-label" for="number">Digite sua idade:
+				<input required id="number" type="number" placeholder="Digite sua idade:" min=13 max=120>
+			</label>
+			</fieldset>
+			<fieldset>
+				<label>Selecione o tipo de clima preferido:
+			<select id="dropdown">
+				<option value="0" hidden>Selecione uma opção</option>
+				<option value="1">Climas quentes</option>
+				<option value="2">Climas frios</option>
+			</select>
+			</label>
+			<label>Dias chuvosos ou secos?</label>
+			<label id="radio1-label" for="radio1">
+				<input name="radio" id="radio1" type="radio" value="1" checked>Chuvosos
+			</label>
+
+			<label id="radio2-label" for="radio2">
+				<input name="radio" id="radio2" type="radio" value="2">Secos
+			</label>
+
+			<label id="checkbox1-label" for="checkbox1">
+				<input id="checkbox1" type="checkbox" value="1">Gosto de acordar cedo
+			</label>
+
+			<label id="checkbox2-label" for="checkbox2">
+				<input id="checkbox2" type="checkbox" value="2">Geralmente durmo tarde
+			</label>
+			</fieldset>
+			<label id="textarea-label" for="textarea">
+				<textarea id="textarea" placeholder="Coloque algum comentário:"></textarea>
+			</label>
+
+			<input id="submit" type="submit" value="Enviar">
+		</form>
+	</body>
+</html>
