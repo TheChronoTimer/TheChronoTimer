@@ -1,0 +1,6 @@
+﻿Nome,Quantidade,Componente
+"P1",1,"5 , 5  Fonte de energia"
+"U1, U2, U3, U4, U5",5," ATtiny"
+"JP1",1," Conector de oito pinos"
+"R1, R2, R3, R4",4,"470 Ω Resistor"
+"D1, D2, D3, D4",4,"Vermelho LED"
