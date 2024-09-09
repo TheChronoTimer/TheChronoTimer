@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://d26umm6n54d3a"]
+
+[ext_resource type="PackedScene" uid="uid://34eiq3mpmyph" path="res://Scenes/terrain.tscn" id="1_c7pdd"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_q7xxs"]
+[ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/kigurumi.tscn" id="2_lf818"]
+[ext_resource type="PackedScene" uid="uid://k4g5t17jldh5" path="res://Scenes/vegetables.tscn" id="3_qyguy"]
+[ext_resource type="PackedScene" uid="uid://bwvl588b0781y" path="res://Scenes/hud.tscn" id="5_1vxud"]
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(4, 4)
+script = ExtResource("1_q7xxs")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="TileMap" parent="." instance=ExtResource("1_c7pdd")]
+
+[node name="Kigurumi" parent="." instance=ExtResource("2_lf818")]
+z_index = 4
+collision_mask = 14
+
+[node name="Camera2D" type="Camera2D" parent="Kigurumi"]
+position_smoothing_enabled = true
+
+[node name="Vegetables" parent="." instance=ExtResource("3_qyguy")]
+position = Vector2(30, 0.25)
+growDelay = 1
+
+[node name="HUD" parent="." instance=ExtResource("5_1vxud")]

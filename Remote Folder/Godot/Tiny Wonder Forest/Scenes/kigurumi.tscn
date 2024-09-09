@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2y2yqurs2ymu"]
+
+[ext_resource type="Script" path="res://Scripts/kigurumi.gd" id="1_jkh2v"]
+[ext_resource type="SpriteFrames" uid="uid://c83r0yd1hbuob" path="res://Sprites/sprite_frames.tres" id="1_orsjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
+size = Vector2(64, 64)
+
+[node name="Kigurumi" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_jkh2v")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_kmsrp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_orsjo")
+animation = &"Idle Right"
+frame_progress = 0.375

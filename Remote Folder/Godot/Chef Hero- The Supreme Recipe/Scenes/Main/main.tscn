@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d26umm6n54d3a"]
+
+[ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
+[ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
+[ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/tilemap.tscn" id="2_paxs4"]
+[ext_resource type="PackedScene" uid="uid://bwvl588b0781y" path="res://Scenes/hud.tscn" id="5_1vxud"]
+
+[node name="Main" type="Node2D"]
+y_sort_enabled = true
+scale = Vector2(4, 4)
+script = ExtResource("1_q7xxs")
+
+[node name="TileMap" parent="." instance=ExtResource("2_paxs4")]
+
+[node name="Player" parent="." instance=ExtResource("2_lf818")]
+z_index = 4
+collision_mask = 14
+script = null
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+
+[node name="HUD" parent="." instance=ExtResource("5_1vxud")]
