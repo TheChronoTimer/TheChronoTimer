@@ -1,19 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2y2yqurs2ymu"]
+[gd_scene load_steps=6 format=3 uid="uid://d2y2yqurs2ymu"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_tge0j"]
+[ext_resource type="SpriteFrames" uid="uid://bi4wauj0ec3vx" path="res://System/player.tres" id="2_msy07"]
+[ext_resource type="SpriteFrames" uid="uid://muhacvm7frvt" path="res://System/hat.tres" id="3_roboh"]
+[ext_resource type="Script" path="res://Scenes/Player/hat.gd" id="4_j76cy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
-size = Vector2(64, 64)
+size = Vector2(44, 44)
 
-[node name="Kigurumi" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_mask = 254
 script = ExtResource("1_tge0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 3)
+position = Vector2(0, 12)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_kmsrp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-animation = &""
-frame_progress = 0.375
+sprite_frames = ExtResource("2_msy07")
+animation = &"Walk Down"
+
+[node name="Hat" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+position = Vector2(0, -12)
+sprite_frames = ExtResource("3_roboh")
+animation = &"Down"
+script = ExtResource("4_j76cy")
