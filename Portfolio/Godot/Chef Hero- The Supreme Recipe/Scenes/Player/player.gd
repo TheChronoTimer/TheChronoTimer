@@ -53,24 +53,29 @@ func frame():
 		if abs(velocity.y) > abs(velocity.x):
 			if velocity.y > 0:
 				Sprite.animation = "Walk Down"
+				Sprite.flip_h = false
 			else:
 				Sprite.animation = "Walk Up"
+				Sprite.flip_h = false
 		if abs(velocity.y) < abs(velocity.x):
 			if velocity.x > 0:
 				Sprite.animation = "Walk Right"
+				Sprite.flip_h = false
 			else:
 				Sprite.animation = "Walk Left"
+				Sprite.flip_h = true
 	else:
 		Sprite.pause()
 		Sprite.frame = 0
-	if (auxW + auxS + auxA + auxD) == 1:
-		if auxA:
+	
+	match (auxW + auxS + auxA + auxD) == 1:
+		auxA:
 			Sprite.animation = "Walk Left"
-		if auxD:
+		auxD:
 			Sprite.animation = "Walk Right"
-		if auxW:
+		auxW:
 			Sprite.animation = "Walk Up"
-		if auxS:
+		auxS:
 			Sprite.animation = "Walk Down"
 
 func ctrl():

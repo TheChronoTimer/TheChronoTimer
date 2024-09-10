@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bo4ovwb5li11y"]
+
+[ext_resource type="Texture2D" uid="uid://dw78nhwy5si4n" path="res://Sprites/Playable Characters/Shirts.png" id="1_cp2q1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr1ma"]
+atlas = ExtResource("1_cp2q1")
+region = Rect2(40, 416, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmbub"]
+atlas = ExtResource("1_cp2q1")
+region = Rect2(40, 432, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6htay"]
+atlas = ExtResource("1_cp2q1")
+region = Rect2(40, 424, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfkej"]
+atlas = ExtResource("1_cp2q1")
+region = Rect2(40, 440, 8, 8)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr1ma")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmbub")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6htay")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfkej")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

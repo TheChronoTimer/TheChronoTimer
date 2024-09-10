@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cuir1npmakhxe"]
+
+[ext_resource type="Texture2D" uid="uid://b5ypb5qpnb7d1" path="res://Sprites/Playable Characters/Hairstyles.png" id="1_s6l0q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4ba8"]
+atlas = ExtResource("1_s6l0q")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8g5a"]
+atlas = ExtResource("1_s6l0q")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icaqd"]
+atlas = ExtResource("1_s6l0q")
+region = Rect2(0, 64, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4ba8")
+}],
+"loop": true,
+"name": &"Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8g5a")
+}],
+"loop": true,
+"name": &"Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8g5a")
+}],
+"loop": true,
+"name": &"Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icaqd")
+}],
+"loop": true,
+"name": &"Up",
+"speed": 5.0
+}]

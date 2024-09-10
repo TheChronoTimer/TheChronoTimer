@@ -1,28 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2y2yqurs2ymu"]
+[gd_scene load_steps=13 format=3 uid="uid://d2y2yqurs2ymu"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_tge0j"]
 [ext_resource type="SpriteFrames" uid="uid://bi4wauj0ec3vx" path="res://System/player.tres" id="2_msy07"]
+[ext_resource type="SpriteFrames" uid="uid://bo4ovwb5li11y" path="res://System/coat.tres" id="3_cwujd"]
 [ext_resource type="SpriteFrames" uid="uid://muhacvm7frvt" path="res://System/hat.tres" id="3_roboh"]
+[ext_resource type="Script" path="res://Scenes/Player/coat.gd" id="4_6nxu3"]
 [ext_resource type="Script" path="res://Scenes/Player/hat.gd" id="4_j76cy"]
+[ext_resource type="SpriteFrames" uid="uid://dq66hgg2bh7p5" path="res://System/boots.tres" id="7_5mfaq"]
+[ext_resource type="SpriteFrames" uid="uid://bwqsugbr5gekg" path="res://System/pants.tres" id="7_p8naw"]
+[ext_resource type="Script" path="res://Scenes/Player/pants.gd" id="8_bu6ru"]
+[ext_resource type="SpriteFrames" uid="uid://cuir1npmakhxe" path="res://System/hair.tres" id="8_ktvph"]
+[ext_resource type="Script" path="res://Scenes/Player/hair.gd" id="9_5qne6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
 size = Vector2(44, 44)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+texture_filter = 1
 collision_mask = 254
 script = ExtResource("1_tge0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
 position = Vector2(0, 12)
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_kmsrp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = ExtResource("2_msy07")
 animation = &"Walk Down"
+flip_h = true
 
-[node name="Hat" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+[node name="Coat" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, 1)
+sprite_frames = ExtResource("3_cwujd")
+animation = &"Down"
+script = ExtResource("4_6nxu3")
+
+[node name="Pants" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -1)
+sprite_frames = ExtResource("7_p8naw")
+animation = &"Down"
+script = ExtResource("8_bu6ru")
+
+[node name="Boots" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = ExtResource("7_5mfaq")
+animation = &"Down"
+
+[node name="Hair" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+texture_filter = 1
+sprite_frames = ExtResource("8_ktvph")
+animation = &"Down"
+script = ExtResource("9_5qne6")
+
+[node name="Hat" type="AnimatedSprite2D" parent="AnimatedSprite2D/Hair"]
+texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = ExtResource("3_roboh")
 animation = &"Down"
