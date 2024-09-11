@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 @onready var Original = get_parent()
 @onready var Hair: AnimatedSprite2D = self
+@onready var PosSelf = self.position.y
 
 func _ready():
 	Hair.self_modulate = Color(0.6, 0.3, 0.1)
@@ -22,6 +23,6 @@ func _process(_delta):
 			Hair.flip_h = false
 	
 	if Original.frame % 2:
-		Hair.position.y = 1
+		Hair.position.y = PosSelf+1
 	else:
-		Hair.position.y = 0
+		Hair.position.y = PosSelf

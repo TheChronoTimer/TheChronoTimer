@@ -48,6 +48,7 @@ func walk():
 
 func frame():
 	Sprite.speed_scale = frameSpeed
+	
 	if velocity.length() > 0:
 		Sprite.play()
 		if abs(velocity.y) > abs(velocity.x):
@@ -68,15 +69,22 @@ func frame():
 		Sprite.pause()
 		Sprite.frame = 0
 	
-	match (auxW + auxS + auxA + auxD) == 1:
+	var sum = (auxW + auxS + auxA + auxD)
+	match sum:
+		0:
+			pass
 		auxA:
 			Sprite.animation = "Walk Left"
+			Sprite.flip_h = true
 		auxD:
 			Sprite.animation = "Walk Right"
+			Sprite.flip_h = false
 		auxW:
 			Sprite.animation = "Walk Up"
+			Sprite.flip_h = false
 		auxS:
 			Sprite.animation = "Walk Down"
+			Sprite.flip_h = false
 
 func ctrl():
 	if Input.is_action_pressed("Ctrl"):

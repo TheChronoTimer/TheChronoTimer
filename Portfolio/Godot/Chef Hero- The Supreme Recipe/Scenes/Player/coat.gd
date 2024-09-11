@@ -2,6 +2,7 @@ extends AnimatedSprite2D
 
 @onready var Original = get_parent()
 @onready var Coat: AnimatedSprite2D = self
+@onready var PosSelf = self.position.y
 
 func _process(_delta):
 	match Original.animation:
@@ -19,6 +20,6 @@ func _process(_delta):
 			Coat.position.x = 0
 	
 	if Original.frame % 2:
-		Coat.position.y = 3
+		Coat.position.y = PosSelf+1
 	else:
-		Coat.position.y = 2
+		Coat.position.y = PosSelf

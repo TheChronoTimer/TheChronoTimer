@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/hair.gd" id="9_5qne6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
-size = Vector2(44, 44)
+size = Vector2(14, 12)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -23,16 +23,16 @@ collision_mask = 254
 script = ExtResource("1_tge0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, 12)
-scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_kmsrp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
 sprite_frames = ExtResource("2_msy07")
 animation = &"Walk Down"
-flip_h = true
 
 [node name="Arms" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 texture_filter = 1
