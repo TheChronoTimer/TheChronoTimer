@@ -19,6 +19,6 @@ func _process(_delta):
 			Coat.position.x = 0
 	
 	if Original.frame % 2:
-		Coat.position.y = 2
+		Coat.position.y = 3
 	else:
-		Coat.position.y = 1
+		Coat.position.y = 2

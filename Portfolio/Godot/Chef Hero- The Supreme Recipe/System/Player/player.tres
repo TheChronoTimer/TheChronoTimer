@@ -1,0 +1,110 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://bi4wauj0ec3vx"]
+
+[ext_resource type="Texture2D" uid="uid://cpmnnyrlo2t4y" path="res://Sprites/Playable Characters/Farmer Base.png" id="1_quc2j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i17bn"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwsrg"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8nfm"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8j18"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il4te"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fb3k"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev0wg"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mss42"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81l4m"]
+atlas = ExtResource("1_quc2j")
+region = Rect2(32, 64, 16, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i17bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwsrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i17bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8nfm")
+}],
+"loop": false,
+"name": &"Walk Down",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8j18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il4te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8j18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fb3k")
+}],
+"loop": true,
+"name": &"Walk Left",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8j18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il4te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8j18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fb3k")
+}],
+"loop": true,
+"name": &"Walk Right",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev0wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mss42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev0wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81l4m")
+}],
+"loop": true,
+"name": &"Walk Up",
+"speed": 1.0
+}]

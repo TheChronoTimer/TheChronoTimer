@@ -22,6 +22,6 @@ func _process(_delta):
 			Hair.flip_h = false
 	
 	if Original.frame % 2:
-		Hair.position.y = 0
+		Hair.position.y = 1
 	else:
-		Hair.position.y = -1
+		Hair.position.y = 0
