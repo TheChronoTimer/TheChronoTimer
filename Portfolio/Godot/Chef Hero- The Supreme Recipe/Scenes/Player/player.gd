@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #Funcionamento
-@onready var Sprite = $AnimatedSprite2D
+@onready var Sprite = $Sprite
 
 #Controle
 @export var speed: int = 256
@@ -12,9 +12,6 @@ var auxW = 0
 var auxA = 0
 var auxS = 0
 var auxD = 0
-
-func _ready():
-	Sprite.play()
 
 func _physics_process(_delta):
 	walk()

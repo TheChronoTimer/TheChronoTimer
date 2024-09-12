@@ -59,8 +59,9 @@ Ctrl={
 2d_render/layer_3="NPCs"
 2d_render/layer_4="Mobs"
 2d_render/layer_5="Interactions"
+2d_render/layer_6="Pathfinding"
 2d_physics/layer_1="Player"
-2d_navigation/layer_1="Playerss"
+2d_navigation/layer_1="Player"
 2d_physics/layer_2="TileSet"
 2d_navigation/layer_2="TileSet"
 2d_physics/layer_3="NPCs"
@@ -69,6 +70,8 @@ Ctrl={
 2d_navigation/layer_4="Mobs"
 2d_physics/layer_5="Interactions"
 2d_navigation/layer_5="Interactions"
+2d_physics/layer_6="Pathfinding"
+2d_navigation/layer_6="Pathfinding"
 
 [rendering]
 
