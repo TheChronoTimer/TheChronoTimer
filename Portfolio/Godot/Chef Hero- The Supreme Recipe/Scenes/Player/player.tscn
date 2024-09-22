@@ -19,17 +19,19 @@ size = Vector2(14, 12)
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, 12)
+motion_mode = 1
 script = ExtResource("1_tge0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_kmsrp")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 texture_filter = 1
+position = Vector2(0, -12)
 sprite_frames = ExtResource("2_msy07")
 animation = &"Walk Down"
 
@@ -66,5 +68,12 @@ sprite_frames = ExtResource("3_roboh")
 animation = &"Down"
 script = ExtResource("4_j76cy")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 32
+avoidance_enabled = true
+debug_enabled = true
+
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(-7, 6, 7, 6, 7, 18, -7, 18)
+position = Vector2(0, -12)
+vertices = PackedVector2Array(-5, 8, 5, 8, 5, 16, -5, 16)
+affect_navigation_mesh = true

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnxlbsel47vne"]
+
+[ext_resource type="Script" path="res://Scenes/NPCs/follow_player.gd" id="1_lwmro"]
+[ext_resource type="SpriteFrames" uid="uid://r80fgeixm27i" path="res://System/NPCs/alex.tres" id="1_q2g72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
+size = Vector2(14, 12)
+
+[node name="Alex" type="CharacterBody2D"]
+position = Vector2(0, 12)
+script = ExtResource("1_lwmro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("RectangleShape2D_bbf2w")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -12)
+sprite_frames = ExtResource("1_q2g72")
+animation = &"Down"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 32
+path_postprocessing = 1
+avoidance_enabled = true
+debug_enabled = true

@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijhl6tdb5o05"]
+
+[ext_resource type="SpriteFrames" uid="uid://f3npcy7hfkvd" path="res://System/rtc.tres" id="1_i3ich"]
+[ext_resource type="Texture2D" uid="uid://02435jkhu70x" path="res://Sprites/Miscellaneous/Clock.png" id="3_35gw4"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Clock" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(-133, 114)
+scale = Vector2(3, 3)
+texture = ExtResource("3_35gw4")
+region_enabled = true
+region_rect = Rect2(0, 0, 72, 59)
+
+[node name="Pointer" type="Sprite2D" parent="Control/Clock"]
+texture_filter = 1
+position = Vector2(-13, -19)
+texture = ExtResource("3_35gw4")
+region_enabled = true
+region_rect = Rect2(72, 0, 7, 19)
+
+[node name="SeasonsSprite2D" type="AnimatedSprite2D" parent="Control/Clock"]
+position = Vector2(23, -9)
+sprite_frames = ExtResource("1_i3ich")
+animation = &"Seasons"
+
+[node name="ClimateSprite2D" type="AnimatedSprite2D" parent="Control/Clock"]
+position = Vector2(-1, -9)
+sprite_frames = ExtResource("1_i3ich")
+animation = &"Climate"
