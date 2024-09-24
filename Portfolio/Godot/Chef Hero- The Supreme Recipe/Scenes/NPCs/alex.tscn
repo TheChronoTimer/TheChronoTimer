@@ -16,6 +16,7 @@ shape = SubResource("RectangleShape2D_bbf2w")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = ExtResource("1_q2g72")
 animation = &"Down"
@@ -27,5 +28,3 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 32
 path_postprocessing = 1
-avoidance_enabled = true
-debug_enabled = true

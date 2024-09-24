@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
 [ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/tilemap.tscn" id="2_paxs4"]
-[ext_resource type="PackedScene" uid="uid://udqyqcfh7rk7" path="res://Scenes/HUD/hud.tscn" id="5_1vxud"]
+[ext_resource type="PackedScene" uid="uid://ijhl6tdb5o05" path="res://Scenes/HUD/hud.tscn" id="5_1vxud"]
 [ext_resource type="PackedScene" uid="uid://03jy2v88kp3f" path="res://Scenes/NPCs/haley.tscn" id="5_6pvaf"]
 [ext_resource type="PackedScene" uid="uid://cnxlbsel47vne" path="res://Scenes/NPCs/alex.tscn" id="6_sgqh1"]
 
@@ -18,12 +18,15 @@ z_index = 2
 collision_mask = 254
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+texture_filter = 1
 position_smoothing_enabled = true
 
 [node name="TileMap" parent="." instance=ExtResource("2_paxs4")]
 position = Vector2(0, 0)
 
-[node name="HUD" parent="." instance=ExtResource("5_1vxud")]
+[node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
+Player = NodePath("../Player")
+Target = NodePath("../NPCs/Haley")
 
 [node name="NPCs" type="Node2D" parent="."]
 z_index = 2
@@ -31,6 +34,7 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="Haley" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("5_6pvaf")]
+texture_filter = 1
 position = Vector2(-247.5, -266.75)
 collision_layer = 4
 collision_mask = 255
@@ -39,6 +43,7 @@ modes = 1
 coords = Vector2(0, -15)
 
 [node name="Alex" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("6_sgqh1")]
+texture_filter = 1
 position = Vector2(-267, -265.5)
 collision_layer = 4
 collision_mask = 255

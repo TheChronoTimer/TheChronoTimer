@@ -19,6 +19,7 @@ shape = SubResource("RectangleShape2D_fd34u")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = ExtResource("1_by16n")
 animation = &"Down"
@@ -31,4 +32,3 @@ autostart = true
 navigation_layers = 32
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true

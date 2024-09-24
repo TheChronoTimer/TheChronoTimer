@@ -72,8 +72,3 @@ script = ExtResource("4_j76cy")
 navigation_layers = 32
 avoidance_enabled = true
 debug_enabled = true
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(0, -12)
-vertices = PackedVector2Array(-5, 8, 5, 8, 5, 16, -5, 16)
-affect_navigation_mesh = true
