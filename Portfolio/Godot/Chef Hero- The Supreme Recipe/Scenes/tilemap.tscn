@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://bybv52xnrx1tr"]
 
-[ext_resource type="TileSet" uid="uid://wa6axc745jp2" path="res://System/tileset.tres" id="1_yenlm"]
+[ext_resource type="TileSet" uid="uid://wa6axc745jp2" path="res://System/TileMap/tileset.tres" id="1_yenlm"]
 
 [node name="Ground" type="TileMapLayer"]
 y_sort_enabled = true

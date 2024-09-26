@@ -7,7 +7,8 @@ extends CharacterBody2D
 
 enum Modes {
 	FollowPlayer,
-	FollowCoords
+	FollowCoords,
+	FollowCoordsAndStop
 }
 
 #Controle
@@ -15,56 +16,57 @@ enum Modes {
 @export var frameSpeed: int = 5
 @export var player: Node2D
 @export var modes: Modes
-@export var coords: Vector2 = Vector2(0, 0)
+@export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
 
 #Auxiliar
 var vert
 var horiz
 var dir
-var desloc
+var desloc = tileSize*4
+var ArrSize
+var Arr = 0
+
 
 func _physics_process(_delta):
 	match modes:
 		0:
 			vert = abs(player.global_position.y - self.global_position.y)
 			horiz = abs(player.global_position.x - self.global_position.x)
-			if vert >= tileSize*4 || horiz >= tileSize*4:
-				dir = to_local(Nav.get_next_path_position()).normalized()
-				velocity = dir * speed
-				move_and_slide()
-				Sprite.play()
+		1, 2:
+			vert = abs(coords[Arr].y - self.global_position.y)
+			horiz = abs(coords[Arr].x - self.global_position.x)
+	if vert >= desloc || horiz >= desloc:
+		dir = to_local(Nav.get_next_path_position()).normalized()
+		velocity = dir * speed
+		move_and_slide()
+		Sprite.play()
+	else:
+		if modes == 0:
+			Sprite.pause()
+			Sprite.frame = 0
+		else:
+			if ArrSize > (Arr+1):
+				Arr += 1
 			else:
-				Sprite.pause()
-				Sprite.frame = 0
-		1:
-			vert = abs(coords.y - self.global_position.y)
-			horiz = abs(coords.x - self.global_position.x)
-			if vert >= tileSize || horiz >= tileSize:
-				dir = to_local(Nav.get_next_path_position()).normalized()
-				velocity = dir * speed
-				move_and_slide()
-				Sprite.play()
-			else:
-				#coords.x += 3*desloc
-				coords.y += 1*desloc
-				#Sprite.pause()
-				#Sprite.frame = 0
-
-func _makepath():
-	match modes:
-		0:
-			Nav.target_position = player.global_position
-		1:
-			Nav.target_position = coords
+				if modes == 1:
+					Arr = 0
+				if modes == 2:
+					Sprite.pause()
+					Sprite.frame = 0
 
 func _ready():
 	TimerClock.timeout.connect(_on_timer_timeout)
-	desloc = tileSize * 4
-	coords *= desloc
+	ArrSize = coords.size()
+	for i in ArrSize:
+		coords[i] *= desloc
 
 func _on_timer_timeout():
-	_makepath()
+	match modes:
+		0:
+			Nav.target_position = player.global_position
+		1, 2:
+			Nav.target_position = coords[Arr]
 
 func _process(_delta):
 	Sprite.speed_scale = frameSpeed

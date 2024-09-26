@@ -38,9 +38,10 @@ texture_filter = 1
 position = Vector2(-247.5, -266.75)
 collision_layer = 4
 collision_mask = 255
+speed = 512
 player = NodePath("../../Player")
 modes = 1
-coords = Vector2(0, -15)
+coords = Array[Vector2]([Vector2(0, -16), Vector2(0, 0)])
 
 [node name="Alex" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("6_sgqh1")]
 texture_filter = 1
