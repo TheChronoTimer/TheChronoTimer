@@ -6,7 +6,7 @@ var NPCsearch = 4
 
 var NPClist = {
 "Alex":			6,
-"Elliott":		11,
+"Elliot":		11,
 "Harvey":		10,
 "Sam":			9,
 "Sebastian":	8,

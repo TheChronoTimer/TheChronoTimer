@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ijhl6tdb5o05"]
+[gd_scene load_steps=9 format=3 uid="uid://ijhl6tdb5o05"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_ewt1k"]
 [ext_resource type="Texture2D" uid="uid://02435jkhu70x" path="res://Sprites/Miscellaneous/Clock.png" id="3_35gw4"]
 [ext_resource type="Texture2D" uid="uid://byirrt7aepxaq" path="res://Sprites/Extra Tiles/locator.png" id="4_av7du"]
 [ext_resource type="SpriteFrames" uid="uid://bh85f4w3awam3" path="res://System/HUD/compass.tres" id="4_x8pkg"]
 [ext_resource type="Texture2D" uid="uid://ffdgt3bm82bb" path="res://Sprites/Miscellaneous/Community Center Junimo.png" id="5_8s54n"]
+[ext_resource type="Texture2D" uid="uid://d1rqw0of5fjmf" path="res://Sprites/Unused Content/Menu Elements.png" id="6_ppn7t"]
+[ext_resource type="Texture2D" uid="uid://d4lk3jud2wjvl" path="res://Sprites/Miscellaneous/Fonts.png" id="7_4twk8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_el57c"]
 
@@ -76,7 +78,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Pop-Up" type="Sprite2D" parent="NPC Menu"]
-visible = false
 position = Vector2(20, 16)
 scale = Vector2(3, 3)
 texture = ExtResource("5_8s54n")
@@ -274,3 +275,24 @@ position = Vector2(-28.5, 46)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
+
+[node name="ButtonX" type="TextureButton" parent="NPC Menu"]
+layout_mode = 0
+offset_left = 228.0
+offset_top = -200.0
+offset_right = 276.0
+offset_bottom = -152.0
+action_mode = 0
+
+[node name="Close" type="Sprite2D" parent="NPC Menu/ButtonX"]
+position = Vector2(24, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ppn7t")
+region_enabled = true
+region_rect = Rect2(0, 80, 15, 15)
+
+[node name="X" type="Sprite2D" parent="NPC Menu/ButtonX/Close"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("7_4twk8")
+region_enabled = true
+region_rect = Rect2(346, 349, 8, 11)
