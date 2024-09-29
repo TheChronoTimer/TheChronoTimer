@@ -18,14 +18,16 @@ enum Modes {
 @export var modes: Modes
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
+@export var mainScale: float = 4
 
 #Auxiliar
 var vert
 var horiz
 var dir
-var desloc = tileSize*4
+var desloc = tileSize * mainScale
 var ArrSize
 var Arr = 0
+var ver = 0
 
 
 func _physics_process(_delta):
@@ -33,10 +35,19 @@ func _physics_process(_delta):
 		0:
 			vert = abs(target.global_position.y - self.global_position.y)
 			horiz = abs(target.global_position.x - self.global_position.x)
+			if vert >= desloc || horiz >= desloc:
+				ver = 1
+			else:
+				ver = 0
 		1, 2:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
-	if vert >= desloc || horiz >= desloc:
+			if vert > tileSize || horiz > tileSize:
+				ver = 1
+			else:
+				ver = 0
+	
+	if ver == 1:
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
 		move_and_slide()

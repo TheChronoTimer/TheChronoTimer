@@ -69,225 +69,261 @@ texture_filter = 1
 
 [node name="Haley" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("5_6pvaf")]
 texture_filter = 1
-position = Vector2(71.75, -262)
+position = Vector2(70.75, -263.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
+modes = 1
+coords = Array[Vector2]([Vector2(4, -17), Vector2(5, -17), Vector2(5, -16), Vector2(4, -16)])
 
 [node name="Alex" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("6_sgqh1")]
 texture_filter = 1
-position = Vector2(120.75, -262.25)
+position = Vector2(121, -262.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 wall_min_slide_angle = 0.0
 target = NodePath("../../Player")
+modes = 1
+coords = Array[Vector2]([Vector2(7, -17), Vector2(8, -17), Vector2(8, -16), Vector2(7, -16)])
 
 [node name="Abigail" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("7_upn61")]
 texture_filter = 1
-position = Vector2(167.5, -261.5)
+position = Vector2(167.75, -261.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Caroline" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("8_defj4")]
 texture_filter = 1
-position = Vector2(214.25, -266.5)
+position = Vector2(214.5, -266.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Clint" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("9_8ia46")]
 texture_filter = 1
-position = Vector2(261.5, -260.75)
+position = Vector2(261.75, -260.75)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Demetrius" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("10_cds4n")]
 texture_filter = 1
-position = Vector2(71.75, -215.5)
+position = Vector2(72, -215.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Dwarf" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("11_4h65w")]
 texture_filter = 1
-position = Vector2(119, -216)
+position = Vector2(119.25, -216)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Elliot" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("12_74l61")]
 texture_filter = 1
-position = Vector2(168.25, -216.75)
+position = Vector2(168.5, -216.75)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Emily" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("13_4sbo7")]
 texture_filter = 1
-position = Vector2(217.25, -213)
+position = Vector2(217.5, -213)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Evelyn" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("14_sp5p3")]
 texture_filter = 1
-position = Vector2(263.75, -216.25)
+position = Vector2(264, -216.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="George" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("15_qlfu7")]
 texture_filter = 1
-position = Vector2(73, -169.75)
+position = Vector2(73.25, -169.75)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Gus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("16_kl3ed")]
 texture_filter = 1
-position = Vector2(119.75, -166.5)
+position = Vector2(120, -166.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Harvey" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("17_t5nge")]
 texture_filter = 1
-position = Vector2(167.5, -169.25)
+position = Vector2(167.75, -169.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Jas" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("18_ktpt4")]
 texture_filter = 1
-position = Vector2(217.25, -167.5)
+position = Vector2(217.5, -167.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Jodi" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("19_n58hi")]
 texture_filter = 1
-position = Vector2(265, -165.5)
+position = Vector2(265.25, -165.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Krobus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("20_67r6g")]
 texture_filter = 1
-position = Vector2(72.25, -122)
+position = Vector2(72.5, -122)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Leah" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("21_3voht")]
 texture_filter = 1
-position = Vector2(119.75, -119.25)
+position = Vector2(120, -119.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Lewis" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("22_wqm34")]
 texture_filter = 1
-position = Vector2(169, -119.25)
+position = Vector2(169.25, -119.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Linus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("23_y0uso")]
 texture_filter = 1
-position = Vector2(214.75, -120)
+position = Vector2(215, -120)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Marnie" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("24_3uire")]
 texture_filter = 1
-position = Vector2(265, -120)
+position = Vector2(265.25, -120)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Maru" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("25_p4lun")]
 texture_filter = 1
-position = Vector2(71, -72.5)
+position = Vector2(71.25, -72.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Pam" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("26_no2p6")]
 texture_filter = 1
-position = Vector2(117.75, -73.25)
+position = Vector2(118, -73.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Penny" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("27_puwg5")]
 texture_filter = 1
-position = Vector2(166.5, -73)
+position = Vector2(166.75, -73)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Pierre" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("28_35ki6")]
 texture_filter = 1
-position = Vector2(215.25, -71.75)
+position = Vector2(215.5, -71.75)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Robin" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("29_0dw8e")]
 texture_filter = 1
-position = Vector2(264.5, -73)
+position = Vector2(264.75, -73)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Sam" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("30_io64w")]
 texture_filter = 1
-position = Vector2(74.5, -23)
+position = Vector2(74.75, -23)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Sandy" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("31_afqrr")]
 texture_filter = 1
-position = Vector2(120.75, -24.5)
+position = Vector2(121, -24.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Sebastian" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("32_mqd00")]
 texture_filter = 1
-position = Vector2(169.5, -24.5)
+position = Vector2(169.75, -24.5)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Shane" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("33_it2vq")]
 texture_filter = 1
-position = Vector2(217, -22)
+position = Vector2(217.25, -22)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Vincent" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("34_ffqv1")]
 texture_filter = 1
-position = Vector2(263, -25.25)
+position = Vector2(263.25, -25.25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Willy" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("35_nsifo")]
 texture_filter = 1
-position = Vector2(72.25, 24)
+position = Vector2(72.5, 24)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")
 
 [node name="Wizard" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("36_b48rn")]
 texture_filter = 1
-position = Vector2(122, 25)
+position = Vector2(122.25, 25)
 collision_layer = 4
 collision_mask = 255
+motion_mode = 1
 target = NodePath("../../Player")

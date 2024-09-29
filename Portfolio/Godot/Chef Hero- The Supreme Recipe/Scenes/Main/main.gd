@@ -17,7 +17,6 @@ func _process(_delta):
 func _debug():
 	if Input.is_action_pressed("Debug"):
 		HUD.VisibNPCMenu = 1
-	
 
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():

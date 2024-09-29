@@ -76,6 +76,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Pop-Up" type="Sprite2D" parent="NPC Menu"]
+visible = false
 position = Vector2(20, 16)
 scale = Vector2(3, 3)
 texture = ExtResource("5_8s54n")
