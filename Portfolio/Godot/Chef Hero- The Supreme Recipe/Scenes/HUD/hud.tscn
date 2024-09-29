@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ijhl6tdb5o05"]
+[gd_scene load_steps=7 format=3 uid="uid://ijhl6tdb5o05"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_ewt1k"]
 [ext_resource type="Texture2D" uid="uid://02435jkhu70x" path="res://Sprites/Miscellaneous/Clock.png" id="3_35gw4"]
 [ext_resource type="Texture2D" uid="uid://byirrt7aepxaq" path="res://Sprites/Extra Tiles/locator.png" id="4_av7du"]
 [ext_resource type="SpriteFrames" uid="uid://bh85f4w3awam3" path="res://System/HUD/compass.tres" id="4_x8pkg"]
+[ext_resource type="Texture2D" uid="uid://ffdgt3bm82bb" path="res://Sprites/Miscellaneous/Community Center Junimo.png" id="5_8s54n"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_el57c"]
 
@@ -59,3 +60,216 @@ scale = Vector2(0.110986, 0.111111)
 sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
 frame = 4
+
+[node name="NPC Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pop-Up" type="Sprite2D" parent="NPC Menu"]
+position = Vector2(20, 16)
+scale = Vector2(3, 3)
+texture = ExtResource("5_8s54n")
+region_enabled = true
+region_rect = Rect2(338, 18, 135, 144)
+
+[node name="Icon01" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon02" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon03" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-10, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon04" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(8.5, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon05" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(26.5, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon06" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(45, -47)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon07" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon08" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon09" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-10, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon10" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(8.5, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon11" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(26.5, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon12" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(45, -29)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon13" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon14" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon15" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-10, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon16" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(8.5, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon17" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(26.5, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon18" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(45, -10)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon19" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon20" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon21" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-10, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon22" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(8.5, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon23" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(26.5, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon24" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(45, 9)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon25" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon26" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon27" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-10, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon28" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(8.5, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon29" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(26.5, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon30" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(45, 28)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon31" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-46.5, 46)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon32" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+position = Vector2(-28.5, 46)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
