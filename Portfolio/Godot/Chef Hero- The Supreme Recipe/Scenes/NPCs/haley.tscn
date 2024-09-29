@@ -1,21 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://03jy2v88kp3f"]
+[gd_scene load_steps=4 format=3 uid="uid://haleytotal"]
 
-[ext_resource type="SpriteFrames" uid="uid://bujhywtifivry" path="res://System/NPCs/haley.tres" id="1_by16n"]
-[ext_resource type="Script" path="res://Scenes/NPCs/follow_player.gd" id="1_p785s"]
+[ext_resource type="SpriteFrames" uid="uid://haleyframe" path="res://System/NPCs/haley.tres" id="1_by16n"]
+[ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_p785s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd34u"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
 size = Vector2(14, 12)
 
 [node name="Haley" type="CharacterBody2D"]
-y_sort_enabled = true
 position = Vector2(0, 12)
-motion_mode = 1
-wall_min_slide_angle = 0.0
 script = ExtResource("1_p785s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-shape = SubResource("RectangleShape2D_fd34u")
+shape = SubResource("RectangleShape2D_bbf2w")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

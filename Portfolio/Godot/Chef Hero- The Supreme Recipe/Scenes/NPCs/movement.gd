@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var TimerClock = $Timer
 
 enum Modes {
-	FollowPlayer,
+	FollowTarget,
 	FollowCoords,
 	FollowCoordsAndStop
 }
@@ -14,7 +14,7 @@ enum Modes {
 #Controle
 @export var speed: int = 128
 @export var frameSpeed: int = 5
-@export var player: Node2D
+@export var target: Node2D
 @export var modes: Modes
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
@@ -31,8 +31,8 @@ var Arr = 0
 func _physics_process(_delta):
 	match modes:
 		0:
-			vert = abs(player.global_position.y - self.global_position.y)
-			horiz = abs(player.global_position.x - self.global_position.x)
+			vert = abs(target.global_position.y - self.global_position.y)
+			horiz = abs(target.global_position.x - self.global_position.x)
 		1, 2:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
@@ -64,7 +64,7 @@ func _ready():
 func _on_timer_timeout():
 	match modes:
 		0:
-			Nav.target_position = player.global_position
+			Nav.target_position = target.global_position
 		1, 2:
 			Nav.target_position = coords[Arr]
 

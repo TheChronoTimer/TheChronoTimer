@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://alextotal"]
+[gd_scene load_steps=4 format=3 uid="uid://linustotal"]
 
-[ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_lwmro"]
-[ext_resource type="SpriteFrames" uid="uid://alexframe" path="res://System/NPCs/alex.tres" id="2_kod2u"]
+[ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_li23c"]
+[ext_resource type="SpriteFrames" uid="uid://linusframe" path="res://System/NPCs/linus.tres" id="2_ka3p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
 size = Vector2(14, 12)
 
-[node name="Alex" type="CharacterBody2D"]
+[node name="Linus" type="CharacterBody2D"]
 position = Vector2(0, 12)
-script = ExtResource("1_lwmro")
+script = ExtResource("1_li23c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_bbf2w")
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -12)
-sprite_frames = ExtResource("2_kod2u")
+sprite_frames = ExtResource("2_ka3p4")
 animation = &"Down"
 
 [node name="Timer" type="Timer" parent="."]

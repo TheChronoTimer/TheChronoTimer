@@ -17,6 +17,7 @@ func _process(_delta):
 
 func _debug():
 	if Input.is_action_pressed("Debug"):
+		print(Player.position)
 		_npc_selection()
 
 func _npc_selection():

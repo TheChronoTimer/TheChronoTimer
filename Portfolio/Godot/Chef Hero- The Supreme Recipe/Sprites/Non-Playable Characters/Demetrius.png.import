@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dornuu5pmskc"
-path="res://.godot/imported/Demitrius.png-6cb5d59099b32b3498ae456d5ae70f9a.ctex"
+uid="uid://cpi04o3duhlos"
+path="res://.godot/imported/Demetrius.png-8d5c9f6e622dc77fdfcd2953cc2ae1a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Non-Playable Characters/Demitrius.png"
-dest_files=["res://.godot/imported/Demitrius.png-6cb5d59099b32b3498ae456d5ae70f9a.ctex"]
+source_file="res://Sprites/Non-Playable Characters/Demetrius.png"
+dest_files=["res://.godot/imported/Demetrius.png-8d5c9f6e622dc77fdfcd2953cc2ae1a5.ctex"]
 
 [params]
 

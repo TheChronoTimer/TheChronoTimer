@@ -1,11 +1,41 @@
-[gd_scene load_steps=7 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=37 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
-[ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/tilemap.tscn" id="2_paxs4"]
+[ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/TileMap/tilemap.tscn" id="2_paxs4"]
 [ext_resource type="PackedScene" uid="uid://ijhl6tdb5o05" path="res://Scenes/HUD/hud.tscn" id="5_1vxud"]
-[ext_resource type="PackedScene" uid="uid://03jy2v88kp3f" path="res://Scenes/NPCs/haley.tscn" id="5_6pvaf"]
-[ext_resource type="PackedScene" uid="uid://cnxlbsel47vne" path="res://Scenes/NPCs/alex.tscn" id="6_sgqh1"]
+[ext_resource type="PackedScene" uid="uid://haleytotal" path="res://Scenes/NPCs/haley.tscn" id="5_6pvaf"]
+[ext_resource type="PackedScene" uid="uid://lextotal" path="res://Scenes/NPCs/alex.tscn" id="6_sgqh1"]
+[ext_resource type="PackedScene" uid="uid://bigailtotal" path="res://Scenes/NPCs/abigail.tscn" id="7_upn61"]
+[ext_resource type="PackedScene" uid="uid://carolinetotal" path="res://Scenes/NPCs/caroline.tscn" id="8_defj4"]
+[ext_resource type="PackedScene" uid="uid://clinttotal" path="res://Scenes/NPCs/clint.tscn" id="9_8ia46"]
+[ext_resource type="PackedScene" uid="uid://caecty10k76sx" path="res://Scenes/NPCs/demetrius.tscn" id="10_cds4n"]
+[ext_resource type="PackedScene" uid="uid://dwarftotal" path="res://Scenes/NPCs/dwarf.tscn" id="11_4h65w"]
+[ext_resource type="PackedScene" uid="uid://elliottotal" path="res://Scenes/NPCs/elliot.tscn" id="12_74l61"]
+[ext_resource type="PackedScene" uid="uid://emilytotal" path="res://Scenes/NPCs/emily.tscn" id="13_4sbo7"]
+[ext_resource type="PackedScene" uid="uid://evelyntotal" path="res://Scenes/NPCs/evelyn.tscn" id="14_sp5p3"]
+[ext_resource type="PackedScene" uid="uid://georgetotal" path="res://Scenes/NPCs/george.tscn" id="15_qlfu7"]
+[ext_resource type="PackedScene" uid="uid://gustotal" path="res://Scenes/NPCs/gus.tscn" id="16_kl3ed"]
+[ext_resource type="PackedScene" uid="uid://harveytotal" path="res://Scenes/NPCs/harvey.tscn" id="17_t5nge"]
+[ext_resource type="PackedScene" uid="uid://jastotal" path="res://Scenes/NPCs/jas.tscn" id="18_ktpt4"]
+[ext_resource type="PackedScene" uid="uid://joditotal" path="res://Scenes/NPCs/jodi.tscn" id="19_n58hi"]
+[ext_resource type="PackedScene" uid="uid://krobustotal" path="res://Scenes/NPCs/krobus.tscn" id="20_67r6g"]
+[ext_resource type="PackedScene" uid="uid://leahtotal" path="res://Scenes/NPCs/leah.tscn" id="21_3voht"]
+[ext_resource type="PackedScene" uid="uid://lewistotal" path="res://Scenes/NPCs/lewis.tscn" id="22_wqm34"]
+[ext_resource type="PackedScene" uid="uid://linustotal" path="res://Scenes/NPCs/linus.tscn" id="23_y0uso"]
+[ext_resource type="PackedScene" uid="uid://marnietotal" path="res://Scenes/NPCs/marnie.tscn" id="24_3uire"]
+[ext_resource type="PackedScene" uid="uid://marutotal" path="res://Scenes/NPCs/maru.tscn" id="25_p4lun"]
+[ext_resource type="PackedScene" uid="uid://pamtotal" path="res://Scenes/NPCs/pam.tscn" id="26_no2p6"]
+[ext_resource type="PackedScene" uid="uid://pennytotal" path="res://Scenes/NPCs/penny.tscn" id="27_puwg5"]
+[ext_resource type="PackedScene" uid="uid://pierretotal" path="res://Scenes/NPCs/pierre.tscn" id="28_35ki6"]
+[ext_resource type="PackedScene" uid="uid://robintotal" path="res://Scenes/NPCs/robin.tscn" id="29_0dw8e"]
+[ext_resource type="PackedScene" uid="uid://samtotal" path="res://Scenes/NPCs/sam.tscn" id="30_io64w"]
+[ext_resource type="PackedScene" uid="uid://sandytotal" path="res://Scenes/NPCs/sandy.tscn" id="31_afqrr"]
+[ext_resource type="PackedScene" uid="uid://brff1i4l1jnr0" path="res://Scenes/NPCs/sebastian.tscn" id="32_mqd00"]
+[ext_resource type="PackedScene" uid="uid://shanetotal" path="res://Scenes/NPCs/shane.tscn" id="33_it2vq"]
+[ext_resource type="PackedScene" uid="uid://vincenttotal" path="res://Scenes/NPCs/vincent.tscn" id="34_ffqv1"]
+[ext_resource type="PackedScene" uid="uid://willytotal" path="res://Scenes/NPCs/willy.tscn" id="35_nsifo"]
+[ext_resource type="PackedScene" uid="uid://wi0ardtotal" path="res://Scenes/NPCs/wizard.tscn" id="36_b48rn"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -22,37 +52,242 @@ texture_filter = 1
 position_smoothing_enabled = true
 
 [node name="TileMap" parent="." instance=ExtResource("2_paxs4")]
-position = Vector2(0, 0)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
+
+[node name="Animals" type="Node2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
 
 [node name="NPCs" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="Haley" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("5_6pvaf")]
+[node name="Haley" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("5_6pvaf")]
 texture_filter = 1
-position = Vector2(-247.5, -266.75)
+position = Vector2(71.75, -262)
 collision_layer = 4
 collision_mask = 255
-speed = 512
-player = NodePath("../../Player")
-modes = 1
-coords = Array[Vector2]([Vector2(0, -16), Vector2(0, 0)])
+target = NodePath("../../Player")
 
-[node name="Alex" parent="NPCs" node_paths=PackedStringArray("player") instance=ExtResource("6_sgqh1")]
+[node name="Alex" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("6_sgqh1")]
 texture_filter = 1
-position = Vector2(-267, -265.5)
+position = Vector2(120.75, -262.25)
 collision_layer = 4
 collision_mask = 255
-motion_mode = 1
 wall_min_slide_angle = 0.0
-player = NodePath("../../Player")
+target = NodePath("../../Player")
 
-[node name="Animals" type="Node2D" parent="."]
-z_index = 2
-y_sort_enabled = true
+[node name="Abigail" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("7_upn61")]
 texture_filter = 1
+position = Vector2(167.5, -261.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Caroline" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("8_defj4")]
+texture_filter = 1
+position = Vector2(214.25, -266.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Clint" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("9_8ia46")]
+texture_filter = 1
+position = Vector2(261.5, -260.75)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Demetrius" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("10_cds4n")]
+texture_filter = 1
+position = Vector2(71.75, -215.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Dwarf" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("11_4h65w")]
+texture_filter = 1
+position = Vector2(119, -216)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Elliot" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("12_74l61")]
+texture_filter = 1
+position = Vector2(168.25, -216.75)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Emily" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("13_4sbo7")]
+texture_filter = 1
+position = Vector2(217.25, -213)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Evelyn" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("14_sp5p3")]
+texture_filter = 1
+position = Vector2(263.75, -216.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="George" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("15_qlfu7")]
+texture_filter = 1
+position = Vector2(73, -169.75)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Gus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("16_kl3ed")]
+texture_filter = 1
+position = Vector2(119.75, -166.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Harvey" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("17_t5nge")]
+texture_filter = 1
+position = Vector2(167.5, -169.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Jas" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("18_ktpt4")]
+texture_filter = 1
+position = Vector2(217.25, -167.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Jodi" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("19_n58hi")]
+texture_filter = 1
+position = Vector2(265, -165.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Krobus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("20_67r6g")]
+texture_filter = 1
+position = Vector2(72.25, -122)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Leah" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("21_3voht")]
+texture_filter = 1
+position = Vector2(119.75, -119.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Lewis" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("22_wqm34")]
+texture_filter = 1
+position = Vector2(169, -119.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Linus" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("23_y0uso")]
+texture_filter = 1
+position = Vector2(214.75, -120)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Marnie" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("24_3uire")]
+texture_filter = 1
+position = Vector2(265, -120)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Maru" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("25_p4lun")]
+texture_filter = 1
+position = Vector2(71, -72.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Pam" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("26_no2p6")]
+texture_filter = 1
+position = Vector2(117.75, -73.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Penny" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("27_puwg5")]
+texture_filter = 1
+position = Vector2(166.5, -73)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Pierre" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("28_35ki6")]
+texture_filter = 1
+position = Vector2(215.25, -71.75)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Robin" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("29_0dw8e")]
+texture_filter = 1
+position = Vector2(264.5, -73)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Sam" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("30_io64w")]
+texture_filter = 1
+position = Vector2(74.5, -23)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Sandy" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("31_afqrr")]
+texture_filter = 1
+position = Vector2(120.75, -24.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Sebastian" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("32_mqd00")]
+texture_filter = 1
+position = Vector2(169.5, -24.5)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Shane" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("33_it2vq")]
+texture_filter = 1
+position = Vector2(217, -22)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Vincent" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("34_ffqv1")]
+texture_filter = 1
+position = Vector2(263, -25.25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Willy" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("35_nsifo")]
+texture_filter = 1
+position = Vector2(72.25, 24)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
+
+[node name="Wizard" parent="NPCs" node_paths=PackedStringArray("target") instance=ExtResource("36_b48rn")]
+texture_filter = 1
+position = Vector2(122, 25)
+collision_layer = 4
+collision_mask = 255
+target = NodePath("../../Player")
