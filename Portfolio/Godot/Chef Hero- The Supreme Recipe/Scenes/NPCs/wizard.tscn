@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://wizardtotal"]
+[gd_scene load_steps=4 format=3 uid="uid://wi0ardtotal"]
 
 [ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_c8tw8"]
-[ext_resource type="SpriteFrames" uid="uid://wizardframe" path="res://System/NPCs/wizard.tres" id="2_mnvxx"]
+[ext_resource type="SpriteFrames" uid="uid://wi0ardframe" path="res://System/NPCs/wizard.tres" id="2_mnvxx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
 size = Vector2(14, 12)

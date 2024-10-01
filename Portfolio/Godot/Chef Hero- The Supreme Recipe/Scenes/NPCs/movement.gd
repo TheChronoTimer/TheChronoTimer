@@ -4,9 +4,11 @@ extends CharacterBody2D
 @onready var Sprite = $Sprite
 @onready var Nav = $NavigationAgent2D
 @onready var TimerClock = $Timer
+@onready var Player = $"/root/Main/Player"
 
 enum Modes {
 	FollowTarget,
+	FollowPlayer,
 	FollowCoords,
 	FollowCoordsAndStop
 }
@@ -32,14 +34,16 @@ var ver = 0
 
 func _physics_process(_delta):
 	match modes:
-		0:
+		0, 1:
+			if modes == 0:
+				target = Player
 			vert = abs(target.global_position.y - self.global_position.y)
 			horiz = abs(target.global_position.x - self.global_position.x)
 			if vert >= desloc || horiz >= desloc:
 				ver = 1
 			else:
 				ver = 0
-		1, 2:
+		2, 3:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
 			if vert > tileSize || horiz > tileSize:
@@ -60,9 +64,9 @@ func _physics_process(_delta):
 			if ArrSize > (Arr+1):
 				Arr += 1
 			else:
-				if modes == 1:
-					Arr = 0
 				if modes == 2:
+					Arr = 0
+				if modes == 3:
 					Sprite.pause()
 					Sprite.frame = 0
 
@@ -74,9 +78,9 @@ func _ready():
 
 func _on_timer_timeout():
 	match modes:
-		0:
+		0, 1:
 			Nav.target_position = target.global_position
-		1, 2:
+		2, 3:
 			Nav.target_position = coords[Arr]
 
 func _process(_delta):
