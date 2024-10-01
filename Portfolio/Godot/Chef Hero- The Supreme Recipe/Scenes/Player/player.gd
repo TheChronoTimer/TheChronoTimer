@@ -109,7 +109,10 @@ func _on_timer_timeout():
 	var New = Pointed.duplicate()
 	New.global_position = Vector2i.ZERO
 	get_parent().get_node("NPCs").add_child(New)
-	print(New)
+	print(NPCs.get_node("Willy").get_children())
+	print(Pointed.get_children())
+	print(New.get_children())
+	print(New.Player)
 	Pointed = null
 
 func _ActionA():

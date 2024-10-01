@@ -31,7 +31,6 @@ var ArrSize
 var Arr = 0
 var ver = 0
 
-
 func _physics_process(_delta):
 	match modes:
 		0, 1:

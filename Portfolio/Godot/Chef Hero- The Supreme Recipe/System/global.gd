@@ -1,8 +1,7 @@
 extends Node
 
-@onready var RTC: float = 0.0
-
-var NPCsearch = 4
+var RTC: float = 0.0
+var NPCsearch: int = 0
 
 var NPClist = {
 "Alex":			6,
