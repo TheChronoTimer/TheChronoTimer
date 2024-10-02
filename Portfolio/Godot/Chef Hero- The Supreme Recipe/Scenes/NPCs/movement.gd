@@ -16,8 +16,8 @@ enum Modes {
 #Controle
 @export var speed: int = 128
 @export var frameSpeed: int = 5
-@export var target: Node2D
 @export var modes: Modes
+@export var target: Node2D
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
 @export var mainScale: float = 4
@@ -34,7 +34,7 @@ var ver = 0
 func _physics_process(_delta):
 	match modes:
 		0, 1:
-			if modes == 0:
+			if modes == 1:
 				target = Player
 			vert = abs(target.global_position.y - self.global_position.y)
 			horiz = abs(target.global_position.x - self.global_position.x)
@@ -49,7 +49,6 @@ func _physics_process(_delta):
 				ver = 1
 			else:
 				ver = 0
-	
 	if ver == 1:
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed

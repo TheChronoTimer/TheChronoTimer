@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://pamtotal"]
 
 [ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_0ee6b"]
-[ext_resource type="SpriteFrames" uid="uid://pennyframe" path="res://System/NPCs/pam.tres" id="2_a1c22"]
+[ext_resource type="SpriteFrames" uid="uid://pamframe" path="res://System/NPCs/pam.tres" id="2_a1c22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
 size = Vector2(14, 12)
@@ -27,5 +27,4 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 32
-path_postprocessing = 1
 avoidance_enabled = true

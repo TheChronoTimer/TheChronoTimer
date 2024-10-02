@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://pennyframe"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://pamframe"]
 
 [ext_resource type="Texture2D" uid="uid://lio8p4d65eo" path="res://Sprites/Non-Playable Characters/Pam.png" id="1_3milc"]
 
