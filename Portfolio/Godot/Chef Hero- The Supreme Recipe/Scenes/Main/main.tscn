@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=38 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://vincenttotal" path="res://Scenes/NPCs/vincent.tscn" id="34_ffqv1"]
 [ext_resource type="PackedScene" uid="uid://willytotal" path="res://Scenes/NPCs/willy.tscn" id="35_nsifo"]
 [ext_resource type="PackedScene" uid="uid://wi0ardtotal" path="res://Scenes/NPCs/wizard.tscn" id="36_b48rn"]
+[ext_resource type="PackedScene" uid="uid://13e0sal8w0te" path="res://Scenes/PET/pet.tscn" id="37_i3xyh"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -45,7 +46,7 @@ script = ExtResource("1_q7xxs")
 
 [node name="Player" parent="." instance=ExtResource("2_lf818")]
 z_index = 2
-collision_mask = 254
+collision_mask = 255
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 texture_filter = 1
@@ -58,7 +59,7 @@ Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
 
 [node name="Timer" type="Timer" parent="HUD"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="Animals" type="Node2D" parent="."]
@@ -328,3 +329,15 @@ collision_layer = 20
 collision_mask = 255
 motion_mode = 1
 modes = 1
+
+[node name="PET" parent="." node_paths=PackedStringArray("target") instance=ExtResource("37_i3xyh")]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-0.25, -87)
+collision_layer = 17
+collision_mask = 255
+speed = 128
+frameSpeed = 5
+modes = 1
+target = NodePath("../NPCs/Haley")
+coords = Array[Vector2]([Vector2(0, -3), Vector2(0.5, -2), Vector2(-2, -0.5)])

@@ -21,6 +21,7 @@ enum Modes {
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
 @export var mainScale: float = 4
+@export var pixelEdge: int = 0
 
 #Auxiliar
 var vert
@@ -29,33 +30,21 @@ var dir
 var desloc = tileSize * mainScale
 var ArrSize
 var Arr = 0
-var ver = 0
+var WalkAuthoriz = false
 
 func _physics_process(_delta):
-	match modes:
-		0, 1:
-			if modes == 1:
-				target = Player
-			vert = abs(target.global_position.y - self.global_position.y)
-			horiz = abs(target.global_position.x - self.global_position.x)
-			if vert >= desloc || horiz >= desloc:
-				ver = 1
-			else:
-				ver = 0
-		2, 3:
-			vert = abs(coords[Arr].y - self.global_position.y)
-			horiz = abs(coords[Arr].x - self.global_position.x)
-			if vert > tileSize || horiz > tileSize:
-				ver = 1
-			else:
-				ver = 0
-	if ver == 1:
+	_modes_target()
+	if WalkAuthoriz == true:
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
-		move_and_slide()
-		Sprite.play()
+		if Nav.is_target_reachable() or !Nav.is_navigation_finished():
+			move_and_slide()
+			Sprite.play()
+		else:
+			Sprite.pause()
+			Sprite.frame = 0
 	else:
-		if modes == 0:
+		if modes == 0 or modes == 1:
 			Sprite.pause()
 			Sprite.frame = 0
 		else:
@@ -83,15 +72,33 @@ func _on_timer_timeout():
 
 func _process(_delta):
 	Sprite.speed_scale = frameSpeed
-	
-	if velocity.length() > 0:
-		if abs(velocity.y) > abs(velocity.x):
-			if velocity.y >= 0:
-				Sprite.animation = "Down"
+	var x = velocity.x
+	var y = velocity.y
+	match velocity:
+		_ when abs(y) > abs(x) and y >= 0:
+			Sprite.animation = "Down"
+		_ when abs(y) > abs(x) and y < 0:
+			Sprite.animation = "Up"
+		_ when abs(x) > abs(y) and x >= 0:
+			Sprite.animation = "Right"
+		_ when abs(x) > abs(y) and x < 0:
+			Sprite.animation = "Left"
+
+func _modes_target():
+	match modes:
+		0, 1:
+			if modes == 1:
+				target = Player
+			vert = abs(target.global_position.y - self.global_position.y)
+			horiz = abs(target.global_position.x - self.global_position.x)
+			if vert >= desloc+pixelEdge or horiz >= desloc+pixelEdge:
+				WalkAuthoriz = true
 			else:
-				Sprite.animation = "Up"
-		if abs(velocity.y) < abs(velocity.x):
-			if velocity.x >= 0:
-				Sprite.animation = "Right"
+				WalkAuthoriz = false
+		2, 3:
+			vert = abs(coords[Arr].y - self.global_position.y)
+			horiz = abs(coords[Arr].x - self.global_position.x)
+			if vert > tileSize+pixelEdge or horiz > tileSize+pixelEdge:
+				WalkAuthoriz = true
 			else:
-				Sprite.animation = "Left"
+				WalkAuthoriz = false

@@ -1,21 +1,31 @@
 extends CanvasLayer
 
-#Funcionamento
+#region Var
+#region Funcionamento
 @export var Player: Node2D
 @export var Target: Node2D
 @export var NumPopUp: int = 32
 @export var VisibNPCMenu: bool = 0
+#endregion
 
-#Controle
+#region Controle
 @onready var Compass = $Compass/Pointer
 @onready var Icon = $Compass/Sphere/Icon
 @onready var NPCMenu = $"NPC Menu"
 @onready var PopUp = $"NPC Menu/Pop-Up"
 @onready var ButtonX = $"NPC Menu/ButtonX"
+#endregion
 
-#Auxiliar
+#region Auxiliar
 var requested_coords = Vector2.ZERO
 var pointer_position = Vector2.ZERO
+#endregion
+#endregion
+
+#region Start
+func _ready():
+	ButtonX.pressed.connect(_on_ButtonX_pressed)
+	_change_npc_menu_icons()
 
 func _physics_process(_delta):
 	_set_compass_angle()
@@ -39,20 +49,22 @@ func _input(event):
 							Global.NPCsearch = i
 							VisibNPCMenu = false
 							return
+#endregion
 
+#region Signal
+
+func _on_ButtonX_pressed():
+	VisibNPCMenu = not VisibNPCMenu
+#endregion
+
+#region Func
 func _set_compass_angle():
 	var direction = (Player.global_position - Target.global_position).normalized()
 	Compass.rotation_degrees = rad_to_deg(direction.angle()) - 135
-
-func _ready():
-	ButtonX.pressed.connect(_on_ButtonX_pressed)
-	_change_npc_menu_icons()
 
 func _change_npc_menu_icons():
 	set_process_input(true)
 	for i in range(NumPopUp):
 		var icon_name = "Icon" + str(i + 1).pad_zeros(2)
 		PopUp.get_node(icon_name).frame = i
-
-func _on_ButtonX_pressed():
-	VisibNPCMenu = not VisibNPCMenu
+#endregion
