@@ -16,7 +16,7 @@ modes = 3
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = ExtResource("1_ihjcl")
-animation = &"Sleeping"
+animation = &"Sitting Down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jcc6c")
@@ -28,4 +28,3 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 64
 avoidance_enabled = true
-debug_enabled = true

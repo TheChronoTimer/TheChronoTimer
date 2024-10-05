@@ -23,7 +23,8 @@ enum Modes {
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
 @export var mainScale: float = 4
-@export var pixelEdge: int = 0
+@export var pixelDistance: int = 0
+@export var distanceLimit: int = 0
 #endregion
 
 #region Auxiliar
@@ -34,6 +35,10 @@ var desloc = tileSize * mainScale
 var ArrSize
 var Arr = 0
 var _tooNear = true
+var pixelEdge = pixelDistance
+var SitPointingDown = false
+var SitMirrored = false
+var SitMirroredLock = false
 #endregion
 #endregion
 
@@ -73,6 +78,10 @@ func _walk():
 				_tooNear = false
 			else:
 				_tooNear = true
+			if (target.global_position.x - self.global_position.x) > 0:
+				SitMirrored = false
+			else:
+				SitMirrored = true
 		2, 3:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
@@ -80,12 +89,19 @@ func _walk():
 				_tooNear = false
 			else:
 				_tooNear = true
+			if (coords[Arr].x - self.global_position.x) > 0:
+				SitMirrored = false
+			else:
+				SitMirrored = true
 	if _tooNear == false:
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
 		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
 			move_and_slide()
+		pixelEdge = pixelDistance
 	else:
+		velocity = Vector2.ZERO
+		pixelEdge = (distanceLimit*mainScale)+pixelDistance
 		if not (modes == 0 or modes == 1):
 			if ArrSize > (Arr+1):
 				Arr += 1
@@ -99,30 +115,51 @@ func _animation():
 	var y = velocity.y
 	match velocity:
 		_ when x == 0 and y == 0:
-			Sprite.animation = "Sleeping"
+			if SitMirroredLock == false:
+				if SitMirrored == true:
+					Sprite.flip_h = true
+				else:
+					Sprite.flip_h = false
+				SitMirroredLock = true
+			if SitPointingDown == true:
+				Sprite.animation = "Sitting Down"
+			else:
+				Sprite.animation = "Sitting Right"
 		_ when abs(y) > abs(x) and y > 0:
 			Sprite.animation = "Walk Down"
+			SitPointingDown = true
+			Sprite.flip_h = false
+			SitMirroredLock = false
 		_ when abs(y) > abs(x) and y < 0:
 			Sprite.animation = "Walk Up"
+			SitPointingDown = false
+			Sprite.flip_h = false
+			SitMirroredLock = false
 		_ when abs(x) > abs(y) and x > 0:
 			Sprite.animation = "Walk Right"
+			SitPointingDown = false
+			Sprite.flip_h = false
+			SitMirroredLock = false
 		_ when abs(x) > abs(y) and x < 0:
 			Sprite.animation = "Walk Left"
+			SitPointingDown = false
+			Sprite.flip_h = false
+			SitMirroredLock = false
 
 func _frame():
 	if _tooNear == false:
 		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
 			Sprite.play()
 		else:
-			Sprite.pause()
-			Sprite.frame = 0
+			if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+				Sprite.pause()
 	else:
 		if modes == 0 or modes == 1:
-			Sprite.pause()
-			Sprite.frame = 0
+			if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+				Sprite.pause()
 		else:
 			if not (ArrSize > (Arr+1)):
 				if modes == 3:
-					Sprite.pause()
-					Sprite.frame = 0
+					if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+						Sprite.pause()
 #endregion
