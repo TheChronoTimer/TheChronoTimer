@@ -12,6 +12,11 @@ script = ExtResource("1_ekfwq")
 speed = 256
 frameSpeed = 10
 modes = 3
+coords = null
+tileSize = null
+mainScale = null
+pixelDistance = null
+distanceLimit = null
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

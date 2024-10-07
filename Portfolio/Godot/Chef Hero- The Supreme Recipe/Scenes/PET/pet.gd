@@ -64,19 +64,19 @@ func _process(_delta):
 #region Signal
 func _on_timer_timeout():
 	match modes:
-		0, 1:
+		Modes.FollowTarget, Modes.FollowPlayer:
 			Nav.target_position = target.global_position
-		2, 3:
+		Modes.FollowCoords, Modes.FollowCoordsAndStop:
 			Nav.target_position = coords[Arr]
-		4:
+		Modes.Stop:
 			Nav.target_position = self.global_position
 #endregion
 
 #region Func
 func _walk():
 	match modes:
-		0, 1:
-			if modes == 1:
+		Modes.FollowTarget, Modes.FollowPlayer:
+			if modes == Modes.FollowPlayer:
 				target = Player
 			vert = abs(target.global_position.y - self.global_position.y)
 			horiz = abs(target.global_position.x - self.global_position.x)
@@ -88,7 +88,7 @@ func _walk():
 				SitMirrored = false
 			else:
 				SitMirrored = true
-		2, 3:
+		Modes.FollowCoords, Modes.FollowCoordsAndStop:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
 			if vert > tileSize+pixelEdge or horiz > tileSize+pixelEdge:
@@ -100,7 +100,7 @@ func _walk():
 			else:
 				SitMirrored = true
 	if SitCommand == true:
-		modes = 4
+		modes = Modes.Stop
 	else:
 		modes = oldModesState
 
@@ -113,11 +113,11 @@ func _walk():
 	else:
 		velocity = Vector2.ZERO
 		pixelEdge = (distanceLimit*mainScale)+pixelDistance
-		if not (modes == 0 or modes == 1):
+		if not (modes == Modes.FollowTarget or modes == Modes.FollowPlayer):
 			if ArrSize > (Arr+1):
 				Arr += 1
 			else:
-				if modes == 2:
+				if modes == Modes.FollowCoords:
 					Arr = 0
 
 func _animation():
@@ -169,12 +169,12 @@ func _frame():
 				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
 					Sprite.pause()
 		else:
-			if modes == 0 or modes == 1:
+			if modes == Modes.FollowTarget or modes == Modes.FollowPlayer:
 				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
 					Sprite.pause()
 			else:
 				if not (ArrSize > (Arr+1)):
-					if modes == 3:
+					if modes == Modes.FollowCoordsAndStop:
 						if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
 							Sprite.pause()
 	else:
