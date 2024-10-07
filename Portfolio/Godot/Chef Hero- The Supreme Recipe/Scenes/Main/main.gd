@@ -8,12 +8,14 @@ extends Node2D
 @onready var MapScale = scale
 @onready var HUD = $HUD
 @onready var Player = $Player
+@onready var PET = $"/root/Main/Animals/PET"
 @onready var NPCs = $"/root/Main/NPCs"
 @onready var TimerClock = $HUD/Timer
 #endregion
 
 #region Auxiliar
 var HUDKey: String
+var CloneLocation
 #endregion
 #endregion
 
@@ -27,7 +29,11 @@ func _ready():
 
 func _process(_delta):
 	_HUD_keys()
-	HUD.Target = NPCs.get_node(_reverse_dict_search(Global.NPClist, Global.NPCsearch))
+	match Global.NPCsearch:
+		32:
+			HUD.Target = PET
+		_:
+			HUD.Target = NPCs.get_node(_reverse_dict_search(Global.NPClist, Global.NPCsearch))
 #endregion
 
 #region Signal
@@ -40,15 +46,18 @@ func _on_timer_timeout():
 		"ActionA":
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed
-			if Player.PointedBak == NPCs.get_node("Wizard"):
+			CloneLocation = Player.Pointed.get_parent()
+			if Player.PointedBak == CloneLocation.get_node("Wizard"):
 				print("Hey")
 			Player.PointedBak = null
 		"ActionB":
 			var New = Player.Pointed.duplicate()
 			New.global_position = Vector2i.ZERO
-			NPCs.add_child(New)
+			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
+		"Pet Mode":
+			PET.SitCommand = !PET.SitCommand
 	HUDKey = ""
 #endregion
 
@@ -68,13 +77,15 @@ func _HUD_keys():
 		if Player.Pointed:
 			HUDKey = "ActionB"
 	if Input.is_action_pressed("Ctrl"):
-		Player.frameSpeed = 15
-		Player.speed = 768
+		Player.frameSpeed = Global.DefaultFrameSpeed*3
+		Player.speed = Global.DefaultSpeed*3
 	else:
-		Player.frameSpeed = 5
-		Player.speed = 256
+		Player.frameSpeed = Global.DefaultFrameSpeed
+		Player.speed = Global.DefaultSpeed
 	if Input.is_action_pressed("Esc"):
 		HUD.VisibNPCMenu = false
+	if Input.is_action_pressed("Pet Mode"):
+		HUDKey = "Pet Mode"
 
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():

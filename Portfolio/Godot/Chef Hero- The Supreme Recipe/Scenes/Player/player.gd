@@ -4,7 +4,6 @@ extends CharacterBody2D
 #region Funcionamento
 @onready var Sprite = $Sprite
 @onready var Ray = $RayCast2D
-@onready var NPCs = $"/root/Main/NPCs"
 #endregion
 
 #region Controle
@@ -13,17 +12,16 @@ extends CharacterBody2D
 #endregion
 
 #region Auxiliar
-#endregion
-var auxW = 0
-var auxA = 0
-var auxS = 0
-var auxD = 0
 var Pointed
 var PointedBak
 #endregion
 #endregion
 
 #region Start
+func _ready():
+	Global.DefaultFrameSpeed = frameSpeed
+	Global.DefaultSpeed = speed
+
 func _physics_process(_delta):
 	_walk()
 
@@ -34,16 +32,11 @@ func _process(_delta):
 
 #region Func
 func _walk():
-	velocity = Vector2.ZERO
-	if Input.is_action_pressed("Right"):
-		velocity.x += 1
-	if Input.is_action_pressed("Left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("Down"):
-		velocity.y += 1
-	if Input.is_action_pressed("Up"):
-		velocity.y -= 1
-	velocity = speed * velocity.normalized()
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("Right") - Input.get_action_strength("Left")
+	input_vector.y = Input.get_action_strength("Down") - Input.get_action_strength("Up")
+	
+	velocity = input_vector.normalized() * speed
 	move_and_slide()
 
 func _animation():

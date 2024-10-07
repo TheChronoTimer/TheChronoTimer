@@ -4,7 +4,7 @@ extends CanvasLayer
 #region Funcionamento
 @export var Player: Node2D
 @export var Target: Node2D
-@export var NumPopUp: int = 32
+@export var NumPopUp: int = 33
 @export var VisibNPCMenu: bool = 0
 #endregion
 

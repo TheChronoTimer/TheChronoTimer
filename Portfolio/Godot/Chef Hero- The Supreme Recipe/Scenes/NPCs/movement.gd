@@ -11,7 +11,8 @@ enum Modes {
 	FollowTarget,
 	FollowPlayer,
 	FollowCoords,
-	FollowCoordsAndStop
+	FollowCoordsAndStop,
+	Stop
 }
 #endregion
 

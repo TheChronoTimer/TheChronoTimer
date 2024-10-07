@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=34 format=3 uid="uid://bh85f4w3awam3"]
+[gd_resource type="SpriteFrames" load_steps=35 format=3 uid="uid://bh85f4w3awam3"]
 
 [ext_resource type="Texture2D" uid="uid://osdn271t1qlk" path="res://Sprites/Miscellaneous/Text Emojis.png" id="1_w6gi0"]
 
@@ -130,6 +130,10 @@ region = Rect2(45, 117, 9, 9)
 atlas = ExtResource("1_w6gi0")
 region = Rect2(54, 117, 9, 9)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_65pj4"]
+atlas = ExtResource("1_w6gi0")
+region = Rect2(117, 45, 9, 9)
+
 [resource]
 animations = [{
 "frames": [{
@@ -228,6 +232,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d5usj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65pj4")
 }],
 "loop": true,
 "name": &"NPCs",

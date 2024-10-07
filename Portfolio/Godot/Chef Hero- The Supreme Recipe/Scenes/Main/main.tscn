@@ -57,6 +57,8 @@ position_smoothing_enabled = true
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
+NumPopUp = null
+VisibNPCMenu = null
 
 [node name="Timer" type="Timer" parent="HUD"]
 wait_time = 0.2
@@ -66,6 +68,17 @@ one_shot = true
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
+
+[node name="PET" parent="Animals" instance=ExtResource("37_i3xyh")]
+y_sort_enabled = true
+position = Vector2(-24, -1.5)
+collision_layer = 17
+collision_mask = 255
+speed = 128
+frameSpeed = 5
+modes = 1
+pixelDistance = 64
+distanceLimit = 32
 
 [node name="NPCs" type="Node2D" parent="."]
 z_index = 2
@@ -376,7 +389,7 @@ position = Vector2(73, 27.25)
 collision_layer = 20
 collision_mask = 255
 motion_mode = 1
-modes = 1
+modes = 4
 pixelDistance = 16
 distanceLimit = 16
 
@@ -389,16 +402,3 @@ motion_mode = 1
 modes = 1
 pixelDistance = 16
 distanceLimit = 16
-
-[node name="PET" parent="." instance=ExtResource("37_i3xyh")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(-24, -1.5)
-collision_layer = 17
-collision_mask = 255
-speed = 128
-frameSpeed = 5
-modes = 1
-coords = Array[Vector2]([Vector2(0, -3), Vector2(0.5, -2), Vector2(-2, -0.5)])
-pixelDistance = 64
-distanceLimit = 32

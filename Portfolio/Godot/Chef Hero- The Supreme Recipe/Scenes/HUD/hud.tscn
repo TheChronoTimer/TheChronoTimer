@@ -12,6 +12,8 @@
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ewt1k")
+NumPopUp = null
+VisibNPCMenu = null
 
 [node name="Time" type="Control" parent="."]
 layout_mode = 3
@@ -306,6 +308,13 @@ animation = &"NPCs"
 [node name="Icon32" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
 texture_filter = 1
 position = Vector2(-28.5, 46)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
+[node name="Icon33" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+texture_filter = 1
+position = Vector2(-10, 46)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
