@@ -310,6 +310,13 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
 
+[node name="Icon33" type="AnimatedSprite2D" parent="NPC Menu/Pop-Up"]
+texture_filter = 1
+position = Vector2(-10, 46)
+scale = Vector2(1.5, 1.5)
+sprite_frames = ExtResource("4_x8pkg")
+animation = &"NPCs"
+
 [node name="ButtonX" type="TextureButton" parent="NPC Menu"]
 layout_mode = 0
 offset_left = 228.0

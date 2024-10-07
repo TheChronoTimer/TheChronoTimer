@@ -11,7 +11,8 @@ enum Modes {
 	FollowTarget,
 	FollowPlayer,
 	FollowCoords,
-	FollowCoordsAndStop
+	FollowCoordsAndStop,
+	Stop
 }
 #endregion
 
@@ -39,6 +40,8 @@ var pixelEdge = pixelDistance
 var SitPointingDown = false
 var SitMirrored = false
 var SitMirroredLock = false
+var SitCommand = false
+var oldModesState
 #endregion
 #endregion
 
@@ -48,6 +51,7 @@ func _ready():
 	ArrSize = coords.size()
 	for i in ArrSize:
 		coords[i] *= desloc
+	oldModesState = modes
 
 func _physics_process(_delta):
 	_walk()
@@ -64,6 +68,8 @@ func _on_timer_timeout():
 			Nav.target_position = target.global_position
 		2, 3:
 			Nav.target_position = coords[Arr]
+		4:
+			Nav.target_position = self.global_position
 #endregion
 
 #region Func
@@ -93,6 +99,11 @@ func _walk():
 				SitMirrored = false
 			else:
 				SitMirrored = true
+	if SitCommand == true:
+		modes = 4
+	else:
+		modes = oldModesState
+
 	if _tooNear == false:
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
@@ -113,53 +124,59 @@ func _animation():
 	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y
-	match velocity:
-		_ when x == 0 and y == 0:
-			if SitMirroredLock == false:
-				if SitMirrored == true:
-					Sprite.flip_h = true
+	if SitCommand == false:
+		match velocity:
+			_ when x == 0 and y == 0:
+				if SitMirroredLock == false:
+					if SitMirrored == true:
+						Sprite.flip_h = true
+					else:
+						Sprite.flip_h = false
+					SitMirroredLock = true
+				if SitPointingDown == true:
+					Sprite.animation = "Sitting Down"
 				else:
-					Sprite.flip_h = false
-				SitMirroredLock = true
-			if SitPointingDown == true:
-				Sprite.animation = "Sitting Down"
-			else:
-				Sprite.animation = "Sitting Right"
-		_ when abs(y) > abs(x) and y > 0:
-			Sprite.animation = "Walk Down"
-			SitPointingDown = true
-			Sprite.flip_h = false
-			SitMirroredLock = false
-		_ when abs(y) > abs(x) and y < 0:
-			Sprite.animation = "Walk Up"
-			SitPointingDown = false
-			Sprite.flip_h = false
-			SitMirroredLock = false
-		_ when abs(x) > abs(y) and x > 0:
-			Sprite.animation = "Walk Right"
-			SitPointingDown = false
-			Sprite.flip_h = false
-			SitMirroredLock = false
-		_ when abs(x) > abs(y) and x < 0:
-			Sprite.animation = "Walk Left"
-			SitPointingDown = false
-			Sprite.flip_h = false
-			SitMirroredLock = false
+					Sprite.animation = "Sitting Right"
+			_ when abs(y) > abs(x) and y > 0:
+				Sprite.animation = "Walk Down"
+				SitPointingDown = true
+				Sprite.flip_h = false
+				SitMirroredLock = false
+			_ when abs(y) > abs(x) and y < 0:
+				Sprite.animation = "Walk Up"
+				SitPointingDown = false
+				Sprite.flip_h = false
+				SitMirroredLock = false
+			_ when abs(x) > abs(y) and x > 0:
+				Sprite.animation = "Walk Right"
+				SitPointingDown = false
+				Sprite.flip_h = false
+				SitMirroredLock = false
+			_ when abs(x) > abs(y) and x < 0:
+				Sprite.animation = "Walk Left"
+				SitPointingDown = false
+				Sprite.flip_h = false
+				SitMirroredLock = false
+	else:
+		Sprite.animation = "Sitted Right"
 
 func _frame():
-	if _tooNear == false:
-		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-			Sprite.play()
+	if SitCommand == false:
+		if _tooNear == false:
+			if Nav.is_target_reachable() or not Nav.is_navigation_finished():
+				Sprite.play()
+			else:
+				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+					Sprite.pause()
 		else:
-			if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-				Sprite.pause()
+			if modes == 0 or modes == 1:
+				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+					Sprite.pause()
+			else:
+				if not (ArrSize > (Arr+1)):
+					if modes == 3:
+						if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+							Sprite.pause()
 	else:
-		if modes == 0 or modes == 1:
-			if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-				Sprite.pause()
-		else:
-			if not (ArrSize > (Arr+1)):
-				if modes == 3:
-					if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-						Sprite.pause()
+		Sprite.play()
 #endregion

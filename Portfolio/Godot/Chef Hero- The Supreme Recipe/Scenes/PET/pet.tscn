@@ -14,9 +14,10 @@ frameSpeed = 10
 modes = 3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, -9)
 sprite_frames = ExtResource("1_ihjcl")
-animation = &"Sitting Down"
+animation = &"Sitted Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jcc6c")
