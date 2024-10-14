@@ -39,24 +39,24 @@ func _process(_delta):
 #region Signal
 func _on_timer_timeout():
 	match HUDKey:
-		"Compass":
+		"Compass": #N
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
-		"Debug":
+		"Debug": #K
 			print("Debug!")
-		"ActionA":
+		"ActionA": #C
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed
 			CloneLocation = Player.Pointed.get_parent()
 			if Player.PointedBak == CloneLocation.get_node("Wizard"):
 				print("Hey")
 			Player.PointedBak = null
-		"ActionB":
+		"ActionB": #X
 			var New = Player.Pointed.duplicate()
 			New.global_position = Vector2i.ZERO
 			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
-		"Pet Mode":
+		"Pet Mode": #M
 			PET.SitCommand = !PET.SitCommand
 	HUDKey = ""
 #endregion

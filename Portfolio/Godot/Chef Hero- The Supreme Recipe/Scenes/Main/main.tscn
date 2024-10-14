@@ -57,8 +57,6 @@ position_smoothing_enabled = true
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
-NumPopUp = 33
-VisibNPCMenu = false
 
 [node name="Timer" type="Timer" parent="HUD"]
 wait_time = 0.2
@@ -77,9 +75,6 @@ collision_mask = 255
 speed = 128
 frameSpeed = 5
 modes = 1
-coords = Array[Vector2]([])
-tileSize = 16
-mainScale = 4.0
 pixelDistance = 64
 distanceLimit = 32
 

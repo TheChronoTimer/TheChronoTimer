@@ -19,8 +19,8 @@ enum Modes {
 #region Controle
 @export var speed: int = 128
 @export var frameSpeed: int = 5
-@export var modes: Modes
-@export var target: Node2D
+@export var modes: Modes = Modes.Stop
+@export var target: Node2D = null
 @export var coords: Array[Vector2] = []
 @export var tileSize: int = 16
 @export var mainScale: float = 4
@@ -29,11 +29,11 @@ enum Modes {
 #endregion
 
 #region Auxiliar
-var vert
-var horiz
-var dir
+var vert = 0
+var horiz = 0
+var dir = Vector2.ZERO
 var desloc = tileSize * mainScale
-var ArrSize
+var ArrSize = 0
 var Arr = 0
 var _tooNear = true
 var pixelEdge = pixelDistance
@@ -41,7 +41,7 @@ var SitPointingDown = false
 var SitMirrored = false
 var SitMirroredLock = false
 var SitCommand = false
-var oldModesState
+var oldModesState = Modes.Stop
 #endregion
 #endregion
 
@@ -74,6 +74,7 @@ func _on_timer_timeout():
 
 #region Func
 func _walk():
+	
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
 			if modes == Modes.FollowPlayer:
@@ -161,22 +162,20 @@ func _animation():
 		Sprite.animation = "Sitted Right"
 
 func _frame():
-	if SitCommand == false:
-		if _tooNear == false:
-			if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-				Sprite.play()
-			else:
+	if SitCommand:
+		Sprite.play()
+	else:
+		if _tooNear:
+			if modes in [Modes.FollowTarget, Modes.FollowPlayer]:
+				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+					Sprite.pause()
+			elif modes == Modes.FollowCoordsAndStop and not (ArrSize > (Arr+1)):
 				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
 					Sprite.pause()
 		else:
-			if modes == Modes.FollowTarget or modes == Modes.FollowPlayer:
-				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-					Sprite.pause()
-			else:
-				if not (ArrSize > (Arr+1)):
-					if modes == Modes.FollowCoordsAndStop:
-						if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-							Sprite.pause()
-	else:
-		Sprite.play()
+			if Nav.is_target_reachable() or not Nav.is_navigation_finished():
+				Sprite.play()
+			elif Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+				Sprite.pause()
+
 #endregion
