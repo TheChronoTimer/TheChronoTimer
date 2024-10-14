@@ -58,7 +58,6 @@ func _physics_process(_delta):
 
 func _process(_delta):
 	_animation()
-	_frame()
 #endregion
 
 #region Signal
@@ -122,9 +121,29 @@ func _walk():
 					Arr = 0
 
 func _animation():
+
+	# Animação de sentar 1x (animação direcional):
+	# - Se direita: "Sitting Right"
+	# - Se esquerda: "Sitting Right" + espelhado
+	# - Se baixo: "Sitting Down"
+	# - Se cima: "Sitting Right" + espelhado (se mais próximo de esquerda do que direita)
+	# Animação parada (animação direcional):
+	# - Se direita: "Sitted Right"
+	# - Se esquerda: "Sitted Right" + espelhado
+	# - Se baixo: Não existe, é o último frame da animação "Sitting Down", e precisa ficar congelado nesse frame
+	# - Se cima: "Sitted Right" + espelhado (se mais próximo de esquerda do que direita)
+	# Animação de andar (animação direcional):
+	# - Se direita: "Walk Right"
+	# - Se esquerda: "Walk Left"
+	# - Se baixo: "Walk Down"
+	# - Se cima: "Walk Up"
+
+
+
 	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y
+
 	if SitCommand == false:
 		match velocity:
 			_ when x == 0 and y == 0:
@@ -135,47 +154,55 @@ func _animation():
 						Sprite.flip_h = false
 					SitMirroredLock = true
 				if SitPointingDown == true:
-					Sprite.animation = "Sitting Down"
+					if Sprite.animation != "Sitting Down":
+						Sprite.animation = "Sitting Down"
+					elif Sprite.animation == "Sitting Down" and Sprite.frame == Sprite.sprite_frames.get_frame_count("Sitting Down") - 1:
+						Sprite.pause()
 				else:
-					Sprite.animation = "Sitting Right"
+					if Sprite.animation != "Sitting Right" and Sprite.animation != "Sitted Right":
+						Sprite.animation = "Sitting Right"
+					elif Sprite.animation == "Sitting Right" and Sprite.frame == Sprite.sprite_frames.get_frame_count("Sitting Right") - 1:
+						Sprite.animation = "Sitted Right"
+				
+				if _tooNear:
+					if modes in [Modes.FollowTarget, Modes.FollowPlayer]:
+						if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+							Sprite.pause()
+					elif modes == Modes.FollowCoordsAndStop and not (ArrSize > (Arr+1)):
+						if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+							Sprite.pause()
+				else:
+					if Nav.is_target_reachable() or not Nav.is_navigation_finished():
+						Sprite.play()
+					elif Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
+						Sprite.pause()
+			
 			_ when abs(y) > abs(x) and y > 0:
 				Sprite.animation = "Walk Down"
 				SitPointingDown = true
 				Sprite.flip_h = false
 				SitMirroredLock = false
+				Sprite.play()
 			_ when abs(y) > abs(x) and y < 0:
 				Sprite.animation = "Walk Up"
 				SitPointingDown = false
 				Sprite.flip_h = false
 				SitMirroredLock = false
+				Sprite.play()
 			_ when abs(x) > abs(y) and x > 0:
 				Sprite.animation = "Walk Right"
 				SitPointingDown = false
 				Sprite.flip_h = false
 				SitMirroredLock = false
+				Sprite.play()
 			_ when abs(x) > abs(y) and x < 0:
 				Sprite.animation = "Walk Left"
 				SitPointingDown = false
 				Sprite.flip_h = false
 				SitMirroredLock = false
+				Sprite.play()
 	else:
 		Sprite.animation = "Sitted Right"
-
-func _frame():
-	if SitCommand:
 		Sprite.play()
-	else:
-		if _tooNear:
-			if modes in [Modes.FollowTarget, Modes.FollowPlayer]:
-				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-					Sprite.pause()
-			elif modes == Modes.FollowCoordsAndStop and not (ArrSize > (Arr+1)):
-				if Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-					Sprite.pause()
-		else:
-			if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-				Sprite.play()
-			elif Sprite.frame >= Sprite.sprite_frames.get_frame_count(Sprite.animation) - 1:
-				Sprite.pause()
 
 #endregion
