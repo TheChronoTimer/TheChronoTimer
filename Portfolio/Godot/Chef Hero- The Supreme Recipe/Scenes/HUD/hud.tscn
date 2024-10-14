@@ -12,8 +12,6 @@
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ewt1k")
-NumPopUp = null
-VisibNPCMenu = null
 
 [node name="Time" type="Control" parent="."]
 layout_mode = 3

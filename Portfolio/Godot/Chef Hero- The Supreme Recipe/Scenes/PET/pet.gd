@@ -47,7 +47,6 @@ var oldModesState
 
 #region Start
 func _ready():
-	print("batataa)"
 	TimerClock.timeout.connect(_on_timer_timeout)
 	ArrSize = coords.size()
 	for i in ArrSize:
