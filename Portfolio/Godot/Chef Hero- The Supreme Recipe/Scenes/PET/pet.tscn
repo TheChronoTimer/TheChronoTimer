@@ -17,7 +17,7 @@ modes = 3
 y_sort_enabled = true
 position = Vector2(0, -9)
 sprite_frames = ExtResource("1_ihjcl")
-animation = &"Sitted Right"
+animation = &"Run Right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_jcc6c")

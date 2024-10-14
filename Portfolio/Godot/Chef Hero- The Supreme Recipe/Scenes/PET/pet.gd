@@ -28,6 +28,8 @@ enum Modes {
 @export var mainScale: float = 4 # Escala principal
 @export var pixelDistance: int = 0 # Distância em pixels
 @export var distanceLimit: int = 0 # Limite de distância
+@export var runDistance: int = 200 # Distância para começar a correr
+@export var runAllowed: bool = true # Permite a corrida
 #endregion
 
 #region Auxiliar
@@ -43,6 +45,8 @@ var SitMirrored = false # Indica se a animação de sentar deve ser espelhada
 var SitMirroredLock = false # Trava para evitar mudanças constantes no espelhamento
 var SitCommand = false # Comando para sentar
 var oldModesState = Modes.Stop # Armazena o estado anterior do modo
+var currentSpeed: int = speed # Velocidade atual
+var backupSpeed: int = speed # Backup da velocidade normal
 #endregion
 #endregion
 
@@ -84,6 +88,7 @@ func _on_timer_timeout():
 func _walk():
 	var vert: float
 	var horiz: float
+	var distance: float
 	
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
@@ -91,6 +96,7 @@ func _walk():
 				target = Player
 			vert = abs(target.global_position.y - self.global_position.y)
 			horiz = abs(target.global_position.x - self.global_position.x)
+			distance = self.global_position.distance_to(target.global_position)
 			if vert >= desloc+pixelEdge or horiz >= desloc+pixelEdge:
 				_tooNear = false
 			else:
@@ -99,6 +105,7 @@ func _walk():
 		Modes.FollowCoords, Modes.FollowCoordsAndStop:
 			vert = abs(coords[Arr].y - self.global_position.y)
 			horiz = abs(coords[Arr].x - self.global_position.x)
+			distance = self.global_position.distance_to(coords[Arr])
 			if vert > tileSize+pixelEdge or horiz > tileSize+pixelEdge:
 				_tooNear = false
 			else:
@@ -111,7 +118,11 @@ func _walk():
 	if not _tooNear:
 		# Calcula a direção e velocidade do movimento
 		dir = to_local(Nav.get_next_path_position()).normalized()
-		velocity = dir * speed
+		if runAllowed and distance > runDistance and abs(dir.x) > abs(dir.y):
+			currentSpeed = backupSpeed * 2
+		else:
+			currentSpeed = backupSpeed
+		velocity = dir * currentSpeed
 		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
 			move_and_slide()
 		pixelEdge = pixelDistance
@@ -131,6 +142,7 @@ func _animation():
 	# Sentar (1x): "Sitting Right" (direita/esquerda/cima, espelhado se necessário), "Sitting Down" (baixo)
 	# Parado: "Sitted Right" (direita/esquerda/cima, espelhado se necessário), último frame de "Sitting Down" (baixo)
 	# Andar: "Walk Right" (direita), "Walk Left" (esquerda), "Walk Down" (baixo), "Walk Up" (cima)
+	# Correr: "Run Right" (direita/esquerda, espelhado se necessário)
 	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y
@@ -159,17 +171,23 @@ func _animation():
 				SitMirroredLock = false
 				Sprite.play()
 			_ when abs(x) > abs(y) and x > 0:
-				# Animação de andar para a direita
-				Sprite.animation = "Walk Right"
+				# Animação de andar/correr para a direita
+				if runAllowed and currentSpeed > backupSpeed:
+					Sprite.animation = "Run Right"
+				else:
+					Sprite.animation = "Walk Right"
 				SitPointingDown = false
 				Sprite.flip_h = false
 				SitMirroredLock = false
 				Sprite.play()
 			_ when abs(x) > abs(y) and x < 0:
-				# Animação de andar para a esquerda
-				Sprite.animation = "Walk Left"
+				# Animação de andar/correr para a esquerda
+				if runAllowed and currentSpeed > backupSpeed:
+					Sprite.animation = "Run Right"
+				else:
+					Sprite.animation = "Walk Left"
 				SitPointingDown = false
-				Sprite.flip_h = false
+				Sprite.flip_h = true if runAllowed and currentSpeed > backupSpeed else false
 				SitMirroredLock = false
 				Sprite.play()
 	else:
