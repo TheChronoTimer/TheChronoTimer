@@ -10,7 +10,8 @@ extends Node2D
 @onready var Player = $Player
 @onready var PET = $"/root/Main/Animals/PET"
 @onready var NPCs = $"/root/Main/NPCs"
-@onready var TimerClock = $HUD/Timer
+@onready var TimerHUD = $Timers/TimerHUD
+@onready var TimerPET = $Timers/TimerPET
 #endregion
 
 #region Auxiliar
@@ -21,7 +22,8 @@ var CloneLocation
 
 #region Start
 func _ready():
-	TimerClock.timeout.connect(_on_timer_timeout)
+	TimerHUD.timeout.connect(_on_timerhud_timeout)
+	TimerPET.timeout.connect(_on_timerpet_timeout)
 	Camera.limit_top = (MapLimits.position.y * CellSize.y * MapScale.y) + (MapScale.y * CellSize.y)
 	Camera.limit_left = (MapLimits.position.x * CellSize.x * MapScale.x) + (MapScale.x * CellSize.x)
 	Camera.limit_bottom = (MapLimits.end.y * CellSize.y * MapScale.y) - (MapScale.y * CellSize.y)
@@ -37,7 +39,7 @@ func _process(_delta):
 #endregion
 
 #region Signal
-func _on_timer_timeout():
+func _on_timerhud_timeout():
 	match HUDKey:
 		"Compass": #N
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
@@ -56,26 +58,31 @@ func _on_timer_timeout():
 			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
-		"Pet Mode": #M
-			PET.SitCommand = !PET.SitCommand
 	HUDKey = ""
 #endregion
 
+func _on_timerpet_timeout():
+	match HUDKey:
+		"Pet Mode": #M
+			PET.SitCommand = !PET.SitCommand
+	HUDKey = ""
+
 #region Func
 func _HUD_keys():
-	if Input.is_anything_pressed():
-		if TimerClock.is_stopped():
-			TimerClock.start()
 	if Input.is_action_pressed("Compass"):
 		HUDKey = "Compass"
+		_timer_start(1)
 	if Input.is_action_pressed("Debug"):
 		HUDKey = "Debug"
+		_timer_start(1)
 	if Input.is_action_pressed("ActionA"):
 		if Player.Ray.is_colliding():
 			HUDKey = "ActionA"
+			_timer_start(1)
 	if Input.is_action_pressed("ActionB"):
 		if Player.Pointed:
 			HUDKey = "ActionB"
+			_timer_start(1)
 	if Input.is_action_pressed("Ctrl"):
 		Player.frameSpeed = Global.DefaultFrameSpeed*3
 		Player.speed = Global.DefaultSpeed*3
@@ -86,9 +93,18 @@ func _HUD_keys():
 		HUD.VisibNPCMenu = false
 	if Input.is_action_pressed("Pet Mode"):
 		HUDKey = "Pet Mode"
-
+		_timer_start(2)
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
 		if where[key] == target:
 			return key
+
+func _timer_start(selected: int):
+	match selected:
+		1:
+			if TimerHUD.is_stopped():
+				TimerHUD.start()
+		2:
+			if TimerPET.is_stopped():
+				TimerPET.start()
 #endregion

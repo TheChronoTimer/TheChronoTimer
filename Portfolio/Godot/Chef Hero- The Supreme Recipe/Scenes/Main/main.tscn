@@ -58,10 +58,6 @@ position_smoothing_enabled = true
 Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
 
-[node name="Timer" type="Timer" parent="HUD"]
-wait_time = 0.2
-one_shot = true
-
 [node name="Animals" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
@@ -400,3 +396,13 @@ motion_mode = 1
 modes = 1
 pixelDistance = 16
 distanceLimit = 16
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="TimerPET" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerHUD" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
