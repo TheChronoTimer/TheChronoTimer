@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cy7ek8dsh3y0p" path="res://System/Pet/pet.tres" id="1_ihjcl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jcc6c"]
-radius = 8.0
+radius = 7.0
 
 [node name="Pet" type="CharacterBody2D"]
 motion_mode = 1
