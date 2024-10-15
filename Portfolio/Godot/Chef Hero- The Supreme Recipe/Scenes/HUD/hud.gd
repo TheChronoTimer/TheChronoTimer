@@ -74,10 +74,13 @@ func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	else:
 		return false
 	
-	var scale_parcial = icon_node.scale
-	var scale_total = icon_node.get_parent().scale * icon_node.scale
-	var size = texture_size * scale_parcial
-	var rect = Rect2(icon_node.position - size / (2 * scale_total), size / scale_total)
+	var icon_scale = icon_node.scale
+	var parent_scale = icon_node.get_parent().scale
+	var total_scale = parent_scale / icon_scale
+	var rect = Rect2(
+		icon_node.position - (texture_size * icon_scale) / total_scale,
+		2 * (texture_size * icon_scale) / total_scale
+	)
 	return rect.has_point(mouse_position)
 
 func _set_pet_mode(mode_index: int) -> void:
