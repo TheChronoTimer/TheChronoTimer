@@ -36,9 +36,9 @@ func _physics_process(_delta):
 	Icon.frame = Global.NPCsearch
 	_update_menu_visibility()
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		_handle_menu_input(event)
+func _input(_event):
+	if _event is InputEventMouseButton and _event.button_index == MOUSE_BUTTON_LEFT and _event.is_pressed():
+		_handle_menu_input(_event)
 #endregion
 
 #region Signal
@@ -91,13 +91,13 @@ func _update_menu_visibility():
 	PETMenu.visible = VisibPETMenu
 	ButtonX.visible = VisibNPCMenu or VisibPETMenu
 
-func _handle_menu_input(event: InputEvent):
+func _handle_menu_input(_event: InputEvent):
 	if VisibPETMenu:
-		_handle_pet_menu_input(event)
+		_handle_pet_menu_input(_event)
 	elif VisibNPCMenu:
-		_handle_npc_menu_input(event)
+		_handle_npc_menu_input(_event)
 
-func _handle_pet_menu_input(event: InputEvent):
+func _handle_pet_menu_input(_event: InputEvent):
 	var mouse_position = PETPopUP.get_local_mouse_position()
 	var options = ["Follow Player", "Stop", "Sleep"]
 	for i in range(options.size()):
@@ -107,7 +107,7 @@ func _handle_pet_menu_input(event: InputEvent):
 			_close_menu()
 			return
 
-func _handle_npc_menu_input(event: InputEvent):
+func _handle_npc_menu_input(_event: InputEvent):
 	var mouse_position = NPCPopUP.get_local_mouse_position()
 	for i in range(NumPopUp):
 		var icon_node = NPCPopUP.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
