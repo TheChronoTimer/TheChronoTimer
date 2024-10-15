@@ -5,15 +5,19 @@ extends CanvasLayer
 @export var Player: Node2D
 @export var Target: Node2D
 @export var NumPopUp: int = 33
-@export var VisibNPCMenu: bool = 0
+@export var VisibNPCMenu: bool = false
+@export var VisibPETMenu: bool = false
 #endregion
 
 #region Controle
 @onready var Compass = $Compass/Pointer
 @onready var Icon = $Compass/Sphere/Icon
 @onready var NPCMenu = $"NPC Menu"
-@onready var PopUp = $"NPC Menu/Pop-Up"
-@onready var ButtonX = $"NPC Menu/ButtonX"
+@onready var NPCPopUP = $"NPC Menu/Pop-Up"
+@onready var PETPopUP = $"PET Menu/Pop-Up"
+@onready var ButtonX = $ButtonX
+@onready var PETMenu = $"PET Menu"
+@onready var PET = $"/root/Main/Animals/PET"
 #endregion
 
 #region Auxiliar
@@ -30,41 +34,85 @@ func _ready():
 func _physics_process(_delta):
 	_set_compass_angle()
 	Icon.frame = Global.NPCsearch
-	if VisibNPCMenu == true:
-		NPCMenu.show()
-	else:
-		NPCMenu.hide()
+	_update_menu_visibility()
 
 func _input(event):
-	if VisibNPCMenu == true:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-			if event.is_pressed():
-				var mouse_position = PopUp.get_local_mouse_position()
-				for i in range(NumPopUp):
-					var icon_node = PopUp.get_node("Icon" + str(i + 1).pad_zeros(2))
-					if icon_node:
-						var texture_size = icon_node.sprite_frames.get_frame_texture(icon_node.animation, icon_node.frame).get_size()
-						var rect = Rect2(icon_node.position - texture_size / 2, texture_size)
-						if rect.has_point(mouse_position):
-							Global.NPCsearch = i
-							VisibNPCMenu = false
-							return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		_handle_menu_input(event)
 #endregion
 
 #region Signal
 
 func _on_ButtonX_pressed():
-	VisibNPCMenu = not VisibNPCMenu
+	_close_menu()
 #endregion
 
 #region Func
 func _set_compass_angle():
-	var direction = (Player.global_position - Target.global_position).normalized()
-	Compass.rotation_degrees = rad_to_deg(direction.angle()) - 135
+	if Player and Target:
+		var direction = (Player.global_position - Target.global_position).normalized()
+		Compass.rotation_degrees = rad_to_deg(direction.angle()) - 135
 
 func _change_npc_menu_icons():
 	set_process_input(true)
 	for i in range(NumPopUp):
 		var icon_name = "Icon" + str(i + 1).pad_zeros(2)
-		PopUp.get_node(icon_name).frame = i
+		var icon_node = NPCPopUP.get_node_or_null(icon_name)
+		if icon_node:
+			icon_node.frame = i
+
+func _close_menu():
+	VisibNPCMenu = false
+	VisibPETMenu = false
+
+func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
+	var texture_size: Vector2
+	if icon_node is AnimatedSprite2D:
+		texture_size = icon_node.sprite_frames.get_frame_texture(icon_node.animation, icon_node.frame).get_size()
+	elif icon_node is Sprite2D:
+		texture_size = icon_node.texture.get_size()
+	else:
+		return false
+	var scale_total = icon_node.scale * icon_node.get_parent().scale # TEM UM ERRO AQUI
+	var size = texture_size * scale_total
+	var rect = Rect2(icon_node.position - size/2, size)
+	return rect.has_point(mouse_position)
+
+func _set_pet_mode(mode_index: int) -> void:
+	if PET:
+		match mode_index:
+			0: PET.modes = PET.Modes.FollowPlayer
+			1: PET.modes = PET.Modes.Stop
+			2: PET.modes = PET.Modes.Sleep
+		print(PET.modes)
+
+func _update_menu_visibility():
+	NPCMenu.visible = VisibNPCMenu
+	PETMenu.visible = VisibPETMenu
+	ButtonX.visible = VisibNPCMenu or VisibPETMenu
+
+func _handle_menu_input(event: InputEvent):
+	if VisibPETMenu:
+		_handle_pet_menu_input(event)
+	elif VisibNPCMenu:
+		_handle_npc_menu_input(event)
+
+func _handle_pet_menu_input(event: InputEvent):
+	var mouse_position = PETPopUP.get_local_mouse_position()
+	var options = ["Follow Player", "Stop", "Sleep"]
+	for i in range(options.size()):
+		var icon_node = PETPopUP.get_node_or_null(options[i])
+		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
+			_set_pet_mode(i)
+			_close_menu()
+			return
+
+func _handle_npc_menu_input(event: InputEvent):
+	var mouse_position = NPCPopUP.get_local_mouse_position()
+	for i in range(NumPopUp):
+		var icon_node = NPCPopUP.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
+		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
+			Global.NPCsearch = i
+			_close_menu()
+			return
 #endregion

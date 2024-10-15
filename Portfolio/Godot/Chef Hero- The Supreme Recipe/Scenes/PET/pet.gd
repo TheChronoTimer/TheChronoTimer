@@ -13,7 +13,8 @@ enum Modes {
 	FollowPlayer,
 	FollowCoords,
 	FollowCoordsAndStop,
-	Stop
+	Stop,
+	Sleep
 }
 #endregion
 
@@ -44,7 +45,6 @@ var SitPointingDown = false # Indica se está sentado apontando para baixo
 var SitMirrored = false # Indica se a animação de sentar deve ser espelhada
 var SitMirroredLock = false # Trava para evitar mudanças constantes no espelhamento
 var SitCommand = false # Comando para sentar
-var oldModesState = Modes.Stop # Armazena o estado anterior do modo
 var currentSpeed: int = speed # Velocidade atual
 var backupSpeed: int = speed # Backup da velocidade normal
 #endregion
@@ -59,8 +59,6 @@ func _ready():
 	# Ajusta as coordenadas com base no deslocamento
 	for i in ArrSize:
 		coords[i] *= desloc
-	# Armazena o modo inicial
-	oldModesState = modes
 
 func _physics_process(_delta):
 	# Chama a função de movimento a cada frame físico
@@ -79,7 +77,7 @@ func _on_timer_timeout():
 			Nav.target_position = target.global_position
 		Modes.FollowCoords, Modes.FollowCoordsAndStop:
 			Nav.target_position = coords[Arr]
-		Modes.Stop:
+		Modes.Stop, Modes.Sleep:
 			Nav.target_position = self.global_position
 #endregion
 
@@ -111,9 +109,6 @@ func _walk():
 			else:
 				_tooNear = true
 			SitMirrored = (coords[Arr].x - self.global_position.x) <= 0
-	
-	# Atualiza o modo com base no comando de sentar
-	modes = Modes.Stop if SitCommand else oldModesState
 
 	if not _tooNear:
 		# Calcula a direção e velocidade do movimento
@@ -138,11 +133,6 @@ func _walk():
 
 # Função que controla as animações do personagem com base na velocidade e direção do movimento.
 func _animation():
-	# Animações:
-	# Sentar (1x): "Sitting Right" (direita/esquerda/cima, espelhado se necessário), "Sitting Down" (baixo)
-	# Parado: "Sitted Right" (direita/esquerda/cima, espelhado se necessário), último frame de "Sitting Down" (baixo)
-	# Andar: "Walk Right" (direita), "Walk Left" (esquerda), "Walk Down" (baixo), "Walk Up" (cima)
-	# Correr: "Run Right" (direita/esquerda, espelhado se necessário)
 	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y

@@ -58,14 +58,18 @@ func _on_timerhud_timeout():
 			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
+		"Pet Mode": #M
+			#PET.SitCommand = !PET.SitCommand
+			HUD.VisibPETMenu = not HUD.VisibPETMenu
 	HUDKey = ""
 #endregion
 
 func _on_timerpet_timeout():
-	match HUDKey:
-		"Pet Mode": #M
-			PET.SitCommand = !PET.SitCommand
-	HUDKey = ""
+	pass
+	#match HUDKey:
+		#"Pet Mode": #M
+		#	PET.SitCommand = !PET.SitCommand
+	#HUDKey = ""
 
 #region Func
 func _HUD_keys():
@@ -91,9 +95,10 @@ func _HUD_keys():
 		Player.speed = Global.DefaultSpeed
 	if Input.is_action_pressed("Esc"):
 		HUD.VisibNPCMenu = false
+		HUD.VisibPETMenu = false
 	if Input.is_action_pressed("Pet Mode"):
 		HUDKey = "Pet Mode"
-		_timer_start(2)
+		_timer_start(1)
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
 		if where[key] == target:
