@@ -103,7 +103,7 @@ func _update_button_x_position():
 		var viewport_size = get_viewport().size / 2
 		ButtonX.position = Vector2(rect.end.x, rect.position.y) + Vector2(viewport_size)
 
-func _handle_menu_input(event: InputEvent):
+func _handle_menu_input(_event: InputEvent):
 	if VisibPETMenu:
 		_handle_pet_menu_input(_event)
 	elif VisibNPCMenu:

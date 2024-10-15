@@ -67,18 +67,18 @@ func _on_timerhud_timeout():
 func _HUD_keys():
 	if Input.is_action_pressed("Compass"):
 		HUDKey = "Compass"
-		_timer_start(1)
+		_timer_start()
 	if Input.is_action_pressed("Debug"):
 		HUDKey = "Debug"
-		_timer_start(1)
+		_timer_start()
 	if Input.is_action_pressed("ActionA"):
 		if Player.Ray.is_colliding():
 			HUDKey = "ActionA"
-			_timer_start(1)
+			_timer_start()
 	if Input.is_action_pressed("ActionB"):
 		if Player.Pointed:
 			HUDKey = "ActionB"
-			_timer_start(1)
+			_timer_start()
 	if Input.is_action_pressed("Ctrl"):
 		Player.frameSpeed = Global.DefaultFrameSpeed*3
 		Player.speed = Global.DefaultSpeed*3
@@ -89,20 +89,15 @@ func _HUD_keys():
 		_close_menu()
 	if Input.is_action_pressed("Pet Mode"):
 		HUDKey = "Pet Mode"
-		_timer_start(1)
+		_timer_start()
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
 		if where[key] == target:
 			return key
 
-func _timer_start(selected: int):
-	match selected:
-		1:
-			if TimerHUD.is_stopped():
-				TimerHUD.start()
-		2:
-			if TimerPET.is_stopped():
-				TimerPET.start()
+func _timer_start():
+	if TimerHUD.is_stopped():
+		TimerHUD.start()
 
 func _close_menu(except = null):
 	if except != HUD.VisibNPCMenu:
