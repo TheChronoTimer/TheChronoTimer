@@ -11,7 +11,6 @@ extends Node2D
 @onready var PET = $"/root/Main/Animals/PET"
 @onready var NPCs = $"/root/Main/NPCs"
 @onready var TimerHUD = $Timers/TimerHUD
-@onready var TimerPET = $Timers/TimerPET
 #endregion
 
 #region Auxiliar
@@ -23,7 +22,6 @@ var CloneLocation
 #region Start
 func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
-	TimerPET.timeout.connect(_on_timerpet_timeout)
 	Camera.limit_top = (MapLimits.position.y * CellSize.y * MapScale.y) + (MapScale.y * CellSize.y)
 	Camera.limit_left = (MapLimits.position.x * CellSize.x * MapScale.x) + (MapScale.x * CellSize.x)
 	Camera.limit_bottom = (MapLimits.end.y * CellSize.y * MapScale.y) - (MapScale.y * CellSize.y)
@@ -42,6 +40,7 @@ func _process(_delta):
 func _on_timerhud_timeout():
 	match HUDKey:
 		"Compass": #N
+			_close_menu(HUD.VisibNPCMenu)
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
 		"Debug": #K
 			print("Debug!")
@@ -59,17 +58,10 @@ func _on_timerhud_timeout():
 			New.get_node("Timer").start()
 			Player.Pointed = null
 		"Pet Mode": #M
-			#PET.SitCommand = !PET.SitCommand
+			_close_menu(HUD.VisibPETMenu)
 			HUD.VisibPETMenu = not HUD.VisibPETMenu
 	HUDKey = ""
 #endregion
-
-func _on_timerpet_timeout():
-	pass
-	#match HUDKey:
-		#"Pet Mode": #M
-		#	PET.SitCommand = !PET.SitCommand
-	#HUDKey = ""
 
 #region Func
 func _HUD_keys():
@@ -94,8 +86,7 @@ func _HUD_keys():
 		Player.frameSpeed = Global.DefaultFrameSpeed
 		Player.speed = Global.DefaultSpeed
 	if Input.is_action_pressed("Esc"):
-		HUD.VisibNPCMenu = false
-		HUD.VisibPETMenu = false
+		_close_menu()
 	if Input.is_action_pressed("Pet Mode"):
 		HUDKey = "Pet Mode"
 		_timer_start(1)
@@ -112,4 +103,10 @@ func _timer_start(selected: int):
 		2:
 			if TimerPET.is_stopped():
 				TimerPET.start()
+
+func _close_menu(except = null):
+	if except != HUD.VisibNPCMenu:
+		HUD.VisibNPCMenu = false
+	if except != HUD.VisibPETMenu:
+		HUD.VisibPETMenu = false
 #endregion

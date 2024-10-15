@@ -13,8 +13,8 @@ extends CanvasLayer
 @onready var Compass = $Compass/Pointer
 @onready var Icon = $Compass/Sphere/Icon
 @onready var NPCMenu = $"NPC Menu"
-@onready var NPCPopUP = $"NPC Menu/Pop-Up"
-@onready var PETPopUP = $"PET Menu/Pop-Up"
+@onready var NPCPopUp = $"NPC Menu/Pop-Up"
+@onready var PETPopUp = $"PET Menu/Pop-Up"
 @onready var ButtonX = $ButtonX
 @onready var PETMenu = $"PET Menu"
 @onready var PET = $"/root/Main/Animals/PET"
@@ -35,6 +35,7 @@ func _physics_process(_delta):
 	_set_compass_angle()
 	Icon.frame = Global.NPCsearch
 	_update_menu_visibility()
+	_update_button_x_position()
 
 func _input(_event):
 	if _event is InputEventMouseButton and _event.button_index == MOUSE_BUTTON_LEFT and _event.is_pressed():
@@ -57,13 +58,13 @@ func _change_npc_menu_icons():
 	set_process_input(true)
 	for i in range(NumPopUp):
 		var icon_name = "Icon" + str(i + 1).pad_zeros(2)
-		var icon_node = NPCPopUP.get_node_or_null(icon_name)
+		var icon_node = NPCPopUp.get_node_or_null(icon_name)
 		if icon_node:
 			icon_node.frame = i
 
-func _close_menu():
-	VisibNPCMenu = false
-	VisibPETMenu = false
+func _close_menu(except = null):
+	VisibNPCMenu = except == VisibNPCMenu
+	VisibPETMenu = except == VisibPETMenu
 
 func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	var texture_size: Vector2
@@ -95,26 +96,33 @@ func _update_menu_visibility():
 	PETMenu.visible = VisibPETMenu
 	ButtonX.visible = VisibNPCMenu or VisibPETMenu
 
-func _handle_menu_input(_event: InputEvent):
+func _update_button_x_position():
+	var visible_menu = NPCPopUp if VisibNPCMenu else PETPopUp if VisibPETMenu else null
+	if visible_menu:
+		var rect = visible_menu.get_rect()
+		var viewport_size = get_viewport().size / 2
+		ButtonX.position = Vector2(rect.end.x, rect.position.y) + Vector2(viewport_size)
+
+func _handle_menu_input(event: InputEvent):
 	if VisibPETMenu:
 		_handle_pet_menu_input(_event)
 	elif VisibNPCMenu:
 		_handle_npc_menu_input(_event)
 
 func _handle_pet_menu_input(_event: InputEvent):
-	var mouse_position = PETPopUP.get_local_mouse_position()
+	var mouse_position = PETPopUp.get_local_mouse_position()
 	var options = ["Follow Player", "Stop", "Sleep"]
 	for i in range(options.size()):
-		var icon_node = PETPopUP.get_node_or_null(options[i])
+		var icon_node = PETPopUp.get_node_or_null(options[i])
 		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
 			_set_pet_mode(i)
 			_close_menu()
 			return
 
 func _handle_npc_menu_input(_event: InputEvent):
-	var mouse_position = NPCPopUP.get_local_mouse_position()
+	var mouse_position = NPCPopUp.get_local_mouse_position()
 	for i in range(NumPopUp):
-		var icon_node = NPCPopUP.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
+		var icon_node = NPCPopUp.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
 		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
 			Global.NPCsearch = i
 			_close_menu()
