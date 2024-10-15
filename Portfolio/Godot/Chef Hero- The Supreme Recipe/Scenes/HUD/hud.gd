@@ -43,7 +43,6 @@ func _input(_event):
 #endregion
 
 #region Signal
-
 func _on_ButtonX_pressed():
 	_close_menu()
 #endregion
