@@ -337,6 +337,7 @@ sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
 
 [node name="PET Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -372,15 +373,3 @@ scale = Vector2(0.72, 0.72)
 texture = ExtResource("3_35gw4")
 region_enabled = true
 region_rect = Rect2(26, 3, 42, 12)
-
-[node name="PET MenuA" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4

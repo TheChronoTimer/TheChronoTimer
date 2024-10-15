@@ -73,18 +73,22 @@ func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 		texture_size = icon_node.texture.get_size()
 	else:
 		return false
-	var scale_total = icon_node.scale * icon_node.get_parent().scale # TEM UM ERRO AQUI
-	var size = texture_size * scale_total
-	var rect = Rect2(icon_node.position - size/2, size)
+	
+	var scale_parcial = icon_node.scale
+	var scale_total = icon_node.get_parent().scale * icon_node.scale
+	var size = texture_size * scale_parcial
+	var rect = Rect2(icon_node.position - size / (2 * scale_total), size / scale_total)
 	return rect.has_point(mouse_position)
 
 func _set_pet_mode(mode_index: int) -> void:
 	if PET:
 		match mode_index:
-			0: PET.modes = PET.Modes.FollowPlayer
-			1: PET.modes = PET.Modes.Stop
-			2: PET.modes = PET.Modes.Sleep
-		print(PET.modes)
+			0:
+				PET.modes = PET.Modes.FollowPlayer
+			1:
+				PET.modes = PET.Modes.Stop
+			2:
+				PET.modes = PET.Modes.Sleep
 
 func _update_menu_visibility():
 	NPCMenu.visible = VisibNPCMenu
