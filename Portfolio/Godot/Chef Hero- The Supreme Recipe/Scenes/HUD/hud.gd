@@ -73,7 +73,6 @@ func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 		texture_size = icon_node.texture.get_size()
 	else:
 		return false
-	
 	var icon_scale = icon_node.scale
 	var parent_scale = icon_node.get_parent().scale
 	var total_scale = parent_scale / icon_scale
@@ -83,7 +82,7 @@ func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	)
 	return rect.has_point(mouse_position)
 
-func _set_pet_mode(mode_index: int) -> void:
+func _set_pet_mode(mode_index):
 	if PET:
 		match mode_index:
 			0:
@@ -99,11 +98,19 @@ func _update_menu_visibility():
 	ButtonX.visible = VisibNPCMenu or VisibPETMenu
 
 func _update_button_x_position():
-	var visible_menu = NPCPopUp if VisibNPCMenu else PETPopUp if VisibPETMenu else null
+	var visible_menu = null
+	match true:
+		VisibNPCMenu:
+			visible_menu = NPCPopUp
+		VisibPETMenu:
+			visible_menu = PETPopUp
+		_:
+			visible_menu = null
 	if visible_menu:
 		var rect = visible_menu.get_rect()
 		var viewport_size = get_viewport().size / 2
-		ButtonX.position = Vector2(rect.end.x, rect.position.y) + Vector2(viewport_size)
+		var pop_up_location = (visible_menu.scale * Vector2(rect.end.x, rect.position.y)) + Vector2(8, 0)
+		ButtonX.position = Vector2(viewport_size) + pop_up_location
 
 func _handle_menu_input(_event: InputEvent):
 	if VisibPETMenu:
