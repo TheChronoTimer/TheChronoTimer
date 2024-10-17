@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var TimerClock = $Timer
 @onready var Player = $"/root/Main/Player"
 
-# Enumeração dos modos de movimento do personagem
 enum Modes {
 	FollowTarget,
 	FollowPlayer,
@@ -19,69 +18,60 @@ enum Modes {
 #endregion
 
 #region Controle
-# Variáveis exportadas para controle do personagem
-@export var speed: int = 128 # Velocidade de movimento
-@export var frameSpeed: int = 5 # Velocidade de animação
-@export var modes: Modes = Modes.Stop # Modo de movimento inicial
-@export var target: Node2D = null # Alvo a seguir
-@export var coords: Array[Vector2] = [] # Coordenadas a seguir
-@export var tileSize: int = 16 # Tamanho do tile
-@export var mainScale: float = 4 # Escala principal
-@export var pixelDistance: int = 0 # Distância em pixels
-@export var distanceLimit: int = 0 # Limite de distância
-@export var runDistance: int = 200 # Distância para começar a correr
-@export var runAllowed: bool = true # Permite a corrida
+@export var speed: int = 128
+@export var frameSpeed: int = 5
+@export var modes: Modes = Modes.Stop
+@export var target: Node2D = null
+@export var coords: Array[Vector2] = []
+@export var tileSize: int = 16
+@export var mainScale: float = 4
+@export var pixelDistance: int = 0
+@export var distanceLimit: int = 0
+@export var runDistance: int = 200
+@export var runAllowed: bool = true
 #endregion
 
 #region Auxiliar
-# Variáveis auxiliares para cálculos e controle
-var dir = Vector2.ZERO # Direção do movimento
-var desloc = tileSize * mainScale # Deslocamento baseado no tamanho do tile e escala
-var ArrSize = 0 # Tamanho do array de coordenadas
-var Arr = 0 # Índice atual no array de coordenadas
-var _tooNear = true # Indica se está muito perto do alvo
-var pixelEdge = pixelDistance # Margem de pixels para considerar "perto"
-var SitPointingDown = false # Indica se está sentado apontando para baixo
-var SitMirrored = false # Indica se a animação de sentar deve ser espelhada
-var SitMirroredLock = false # Trava para evitar mudanças constantes no espelhamento
-var currentSpeed: int = speed # Velocidade atual
-var backupSpeed: int = speed # Backup da velocidade normal
+var dir = Vector2.ZERO
+var desloc = tileSize * mainScale
+var ArrSize = 0
+var Arr = 0
+var _tooNear = true
+var pixelEdge = pixelDistance
+var SitPointingDown = false
+var SitMirrored = false
+var SitMirroredLock = false
+var currentSpeed: int = speed
+var backupSpeed: int = speed
 #endregion
 #endregion
 
 #region Start
 func _ready():
-	# Conecta o sinal de timeout do timer à função correspondente
 	TimerClock.timeout.connect(_on_timer_timeout)
-	# Inicializa o tamanho do array de coordenadas
 	ArrSize = coords.size()
-	# Ajusta as coordenadas com base no deslocamento
 	for i in ArrSize:
 		coords[i] *= desloc
 
 func _physics_process(_delta):
-	# Chama a função de movimento a cada frame físico
 	_walk()
 
 func _process(_delta):
-	# Chama a função de animação a cada frame
 	_animation()
 #endregion
 
 #region Signal
-# Função chamada quando o timer expira. Define a posição alvo do agente de navegação com base no modo atual.
 func _on_timer_timeout():
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
-			Nav.target_position = target.global_position
+			Nav.set_target_position(target.global_position)
 		Modes.FollowCoords, Modes.FollowCoordsAndStop:
-			Nav.target_position = coords[Arr]
+			Nav.set_target_position(coords[Arr])
 		Modes.Stop, Modes.Sleep:
-			Nav.target_position = self.global_position
+			Nav.set_target_position(global_position)
 #endregion
 
 #region Func
-# Função que controla o movimento do personagem com base no modo atual e na posição do alvo.
 func _walk():
 	var vert: float
 	var horiz: float
@@ -89,120 +79,162 @@ func _walk():
 	
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
-			if modes == Modes.FollowPlayer:
-				target = Player
-			vert = abs(target.global_position.y - self.global_position.y)
-			horiz = abs(target.global_position.x - self.global_position.x)
-			distance = self.global_position.distance_to(target.global_position)
-			if vert >= desloc+pixelEdge or horiz >= desloc+pixelEdge:
-				_tooNear = false
-			else:
-				_tooNear = true
-			SitMirrored = (target.global_position.x - self.global_position.x) <= 0
+			_handle_follow_mode(vert, horiz, distance)
 		Modes.FollowCoords, Modes.FollowCoordsAndStop:
-			vert = abs(coords[Arr].y - self.global_position.y)
-			horiz = abs(coords[Arr].x - self.global_position.x)
-			distance = self.global_position.distance_to(coords[Arr])
-			if vert > tileSize+pixelEdge or horiz > tileSize+pixelEdge:
-				_tooNear = false
-			else:
-				_tooNear = true
-			SitMirrored = (coords[Arr].x - self.global_position.x) <= 0
+			_handle_coords_mode(vert, horiz, distance)
+		Modes.Stop, Modes.Sleep:
+			_handle_stop_mode()
 
 	if not _tooNear:
-		# Calcula a direção e velocidade do movimento
-		dir = to_local(Nav.get_next_path_position()).normalized()
-		if runAllowed and distance > runDistance and abs(dir.x) > abs(dir.y):
-			currentSpeed = backupSpeed * 2
-		else:
-			currentSpeed = backupSpeed
-		velocity = dir * currentSpeed
-		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-			move_and_slide()
-		pixelEdge = pixelDistance
+		_move_pet(distance)
 	else:
-		# Para o movimento quando está perto do alvo
-		velocity = Vector2.ZERO
-		pixelEdge = (distanceLimit*mainScale)+pixelDistance
-		if not (modes == Modes.FollowTarget or modes == Modes.FollowPlayer):
-			if ArrSize > (Arr+1):
-				Arr += 1
-			elif modes == Modes.FollowCoords:
-				Arr = 0
+		_handle_too_near()
 
-# Função que controla as animações do personagem com base na velocidade e direção do movimento.
+func _handle_follow_mode(vert: float, horiz: float, distance: float):
+	if modes == Modes.FollowPlayer:
+		target = Player
+	vert = abs(target.global_position.y - self.global_position.y)
+	horiz = abs(target.global_position.x - self.global_position.x)
+	distance = self.global_position.distance_to(target.global_position)
+	_tooNear = vert < desloc + pixelEdge and horiz < desloc + pixelEdge
+	SitMirrored = (target.global_position.x - self.global_position.x) <= 0
+
+func _handle_coords_mode(vert: float, horiz: float, distance: float):
+	vert = abs(coords[Arr].y - self.global_position.y)
+	horiz = abs(coords[Arr].x - self.global_position.x)
+	distance = self.global_position.distance_to(coords[Arr])
+	_tooNear = vert <= tileSize + pixelEdge and horiz <= tileSize + pixelEdge
+	SitMirrored = (coords[Arr].x - self.global_position.x) <= 0
+
+func _handle_stop_mode():
+	_tooNear = true
+	velocity = Vector2.ZERO
+
+func _move_pet(distance: float):
+	dir = to_local(Nav.get_next_path_position()).normalized()
+	currentSpeed = _calculate_speed(distance)
+	velocity = dir * currentSpeed
+	if Nav.is_target_reachable() or not Nav.is_navigation_finished():
+		move_and_slide()
+	pixelEdge = pixelDistance
+
+func _calculate_speed(distance: float) -> int:
+	if runAllowed and distance > runDistance and abs(dir.x) > abs(dir.y):
+		return backupSpeed * 2
+	return backupSpeed
+
+func _handle_too_near():
+	velocity = Vector2.ZERO
+	pixelEdge = (distanceLimit * mainScale) + pixelDistance
+	if not (modes == Modes.FollowTarget or modes == Modes.FollowPlayer):
+		if ArrSize > (Arr + 1):
+			Arr += 1
+		elif modes == Modes.FollowCoords:
+			Arr = 0
+
 func _animation():
-	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y
 	match true:
 		_ when modes == Modes.Stop:
-			# Animação de sentar quando recebe o comando
+			Sprite.speed_scale = frameSpeed
 			if not SitMirroredLock:
 				Sprite.flip_h = SitMirrored
 				SitMirroredLock = true
-			_sitting()
+			if SitPointingDown:
+				_sit_down()
+			else:
+				_sit_right()
 		_ when modes == Modes.Sleep:
+			Sprite.speed_scale = 1
 			Sprite.animation = "Sleeping"
 			Sprite.play()
 		_ when x == 0 and y == 0:
-			# Animação de sentar quando parado
+			Sprite.speed_scale = frameSpeed
 			if not SitMirroredLock:
 				Sprite.flip_h = SitMirrored
 				SitMirroredLock = true
-			_sitting()
+			if SitPointingDown:
+				_sit_down()
+			else:
+				_sit_right()
 		_ when abs(y) > abs(x) and y > 0:
-			# Animação de andar para baixo
-			Sprite.animation = "Walk Down"
-			SitPointingDown = true
-			Sprite.flip_h = false
-			SitMirroredLock = false
-			Sprite.play()
+			Sprite.speed_scale = frameSpeed
+			_walk_down()
 		_ when abs(y) > abs(x) and y < 0:
-			# Animação de andar para cima
-			Sprite.animation = "Walk Up"
-			SitPointingDown = false
-			Sprite.flip_h = false
-			SitMirroredLock = false
-			Sprite.play()
+			Sprite.speed_scale = frameSpeed
+			_walk_up()
 		_ when abs(x) > abs(y) and x > 0:
-			# Animação de andar/correr para a direita
+			Sprite.speed_scale = frameSpeed
 			if runAllowed and currentSpeed > backupSpeed:
-				Sprite.animation = "Run Right"
+				_run_right()
 			else:
-				Sprite.animation = "Walk Right"
-			SitPointingDown = false
-			Sprite.flip_h = false
-			SitMirroredLock = false
-			Sprite.play()
+				_walk_right()
 		_ when abs(x) > abs(y) and x < 0:
-			# Animação de andar/correr para a esquerda
+			Sprite.speed_scale = frameSpeed
 			if runAllowed and currentSpeed > backupSpeed:
-				Sprite.animation = "Run Right"
+				_run_left()
 			else:
-				Sprite.animation = "Walk Left"
-			SitPointingDown = false
-			Sprite.flip_h = true if runAllowed and currentSpeed > backupSpeed else false
-			SitMirroredLock = false
-			Sprite.play()
+				_walk_left()
 
-# Função auxiliar para controlar a animação de sentar
-func _sitting():
-	if SitPointingDown:
-		if Sprite.animation != "Sitting Down":
-			Sprite.animation = "Sitting Down"
+func _walk_down():
+	Sprite.animation = "Walk Down"
+	SitPointingDown = true
+	Sprite.flip_h = false
+	SitMirroredLock = false
+	Sprite.play()
+
+func _walk_up():
+	Sprite.animation = "Walk Up"
+	SitPointingDown = false
+	Sprite.flip_h = false
+	SitMirroredLock = false
+	Sprite.play()
+
+func _walk_right():
+	Sprite.animation = "Walk Right"
+	SitPointingDown = false
+	Sprite.flip_h = false
+	SitMirroredLock = false
+	Sprite.play()
+
+func _walk_left():
+	Sprite.animation = "Walk Left"
+	SitPointingDown = false
+	Sprite.flip_h = false
+	SitMirroredLock = false
+	Sprite.play()
+
+func _run_right():
+	Sprite.animation = "Run Right"
+	SitPointingDown = false
+	Sprite.flip_h = false
+	SitMirroredLock = false
+	Sprite.play()
+
+func _run_left():
+	Sprite.animation = "Run Right"
+	SitPointingDown = false
+	Sprite.flip_h = true
+	SitMirroredLock = false
+	Sprite.play()
+
+func _sit_down():
+	if Sprite.animation != "Sitting Down":
+		Sprite.animation = "Sitting Down"
+		Sprite.play()
+	elif Sprite.animation == "Sitting Down":
+		if Sprite.frame < Sprite.sprite_frames.get_frame_count("Sitting Down") - 1:
 			Sprite.play()
-		elif Sprite.animation == "Sitting Down":
-			if Sprite.frame < Sprite.sprite_frames.get_frame_count("Sitting Down") - 1:
-				Sprite.play()
-			else:
-				Sprite.stop()
-				Sprite.frame = Sprite.sprite_frames.get_frame_count("Sitting Down") - 1
-	else:
-		if Sprite.animation != "Sitting Right" and Sprite.animation != "Sitted Right":
-			Sprite.animation = "Sitting Right"
-			Sprite.play()
-		elif Sprite.animation == "Sitting Right" and Sprite.frame == Sprite.sprite_frames.get_frame_count("Sitting Right") - 1:
-			Sprite.animation = "Sitted Right"
-			Sprite.play()
+		else:
+			Sprite.stop()
+			Sprite.frame = Sprite.sprite_frames.get_frame_count("Sitting Down") - 1
+
+func _sit_right():
+	if Sprite.animation != "Sitting Right" and Sprite.animation != "Sitted Right":
+		Sprite.animation = "Sitting Right"
+		Sprite.play()
+	elif Sprite.animation == "Sitting Right" and Sprite.frame == Sprite.sprite_frames.get_frame_count("Sitting Right") - 1:
+		Sprite.animation = "Sitted Right"
+		Sprite.play()
 #endregion
