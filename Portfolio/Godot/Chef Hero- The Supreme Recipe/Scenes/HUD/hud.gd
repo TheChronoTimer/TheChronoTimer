@@ -62,8 +62,10 @@ func _change_npc_menu_icons():
 			icon_node.frame = i
 
 func _close_menu(except = null):
-	VisibNPCMenu = except == VisibNPCMenu
-	VisibPETMenu = except == VisibPETMenu
+	if except != VisibNPCMenu:
+		VisibNPCMenu = false
+	if except != VisibPETMenu:
+		VisibPETMenu = false
 
 func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	var texture_size: Vector2

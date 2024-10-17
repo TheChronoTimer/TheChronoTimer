@@ -44,7 +44,6 @@ var pixelEdge = pixelDistance # Margem de pixels para considerar "perto"
 var SitPointingDown = false # Indica se está sentado apontando para baixo
 var SitMirrored = false # Indica se a animação de sentar deve ser espelhada
 var SitMirroredLock = false # Trava para evitar mudanças constantes no espelhamento
-var SitCommand = false # Comando para sentar
 var currentSpeed: int = speed # Velocidade atual
 var backupSpeed: int = speed # Backup da velocidade normal
 #endregion
@@ -136,56 +135,56 @@ func _animation():
 	Sprite.speed_scale = frameSpeed
 	var x = velocity.x
 	var y = velocity.y
-
-	if not SitCommand:
-		match velocity:
-			_ when x == 0 and y == 0:
-				# Animação de sentar quando parado
-				if not SitMirroredLock:
-					Sprite.flip_h = SitMirrored
-					SitMirroredLock = true
-				_sitting()
-			
-			_ when abs(y) > abs(x) and y > 0:
-				# Animação de andar para baixo
-				Sprite.animation = "Walk Down"
-				SitPointingDown = true
-				Sprite.flip_h = false
-				SitMirroredLock = false
-				Sprite.play()
-			_ when abs(y) > abs(x) and y < 0:
-				# Animação de andar para cima
-				Sprite.animation = "Walk Up"
-				SitPointingDown = false
-				Sprite.flip_h = false
-				SitMirroredLock = false
-				Sprite.play()
-			_ when abs(x) > abs(y) and x > 0:
-				# Animação de andar/correr para a direita
-				if runAllowed and currentSpeed > backupSpeed:
-					Sprite.animation = "Run Right"
-				else:
-					Sprite.animation = "Walk Right"
-				SitPointingDown = false
-				Sprite.flip_h = false
-				SitMirroredLock = false
-				Sprite.play()
-			_ when abs(x) > abs(y) and x < 0:
-				# Animação de andar/correr para a esquerda
-				if runAllowed and currentSpeed > backupSpeed:
-					Sprite.animation = "Run Right"
-				else:
-					Sprite.animation = "Walk Left"
-				SitPointingDown = false
-				Sprite.flip_h = true if runAllowed and currentSpeed > backupSpeed else false
-				SitMirroredLock = false
-				Sprite.play()
-	else:
-		# Animação de sentar quando recebe o comando
-		if not SitMirroredLock:
-			Sprite.flip_h = SitMirrored
-			SitMirroredLock = true
-		_sitting()
+	match true:
+		_ when modes == Modes.Stop:
+			# Animação de sentar quando recebe o comando
+			if not SitMirroredLock:
+				Sprite.flip_h = SitMirrored
+				SitMirroredLock = true
+			_sitting()
+		_ when modes == Modes.Sleep:
+			Sprite.animation = "Sleeping"
+			Sprite.play()
+		_ when x == 0 and y == 0:
+			# Animação de sentar quando parado
+			if not SitMirroredLock:
+				Sprite.flip_h = SitMirrored
+				SitMirroredLock = true
+			_sitting()
+		_ when abs(y) > abs(x) and y > 0:
+			# Animação de andar para baixo
+			Sprite.animation = "Walk Down"
+			SitPointingDown = true
+			Sprite.flip_h = false
+			SitMirroredLock = false
+			Sprite.play()
+		_ when abs(y) > abs(x) and y < 0:
+			# Animação de andar para cima
+			Sprite.animation = "Walk Up"
+			SitPointingDown = false
+			Sprite.flip_h = false
+			SitMirroredLock = false
+			Sprite.play()
+		_ when abs(x) > abs(y) and x > 0:
+			# Animação de andar/correr para a direita
+			if runAllowed and currentSpeed > backupSpeed:
+				Sprite.animation = "Run Right"
+			else:
+				Sprite.animation = "Walk Right"
+			SitPointingDown = false
+			Sprite.flip_h = false
+			SitMirroredLock = false
+			Sprite.play()
+		_ when abs(x) > abs(y) and x < 0:
+			# Animação de andar/correr para a esquerda
+			if runAllowed and currentSpeed > backupSpeed:
+				Sprite.animation = "Run Right"
+			else:
+				Sprite.animation = "Walk Left"
+			SitPointingDown = false
+			Sprite.flip_h = true if runAllowed and currentSpeed > backupSpeed else false
+			SitMirroredLock = false
+			Sprite.play()
 
 # Função auxiliar para controlar a animação de sentar
 func _sitting():
