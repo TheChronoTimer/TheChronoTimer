@@ -79,9 +79,9 @@ func _walk():
 	
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
-			_handle_follow_mode(vert, horiz, distance)
+			_handle_follow_mode(vert, horiz)
 		Modes.FollowCoords, Modes.FollowCoordsAndStop:
-			_handle_coords_mode(vert, horiz, distance)
+			_handle_coords_mode(vert, horiz)
 		Modes.Stop, Modes.Sleep:
 			_handle_stop_mode()
 
@@ -90,19 +90,17 @@ func _walk():
 	else:
 		_handle_too_near()
 
-func _handle_follow_mode(vert: float, horiz: float, distance: float):
+func _handle_follow_mode(vert, horiz):
 	if modes == Modes.FollowPlayer:
 		target = Player
 	vert = abs(target.global_position.y - self.global_position.y)
 	horiz = abs(target.global_position.x - self.global_position.x)
-	distance = self.global_position.distance_to(target.global_position)
 	_tooNear = vert < desloc + pixelEdge and horiz < desloc + pixelEdge
 	SitMirrored = (target.global_position.x - self.global_position.x) <= 0
 
-func _handle_coords_mode(vert: float, horiz: float, distance: float):
+func _handle_coords_mode(vert, horiz):
 	vert = abs(coords[Arr].y - self.global_position.y)
 	horiz = abs(coords[Arr].x - self.global_position.x)
-	distance = self.global_position.distance_to(coords[Arr])
 	_tooNear = vert <= tileSize + pixelEdge and horiz <= tileSize + pixelEdge
 	SitMirrored = (coords[Arr].x - self.global_position.x) <= 0
 
