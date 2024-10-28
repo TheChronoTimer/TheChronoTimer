@@ -2,20 +2,18 @@ extends TileMapLayer
 
 #region Var
 #region Funcionamento
-@onready var Ground = $Ground
+#endregion
+#region Controle
+#endregion
+#region Auxiliar
 #endregion
 #endregion
 
-func _ready():
-	for layer in get_children():
-		if layer.name != "Ground":
-			for tile in layer.get_tiles():
-				if tile.has_collision():
-					Ground.set_navigation_layer(0, false)
-					Ground.set_navigation_layer(1, false)
-				else:
-					Ground.set_navigation_layer(0, tile.has_collision())
-					Ground.set_navigation_layer(1, tile.has_collision())
+func _use_tile_data_runtime_update(coords):
+	return coords in get_used_cells()
 
-func _process(_delta):
-	pass
+func _tile_data_runtime_update(coords, tile_data):
+	if coords in get_used_cells():
+		for layer in range(2):  # Itera sobre as camadas
+			if tile_data.get_collision_polygons_count(layer):  # Verifica se há colisão na camada
+				tile_data.set_navigation_polygon(layer, null)  # Remove o polígono de navegação
