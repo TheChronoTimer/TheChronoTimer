@@ -14,6 +14,7 @@
 script = ExtResource("1_ewt1k")
 
 [node name="ButtonX" type="TextureButton" parent="."]
+visible = false
 z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -102,6 +103,7 @@ animation = &"NPCs"
 frame = 4
 
 [node name="NPC Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -351,6 +353,7 @@ sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
 
 [node name="PET Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
