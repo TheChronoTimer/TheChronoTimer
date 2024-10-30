@@ -4131,6 +4131,7 @@ texture = ExtResource("2_b623m")
 30:20/0 = 0
 0:21/0 = 0
 0:21/0/terrain_set = 0
+0:21/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:21/0/terrains_peering_bit/top_right_corner = 0
 0:21/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nb2fy")
 0:21/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_44bhk")
