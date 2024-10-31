@@ -11,11 +11,6 @@ var navigation_layers = [0, 1]
 #endregion
 #endregion
 
-func _use_tile_data_runtime_update(coords):
-	if coords in get_used_cells():
-		return true
-	return false
-
 func _tile_data_runtime_update(coords, tile_data):
 	if coords in get_used_cells():
 		for n_layer in navigation_layers:
