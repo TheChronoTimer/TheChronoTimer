@@ -6,6 +6,7 @@ var NPCsearch: int = 4
 var DefaultFrameSpeed: float = 0.0
 var DefaultSpeed: float = 0.0
 
+#region NPCList
 var NPClist = {
 "Alex":			6,
 "Elliot":		11,
@@ -40,3 +41,6 @@ var NPClist = {
 "Willy":		22,
 "Wizard":		23
 }
+#endregion
+
+var collision_array = []
