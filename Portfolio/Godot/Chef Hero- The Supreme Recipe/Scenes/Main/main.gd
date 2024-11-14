@@ -16,20 +16,18 @@ extends Node2D
 #region Auxiliar
 var HUDKey: String
 var CloneLocation
-var LimitTop
-var LimitLeft
-var LimitBottom
-var LimitRight
+var CellX = (MapScale.x * CellSize.x)
+var CellY = (MapScale.y * CellSize.y)
+var LimitTop = (MapLimits.position.y * CellY) + CellY
+var LimitLeft = (MapLimits.position.x * CellX) + CellX
+var LimitBottom = (MapLimits.end.y * CellY) - CellY
+var LimitRight = (MapLimits.end.x * CellX) - CellX
 #endregion
 #endregion
 
 #region Start
 func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
-	LimitTop = (MapLimits.position.y * CellSize.y * MapScale.y) + (MapScale.y * CellSize.y)
-	LimitLeft = (MapLimits.position.x * CellSize.x * MapScale.x) + (MapScale.x * CellSize.x)
-	LimitBottom = (MapLimits.end.y * CellSize.y * MapScale.y) - (MapScale.y * CellSize.y)
-	LimitRight = (MapLimits.end.x * CellSize.x * MapScale.x) - (MapScale.x * CellSize.x)
 	_baking()
 	_camera()
 
@@ -99,6 +97,7 @@ func _HUD_keys():
 	if Input.is_action_pressed("Pet Mode"):
 		HUDKey = "Pet Mode"
 		_timer_start()
+
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
 		if where[key] == target:
