@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
 size = Vector2(14, 12)
 
-[node name="Leah" type="CharacterBody2D"]
+[node name="Leah" type="StaticBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_0ee6b")
 

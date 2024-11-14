@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends StaticBody2D
 
 #region Var
 #region Funcionamento
@@ -37,6 +37,7 @@ var ArrSize
 var Arr = 0
 var _tooNear = true
 var pixelEdge = pixelDistance
+var velocity: Vector2
 #endregion
 #endregion
 
@@ -87,7 +88,7 @@ func _walk():
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
 		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-			move_and_slide()
+			position += velocity * get_physics_process_delta_time()
 		pixelEdge = pixelDistance
 	else:
 		velocity = Vector2.ZERO

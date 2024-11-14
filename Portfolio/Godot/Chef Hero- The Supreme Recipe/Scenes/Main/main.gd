@@ -29,10 +29,10 @@ var LimitRight
 func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
 	_variables()
-	_baking()
 	_camera()
 
 func _process(_delta):
+	_baking()
 	_HUD_keys()
 	match Global.NPCsearch:
 		32:
@@ -50,8 +50,8 @@ func _on_timerhud_timeout():
 		"Debug": #K
 			print("Debug Mode!")
 			PET.get_node("NavigationAgent2D").debug_enabled = true
-			for NPC in NPCs.get_children():
-				NPC.get_node("NavigationAgent2D").debug_enabled = true
+			#for NPC in NPCs.get_children():
+			#	NPC.get_node("NavigationAgent2D").debug_enabled = true
 		"ActionA": #C
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed
@@ -115,7 +115,8 @@ func _close_menu(except = null):
 		HUD.VisibPETMenu = false
 
 func _baking():
-	var nav_region = $TileMap/NavigationRegion2D
+	var nav_region = $NavigationRegion2D
+	nav_region.bake_navigation_polygon()
 	#fazer região navegável
 	#cozinhar
 

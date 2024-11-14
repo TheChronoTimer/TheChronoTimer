@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=41 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
@@ -37,8 +37,18 @@
 [ext_resource type="PackedScene" uid="uid://willytotal" path="res://Scenes/NPCs/willy.tscn" id="35_nsifo"]
 [ext_resource type="PackedScene" uid="uid://wi0ardtotal" path="res://Scenes/NPCs/wizard.tscn" id="36_b48rn"]
 [ext_resource type="PackedScene" uid="uid://13e0sal8w0te" path="res://Scenes/PET/pet.tscn" id="37_i3xyh"]
+[ext_resource type="Texture2D" uid="uid://dv4mkhh1mkp71" path="res://Sprites/Miscellaneous/Logo No Background.png" id="38_gy5on"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vs84o"]
+vertices = PackedVector2Array(75, -320, 64, -320, 50.6094, -320, 60, -330, 95.4766, -146, 150, -270, 228, 126, 92.8672, -136.258, 208, 96, 192, 96, -17, -1.5, -17.9375, -5, 176, 96, -17.9375, 2, 160, 96, 93, 70, -24, -8.5, -27.5, -7.5625, -128, -32, -96, -32, 92.8672, -155.742, 208, 112, 26, 142, 192, 112, 176, 112, 160, 112, 93, 110, 80, 110, 64, 110, 48, 110, 36, 110, -30.0625, -5, 85.7422, -162.867, 99, -304, 85.7422, -129.133, -32, 96, 36, 96, -180, 108, -48, 96, -64, 96, -80, 96, -96, 96, -112, 96, -128, 96, -144, 96, -160, 96, 93, 96, 93, 80, 80, 80, 80, 96, 64, 96, 64, 80, 80, 70, 64, 70, 36, 80, -32, 80, 36, 70, -32, 64, -31, -1.5, 76, -165.477, 96, -304, 80, -304, 64, -304, 48, -304, 66.2578, -162.867, -32, 48, -20.5, 4.5625, 48, 70, 35.5859, -304, 59.1328, -155.742, -32, -128, -48, -128, -24, 5.5, -27.5, 4.5625, -48, 48, 76, -126.523, -30.0625, 2, -64, 48, -32, -32, -32, -48, -20.5, -7.5625, -32, -64, -160, 80, -80, 48, -96, 48, -112, 48, -128, 48, -144, -32, -144, 48, -160, 48, -156, -100, -32, -80, 66.2578, -129.133, -32, -96, 59.1328, -136.258, -32, -112, 56.5234, -146, -64, -128, -80, -128, -96, -128, -96, -112, -96, -96, -96, -80, -96, -64, -96, -48, -48, -32, -128, -48, -64, -32, -160, 64, -80, -32, -144, -48)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(10, 9, 12), PackedInt32Array(13, 10, 12, 14, 15), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(5, 4, 20), PackedInt32Array(21, 6, 22, 23), PackedInt32Array(24, 23, 22), PackedInt32Array(25, 24, 22), PackedInt32Array(25, 22, 26, 14), PackedInt32Array(27, 26, 22), PackedInt32Array(28, 27, 22), PackedInt32Array(29, 28, 22), PackedInt32Array(30, 29, 22), PackedInt32Array(18, 17, 31), PackedInt32Array(5, 20, 32, 33), PackedInt32Array(34, 7, 6), PackedInt32Array(35, 36, 30, 22, 37), PackedInt32Array(38, 35, 37), PackedInt32Array(39, 38, 37), PackedInt32Array(40, 39, 37), PackedInt32Array(41, 40, 37), PackedInt32Array(42, 41, 37), PackedInt32Array(43, 42, 37), PackedInt32Array(44, 43, 37), PackedInt32Array(45, 44, 37), PackedInt32Array(14, 26, 46), PackedInt32Array(14, 46, 47), PackedInt32Array(48, 49, 50, 51), PackedInt32Array(52, 48, 51, 53), PackedInt32Array(54, 36, 35, 55), PackedInt32Array(56, 54, 55, 57), PackedInt32Array(18, 31, 58), PackedInt32Array(33, 32, 59, 60), PackedInt32Array(61, 60, 59), PackedInt32Array(62, 61, 59), PackedInt32Array(63, 62, 59, 64), PackedInt32Array(56, 57, 65, 66, 13, 67), PackedInt32Array(68, 63, 64, 69, 70, 71), PackedInt32Array(14, 47, 15), PackedInt32Array(13, 15, 52), PackedInt32Array(13, 52, 53), PackedInt32Array(13, 53, 67), PackedInt32Array(72, 66, 65), PackedInt32Array(73, 72, 65, 74), PackedInt32Array(75, 34, 6, 8), PackedInt32Array(76, 73, 74, 77, 18), PackedInt32Array(78, 79, 8, 11, 80), PackedInt32Array(8, 79, 81), PackedInt32Array(82, 45, 37), PackedInt32Array(18, 58, 76), PackedInt32Array(18, 77, 83), PackedInt32Array(18, 83, 84), PackedInt32Array(18, 84, 85), PackedInt32Array(18, 85, 86, 87), PackedInt32Array(87, 86, 88), PackedInt32Array(87, 88, 89, 90), PackedInt32Array(75, 8, 81, 91, 92), PackedInt32Array(6, 21, 8), PackedInt32Array(92, 91, 93, 94), PackedInt32Array(94, 93, 95), PackedInt32Array(94, 95, 70, 96), PackedInt32Array(69, 96, 70), PackedInt32Array(68, 71, 97), PackedInt32Array(68, 97, 98), PackedInt32Array(68, 98, 99), PackedInt32Array(90, 68, 99), PackedInt32Array(90, 99, 100), PackedInt32Array(90, 100, 101), PackedInt32Array(90, 101, 102), PackedInt32Array(90, 102, 103), PackedInt32Array(90, 103, 104), PackedInt32Array(78, 80, 16, 105), PackedInt32Array(90, 104, 19, 106), PackedInt32Array(107, 105, 16), PackedInt32Array(108, 82, 37), PackedInt32Array(109, 107, 16), PackedInt32Array(89, 108, 37), PackedInt32Array(89, 37, 90), PackedInt32Array(110, 87, 90), PackedInt32Array(106, 110, 90), PackedInt32Array(18, 106, 19), PackedInt32Array(16, 19, 109)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(60, -330, 150, -270, 228, 126, 26, 142, -180, 108, -156, -100)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+agent_radius = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ad3g3"]
+radius = 19.48
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -54,10 +64,7 @@ collision_mask = 255
 texture_filter = 1
 position_smoothing_enabled = true
 
-[node name="TileMap" parent="." instance=ExtResource("2_paxs4")]
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap"]
-navigation_polygon = SubResource("NavigationPolygon_vs84o")
+[node name="TileMap" parent="." groups=["navigation"] instance=ExtResource("2_paxs4")]
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")
@@ -68,7 +75,7 @@ z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="PET" parent="Animals" instance=ExtResource("37_i3xyh")]
+[node name="PET" parent="Animals" groups=["navigation"] instance=ExtResource("37_i3xyh")]
 y_sort_enabled = true
 position = Vector2(-24, -1.5)
 collision_layer = 17
@@ -81,11 +88,12 @@ distanceLimit = 32
 runDistance = 430
 
 [node name="NPCs" type="Node2D" parent="."]
+visible = false
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="Haley" parent="NPCs" instance=ExtResource("5_6pvaf")]
+[node name="Haley" parent="NPCs" groups=["navigation"] instance=ExtResource("5_6pvaf")]
 texture_filter = 1
 position = Vector2(70.75, -263.25)
 collision_layer = 20
@@ -94,7 +102,7 @@ motion_mode = 1
 modes = 2
 coords = Array[Vector2]([Vector2(4, -17), Vector2(5, -17), Vector2(5, -16), Vector2(4, -16)])
 
-[node name="Alex" parent="NPCs" instance=ExtResource("6_sgqh1")]
+[node name="Alex" parent="NPCs" groups=["navigation"] instance=ExtResource("6_sgqh1")]
 texture_filter = 1
 position = Vector2(121, -262.25)
 collision_layer = 20
@@ -103,7 +111,7 @@ motion_mode = 1
 modes = 2
 coords = Array[Vector2]([Vector2(7, -17), Vector2(8, -17), Vector2(8, -16), Vector2(7, -16)])
 
-[node name="Abigail" parent="NPCs" instance=ExtResource("7_upn61")]
+[node name="Abigail" parent="NPCs" groups=["navigation"] instance=ExtResource("7_upn61")]
 texture_filter = 1
 position = Vector2(167.75, -261.5)
 collision_layer = 20
@@ -113,7 +121,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Caroline" parent="NPCs" instance=ExtResource("8_defj4")]
+[node name="Caroline" parent="NPCs" groups=["navigation"] instance=ExtResource("8_defj4")]
 texture_filter = 1
 position = Vector2(214.5, -266.5)
 collision_layer = 20
@@ -123,7 +131,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Clint" parent="NPCs" instance=ExtResource("9_8ia46")]
+[node name="Clint" parent="NPCs" groups=["navigation"] instance=ExtResource("9_8ia46")]
 texture_filter = 1
 position = Vector2(261.75, -260.75)
 collision_layer = 20
@@ -133,7 +141,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Demetrius" parent="NPCs" instance=ExtResource("10_cds4n")]
+[node name="Demetrius" parent="NPCs" groups=["navigation"] instance=ExtResource("10_cds4n")]
 texture_filter = 1
 position = Vector2(72, -215.5)
 collision_layer = 20
@@ -143,7 +151,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Dwarf" parent="NPCs" instance=ExtResource("11_4h65w")]
+[node name="Dwarf" parent="NPCs" groups=["navigation"] instance=ExtResource("11_4h65w")]
 texture_filter = 1
 position = Vector2(119.25, -216)
 collision_layer = 20
@@ -153,7 +161,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Elliot" parent="NPCs" instance=ExtResource("12_74l61")]
+[node name="Elliot" parent="NPCs" groups=["navigation"] instance=ExtResource("12_74l61")]
 texture_filter = 1
 position = Vector2(168.5, -216.75)
 collision_layer = 20
@@ -163,7 +171,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Emily" parent="NPCs" instance=ExtResource("13_4sbo7")]
+[node name="Emily" parent="NPCs" groups=["navigation"] instance=ExtResource("13_4sbo7")]
 texture_filter = 1
 position = Vector2(217.5, -213)
 collision_layer = 20
@@ -173,7 +181,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Evelyn" parent="NPCs" instance=ExtResource("14_sp5p3")]
+[node name="Evelyn" parent="NPCs" groups=["navigation"] instance=ExtResource("14_sp5p3")]
 texture_filter = 1
 position = Vector2(264, -216.25)
 collision_layer = 20
@@ -183,7 +191,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="George" parent="NPCs" instance=ExtResource("15_qlfu7")]
+[node name="George" parent="NPCs" groups=["navigation"] instance=ExtResource("15_qlfu7")]
 texture_filter = 1
 position = Vector2(73.25, -169.75)
 collision_layer = 20
@@ -193,7 +201,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Gus" parent="NPCs" instance=ExtResource("16_kl3ed")]
+[node name="Gus" parent="NPCs" groups=["navigation"] instance=ExtResource("16_kl3ed")]
 texture_filter = 1
 position = Vector2(120, -166.5)
 collision_layer = 20
@@ -203,7 +211,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Harvey" parent="NPCs" instance=ExtResource("17_t5nge")]
+[node name="Harvey" parent="NPCs" groups=["navigation"] instance=ExtResource("17_t5nge")]
 texture_filter = 1
 position = Vector2(167.75, -169.25)
 collision_layer = 20
@@ -213,7 +221,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Jas" parent="NPCs" instance=ExtResource("18_ktpt4")]
+[node name="Jas" parent="NPCs" groups=["navigation"] instance=ExtResource("18_ktpt4")]
 texture_filter = 1
 position = Vector2(217.5, -167.5)
 collision_layer = 20
@@ -223,7 +231,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Jodi" parent="NPCs" instance=ExtResource("19_n58hi")]
+[node name="Jodi" parent="NPCs" groups=["navigation"] instance=ExtResource("19_n58hi")]
 texture_filter = 1
 position = Vector2(265.25, -165.5)
 collision_layer = 20
@@ -233,7 +241,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Krobus" parent="NPCs" instance=ExtResource("20_67r6g")]
+[node name="Krobus" parent="NPCs" groups=["navigation"] instance=ExtResource("20_67r6g")]
 texture_filter = 1
 position = Vector2(72.5, -122)
 collision_layer = 20
@@ -243,7 +251,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Leah" parent="NPCs" instance=ExtResource("21_3voht")]
+[node name="Leah" parent="NPCs" groups=["navigation"] instance=ExtResource("21_3voht")]
 texture_filter = 1
 position = Vector2(120, -119.25)
 collision_layer = 20
@@ -253,7 +261,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Lewis" parent="NPCs" instance=ExtResource("22_wqm34")]
+[node name="Lewis" parent="NPCs" groups=["navigation"] instance=ExtResource("22_wqm34")]
 texture_filter = 1
 position = Vector2(169.25, -119.25)
 collision_layer = 20
@@ -263,7 +271,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Linus" parent="NPCs" instance=ExtResource("23_y0uso")]
+[node name="Linus" parent="NPCs" groups=["navigation"] instance=ExtResource("23_y0uso")]
 texture_filter = 1
 position = Vector2(215, -120)
 collision_layer = 20
@@ -273,7 +281,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Marnie" parent="NPCs" instance=ExtResource("24_3uire")]
+[node name="Marnie" parent="NPCs" groups=["navigation"] instance=ExtResource("24_3uire")]
 texture_filter = 1
 position = Vector2(265.25, -120)
 collision_layer = 20
@@ -283,7 +291,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Maru" parent="NPCs" instance=ExtResource("25_p4lun")]
+[node name="Maru" parent="NPCs" groups=["navigation"] instance=ExtResource("25_p4lun")]
 texture_filter = 1
 position = Vector2(71.25, -72.5)
 collision_layer = 20
@@ -293,7 +301,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Pam" parent="NPCs" instance=ExtResource("26_no2p6")]
+[node name="Pam" parent="NPCs" groups=["navigation"] instance=ExtResource("26_no2p6")]
 texture_filter = 1
 position = Vector2(118, -73.25)
 collision_layer = 20
@@ -303,7 +311,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Penny" parent="NPCs" instance=ExtResource("27_puwg5")]
+[node name="Penny" parent="NPCs" groups=["navigation"] instance=ExtResource("27_puwg5")]
 texture_filter = 1
 position = Vector2(166.75, -73)
 collision_layer = 20
@@ -313,7 +321,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Pierre" parent="NPCs" instance=ExtResource("28_35ki6")]
+[node name="Pierre" parent="NPCs" groups=["navigation"] instance=ExtResource("28_35ki6")]
 texture_filter = 1
 position = Vector2(215.5, -71.75)
 collision_layer = 20
@@ -323,7 +331,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Robin" parent="NPCs" instance=ExtResource("29_0dw8e")]
+[node name="Robin" parent="NPCs" groups=["navigation"] instance=ExtResource("29_0dw8e")]
 texture_filter = 1
 position = Vector2(264.75, -73)
 collision_layer = 20
@@ -333,7 +341,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Sam" parent="NPCs" instance=ExtResource("30_io64w")]
+[node name="Sam" parent="NPCs" groups=["navigation"] instance=ExtResource("30_io64w")]
 texture_filter = 1
 position = Vector2(74.75, -23)
 collision_layer = 20
@@ -343,7 +351,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Sandy" parent="NPCs" instance=ExtResource("31_afqrr")]
+[node name="Sandy" parent="NPCs" groups=["navigation"] instance=ExtResource("31_afqrr")]
 texture_filter = 1
 position = Vector2(121, -24.5)
 collision_layer = 20
@@ -353,7 +361,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Sebastian" parent="NPCs" instance=ExtResource("32_mqd00")]
+[node name="Sebastian" parent="NPCs" groups=["navigation"] instance=ExtResource("32_mqd00")]
 texture_filter = 1
 position = Vector2(169.75, -24.5)
 collision_layer = 20
@@ -363,7 +371,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Shane" parent="NPCs" instance=ExtResource("33_it2vq")]
+[node name="Shane" parent="NPCs" groups=["navigation"] instance=ExtResource("33_it2vq")]
 texture_filter = 1
 position = Vector2(217.25, -22)
 collision_layer = 20
@@ -373,7 +381,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Vincent" parent="NPCs" instance=ExtResource("34_ffqv1")]
+[node name="Vincent" parent="NPCs" groups=["navigation"] instance=ExtResource("34_ffqv1")]
 texture_filter = 1
 position = Vector2(263.25, -25.25)
 collision_layer = 20
@@ -383,7 +391,7 @@ modes = 1
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Willy" parent="NPCs" instance=ExtResource("35_nsifo")]
+[node name="Willy" parent="NPCs" groups=["navigation"] instance=ExtResource("35_nsifo")]
 texture_filter = 1
 position = Vector2(73, 27.25)
 collision_layer = 20
@@ -393,7 +401,7 @@ modes = 4
 pixelDistance = 16
 distanceLimit = 16
 
-[node name="Wizard" parent="NPCs" instance=ExtResource("36_b48rn")]
+[node name="Wizard" parent="NPCs" groups=["navigation"] instance=ExtResource("36_b48rn")]
 texture_filter = 1
 position = Vector2(121.5, 24.25)
 collision_layer = 20
@@ -408,3 +416,19 @@ distanceLimit = 16
 [node name="TimerHUD" type="Timer" parent="Timers"]
 wait_time = 0.2
 one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["navigation"]]
+navigation_polygon = SubResource("NavigationPolygon_vs84o")
+navigation_layers = 96
+
+[node name="RigidBody2D" type="StaticBody2D" parent="NavigationRegion2D" groups=["navigation"]]
+position = Vector2(6, -98)
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/RigidBody2D" groups=["navigation"]]
+z_index = 4
+position = Vector2(70, -48)
+texture = ExtResource("38_gy5on")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/RigidBody2D" groups=["navigation"]]
+position = Vector2(70, -48)
+shape = SubResource("CircleShape2D_ad3g3")
