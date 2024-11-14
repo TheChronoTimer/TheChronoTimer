@@ -11,6 +11,7 @@ extends Node2D
 @onready var PET = $"/root/Main/Animals/PET"
 @onready var NPCs = $"/root/Main/NPCs"
 @onready var TimerHUD = $Timers/TimerHUD
+@onready var nav_region = $NavigationRegion2D
 #endregion
 
 #region Auxiliar
@@ -30,6 +31,7 @@ func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
 	_variables()
 	_camera()
+	#_set_baking_area()
 
 func _process(_delta):
 	_baking()
@@ -115,10 +117,15 @@ func _close_menu(except = null):
 		HUD.VisibPETMenu = false
 
 func _baking():
-	var nav_region = $NavigationRegion2D
 	nav_region.bake_navigation_polygon()
-	#fazer região navegável
-	#cozinhar
+
+func _set_baking_area():
+	nav_region.navigation_polygon.set_vertices([
+		Vector2(LimitLeft, LimitTop),
+		Vector2(LimitRight, LimitTop), 
+		Vector2(LimitRight, LimitBottom),
+		Vector2(LimitLeft, LimitBottom)
+	])
 
 func _camera():
 	Camera.limit_top = LimitTop

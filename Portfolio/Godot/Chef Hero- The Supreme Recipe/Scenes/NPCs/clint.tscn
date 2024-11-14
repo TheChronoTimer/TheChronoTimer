@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_gaipr"]
 [ext_resource type="SpriteFrames" uid="uid://clintframe" path="res://System/NPCs/clint.tres" id="2_3h0jp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
-size = Vector2(14, 12)
+[ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_khnxk"]
 
 [node name="Clint" type="StaticBody2D"]
 position = Vector2(0, 12)
@@ -12,7 +10,7 @@ script = ExtResource("1_gaipr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-shape = SubResource("RectangleShape2D_bbf2w")
+shape = ExtResource("2_khnxk")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -22,7 +20,7 @@ sprite_frames = ExtResource("2_3h0jp")
 animation = &"Down"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -22,7 +22,7 @@ animation = &"Run Right"
 shape = SubResource("CircleShape2D_ja57o")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

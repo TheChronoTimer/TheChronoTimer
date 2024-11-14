@@ -17,7 +17,7 @@ enum Modes {
 #endregion
 
 #region Controle
-@export var speed: int = 128
+@export var speed: int = 64
 @export var frameSpeed: int = 5
 @export var modes: Modes
 @export var target: Node2D
@@ -52,12 +52,12 @@ func _physics_process(_delta):
 	_walk()
 
 func _process(_delta):
-	_animation()
 	_frame()
 #endregion
 
 #region Signal
 func _on_timer_timeout():
+	_animation()
 	match modes:
 		0, 1:
 			Nav.target_position = target.global_position

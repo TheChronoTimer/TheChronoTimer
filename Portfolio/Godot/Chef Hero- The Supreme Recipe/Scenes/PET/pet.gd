@@ -57,13 +57,11 @@ func _ready():
 
 func _physics_process(_delta):
 	_walk()
-
-func _process(_delta):
-	_animation()
 #endregion
 
 #region Signal
 func _on_timer_timeout():
+	_animation()
 	match modes:
 		Modes.FollowTarget, Modes.FollowPlayer:
 			Nav.set_target_position(target.global_position)

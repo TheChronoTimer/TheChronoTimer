@@ -1,10 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://demetriustotal"]
+[gd_scene load_steps=4 format=3 uid="uid://caecty10k76sx"]
 
 [ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_mcdqs"]
-[ext_resource type="SpriteFrames" uid="uid://demetriusframe" path="res://System/NPCs/OK/demetrius.tres" id="2_d2byi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbf2w"]
-size = Vector2(14, 12)
+[ext_resource type="SpriteFrames" uid="uid://caecty1y6bm5q" path="res://System/NPCs/demetrius.tres" id="2_d2byi"]
+[ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_u1i6x"]
 
 [node name="Demetrius" type="StaticBody2D"]
 position = Vector2(0, 12)
@@ -12,7 +10,7 @@ script = ExtResource("1_mcdqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-shape = SubResource("RectangleShape2D_bbf2w")
+shape = ExtResource("2_u1i6x")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -22,7 +20,7 @@ sprite_frames = ExtResource("2_d2byi")
 animation = &"Down"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
