@@ -16,18 +16,19 @@ extends Node2D
 #region Auxiliar
 var HUDKey: String
 var CloneLocation
-var CellX = (MapScale.x * CellSize.x)
-var CellY = (MapScale.y * CellSize.y)
-var LimitTop = (MapLimits.position.y * CellY) + CellY
-var LimitLeft = (MapLimits.position.x * CellX) + CellX
-var LimitBottom = (MapLimits.end.y * CellY) - CellY
-var LimitRight = (MapLimits.end.x * CellX) - CellX
+var CellX
+var CellY
+var LimitTop
+var LimitLeft
+var LimitBottom
+var LimitRight
 #endregion
 #endregion
 
 #region Start
 func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
+	_variables()
 	_baking()
 	_camera()
 
@@ -136,4 +137,12 @@ func _camera():
 	Camera.LimitLeft = LimitLeft
 	Camera.LimitBottom = LimitBottom
 	Camera.LimitRight = LimitRight
+
+func _variables():
+	var CellX = (MapScale.x * CellSize.x)
+	var CellY = (MapScale.y * CellSize.y)
+	var LimitTop = (MapLimits.position.y * CellY) + CellY
+	var LimitLeft = (MapLimits.position.x * CellX) + CellX
+	var LimitBottom = (MapLimits.end.y * CellY) - CellY
+	var LimitRight = (MapLimits.end.x * CellX) - CellX
 #endregion
