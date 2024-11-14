@@ -30,4 +30,3 @@ autostart = true
 navigation_layers = 64
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true

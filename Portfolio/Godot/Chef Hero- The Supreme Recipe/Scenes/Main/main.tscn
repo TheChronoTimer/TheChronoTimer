@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=39 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
@@ -38,6 +38,11 @@
 [ext_resource type="PackedScene" uid="uid://wi0ardtotal" path="res://Scenes/NPCs/wizard.tscn" id="36_b48rn"]
 [ext_resource type="PackedScene" uid="uid://13e0sal8w0te" path="res://Scenes/PET/pet.tscn" id="37_i3xyh"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cjjb3"]
+vertices = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-20, -20, -20, 20, 20, 20, 20, -20)])
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -52,7 +57,10 @@ collision_mask = 255
 texture_filter = 1
 position_smoothing_enabled = true
 
-[node name="TileMap" parent="." instance=ExtResource("2_paxs4")]
+[node name="Layers" parent="." instance=ExtResource("2_paxs4")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Layers"]
+navigation_polygon = SubResource("NavigationPolygon_cjjb3")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")

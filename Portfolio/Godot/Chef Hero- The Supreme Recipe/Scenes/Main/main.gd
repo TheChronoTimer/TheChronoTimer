@@ -16,16 +16,22 @@ extends Node2D
 #region Auxiliar
 var HUDKey: String
 var CloneLocation
+var LimitTop
+var LimitLeft
+var LimitBottom
+var LimitRight
 #endregion
 #endregion
 
 #region Start
 func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
-	Camera.limit_top = (MapLimits.position.y * CellSize.y * MapScale.y) + (MapScale.y * CellSize.y)
-	Camera.limit_left = (MapLimits.position.x * CellSize.x * MapScale.x) + (MapScale.x * CellSize.x)
-	Camera.limit_bottom = (MapLimits.end.y * CellSize.y * MapScale.y) - (MapScale.y * CellSize.y)
-	Camera.limit_right = (MapLimits.end.x * CellSize.x * MapScale.x) - (MapScale.x * CellSize.x)
+	LimitTop = (MapLimits.position.y * CellSize.y * MapScale.y) + (MapScale.y * CellSize.y)
+	LimitLeft = (MapLimits.position.x * CellSize.x * MapScale.x) + (MapScale.x * CellSize.x)
+	LimitBottom = (MapLimits.end.y * CellSize.y * MapScale.y) - (MapScale.y * CellSize.y)
+	LimitRight = (MapLimits.end.x * CellSize.x * MapScale.x) - (MapScale.x * CellSize.x)
+	_baking()
+	_camera()
 
 func _process(_delta):
 	_HUD_keys()
@@ -43,7 +49,10 @@ func _on_timerhud_timeout():
 			_close_menu(HUD.VisibNPCMenu)
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
 		"Debug": #K
-			print("Debug!")
+			print("Debug Mode!")
+			PET.get_node("NavigationAgent2D").debug_enabled = true
+			for NPC in NPCs.get_children():
+				NPC.get_node("NavigationAgent2D").debug_enabled = true
 		"ActionA": #C
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed
@@ -104,4 +113,28 @@ func _close_menu(except = null):
 		HUD.VisibNPCMenu = false
 	if except != HUD.VisibPETMenu:
 		HUD.VisibPETMenu = false
+
+func _baking():
+	var nav_region = $TileMap/NavigationRegion2D
+	var region_rect = Rect2(
+		LimitTop,
+		LimitLeft,
+		LimitBottom,
+		LimitRight
+	)
+	nav_region.navigation_polygon = NavigationPolygon.new()
+	nav_region.navigation_polygon.add_outline(PackedVector2Array([
+		region_rect.position,
+		Vector2(region_rect.end.x, region_rect.position.y),
+		region_rect.end,
+		Vector2(region_rect.position.x, region_rect.end.y)
+	]))
+	nav_region.navigation_polygon.make_polygons_from_outlines()
+	nav_region.bake_navigation_polygon()
+
+func _camera():
+	Camera.LimitTop = LimitTop
+	Camera.LimitLeft = LimitLeft
+	Camera.LimitBottom = LimitBottom
+	Camera.LimitRight = LimitRight
 #endregion
