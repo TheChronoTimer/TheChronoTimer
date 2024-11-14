@@ -116,33 +116,20 @@ func _close_menu(except = null):
 
 func _baking():
 	var nav_region = $TileMap/NavigationRegion2D
-	var region_rect = Rect2(
-		LimitTop,
-		LimitLeft,
-		LimitBottom,
-		LimitRight
-	)
-	nav_region.navigation_polygon = NavigationPolygon.new()
-	nav_region.navigation_polygon.add_outline(PackedVector2Array([
-		region_rect.position,
-		Vector2(region_rect.end.x, region_rect.position.y),
-		region_rect.end,
-		Vector2(region_rect.position.x, region_rect.end.y)
-	]))
-	nav_region.navigation_polygon.make_polygons_from_outlines()
-	nav_region.bake_navigation_polygon()
+	#fazer região navegável
+	#cozinhar
 
 func _camera():
-	Camera.LimitTop = LimitTop
-	Camera.LimitLeft = LimitLeft
-	Camera.LimitBottom = LimitBottom
-	Camera.LimitRight = LimitRight
+	Camera.limit_top = LimitTop
+	Camera.limit_left = LimitLeft
+	Camera.limit_bottom = LimitBottom
+	Camera.limit_right = LimitRight
 
 func _variables():
-	var CellX = (MapScale.x * CellSize.x)
-	var CellY = (MapScale.y * CellSize.y)
-	var LimitTop = (MapLimits.position.y * CellY) + CellY
-	var LimitLeft = (MapLimits.position.x * CellX) + CellX
-	var LimitBottom = (MapLimits.end.y * CellY) - CellY
-	var LimitRight = (MapLimits.end.x * CellX) - CellX
+	CellX = (MapScale.x * CellSize.x)
+	CellY = (MapScale.y * CellSize.y)
+	LimitTop = (MapLimits.position.y * CellY) + CellY
+	LimitLeft = (MapLimits.position.x * CellX) + CellX
+	LimitBottom = (MapLimits.end.y * CellY) - CellY
+	LimitRight = (MapLimits.end.x * CellX) - CellX
 #endregion
