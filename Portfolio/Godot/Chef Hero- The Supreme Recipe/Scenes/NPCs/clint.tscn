@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://clintframe" path="res://System/NPCs/clint.tres" id="2_3h0jp"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_khnxk"]
 
-[node name="Clint" type="StaticBody2D"]
+[node name="Clint" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_gaipr")
 

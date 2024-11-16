@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://marnieframe" path="res://System/NPCs/marnie.tres" id="2_4j825"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_w526x"]
 
-[node name="Marnie" type="StaticBody2D"]
+[node name="Marnie" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 

@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_dmhfc"]
 [ext_resource type="SpriteFrames" uid="uid://pennyframe" path="res://System/NPCs/penny.tres" id="2_x56c7"]
 
-[node name="Penny" type="StaticBody2D"]
+[node name="Penny" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 

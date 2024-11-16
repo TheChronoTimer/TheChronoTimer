@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_vgawg"]
 [ext_resource type="SpriteFrames" uid="uid://gusframe" path="res://System/NPCs/gus.tres" id="2_xfvbk"]
 
-[node name="Gus" type="StaticBody2D"]
+[node name="Gus" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_utp37")
 

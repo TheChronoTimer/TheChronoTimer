@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_jabne"]
 [ext_resource type="SpriteFrames" uid="uid://dwarfframe" path="res://System/NPCs/dwarf.tres" id="2_jlb6c"]
 
-[node name="Dwarf" type="StaticBody2D"]
+[node name="Dwarf" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_q0t87")
 

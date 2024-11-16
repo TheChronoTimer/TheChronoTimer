@@ -1,5 +1,5 @@
-#extends CharacterBody2D
-extends StaticBody2D
+extends CharacterBody2D
+#extends StaticBody2D
 
 #region Var
 #region Funcionamento
@@ -44,7 +44,7 @@ var SitMirrored = false
 var SitMirroredLock = false
 var currentSpeed: int = speed
 var backupSpeed: int = speed
-var velocity: Vector2
+#var velocity: Vector2
 #endregion
 #endregion
 
@@ -113,7 +113,8 @@ func _move_pet(distance: float):
 	currentSpeed = _calculate_speed(distance)
 	velocity = dir * currentSpeed
 	if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-		position += velocity * get_physics_process_delta_time()
+		#position += velocity * get_physics_process_delta_time()
+		move_and_slide()
 	pixelEdge = pixelDistance
 
 func _calculate_speed(distance: float) -> int:

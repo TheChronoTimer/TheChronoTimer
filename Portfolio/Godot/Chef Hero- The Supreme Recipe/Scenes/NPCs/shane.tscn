@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://shaneframe" path="res://System/NPCs/shane.tres" id="2_m0de6"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_qpmhb"]
 
-[node name="Shane" type="StaticBody2D"]
+[node name="Shane" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 

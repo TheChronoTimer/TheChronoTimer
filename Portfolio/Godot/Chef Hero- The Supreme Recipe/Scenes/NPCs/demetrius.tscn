@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://caecty1y6bm5q" path="res://System/NPCs/demetrius.tres" id="2_d2byi"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_u1i6x"]
 
-[node name="Demetrius" type="StaticBody2D"]
+[node name="Demetrius" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_mcdqs")
 

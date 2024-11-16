@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_0b7y3"]
 [ext_resource type="SpriteFrames" uid="uid://jasframe" path="res://System/NPCs/jas.tres" id="2_br74m"]
 
-[node name="Jas" type="StaticBody2D"]
+[node name="Jas" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_kimyq")
 

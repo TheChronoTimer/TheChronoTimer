@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_s3636"]
 [ext_resource type="SpriteFrames" uid="uid://jodiframe" path="res://System/NPCs/jodi.tres" id="2_xvewt"]
 
-[node name="Jodi" type="StaticBody2D"]
+[node name="Jodi" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_8hvi3")
 

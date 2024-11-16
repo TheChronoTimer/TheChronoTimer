@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ja57o"]
 radius = 7.0
 
-[node name="Pet" type="StaticBody2D"]
+[node name="Pet" type="CharacterBody2D"]
 script = ExtResource("1_ekfwq")
 speed = 256
 frameSpeed = 10

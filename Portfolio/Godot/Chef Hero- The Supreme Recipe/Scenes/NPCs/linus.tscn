@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://linusframe" path="res://System/NPCs/linus.tres" id="2_ka3p4"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_vctfq"]
 
-[node name="Linus" type="StaticBody2D"]
+[node name="Linus" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 

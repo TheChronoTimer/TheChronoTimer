@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends CharacterBody2D
 
 #region Var
 #region Funcionamento
@@ -14,7 +14,7 @@ extends StaticBody2D
 #region Auxiliar
 var Pointed
 var PointedBak
-var velocity: Vector2
+#var velocity: Vector2
 #endregion
 #endregion
 

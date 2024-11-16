@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://evelynframe" path="res://System/NPCs/evelyn.tres" id="2_3d6bd"]
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_sfxm1"]
 
-[node name="Evelyn" type="StaticBody2D"]
+[node name="Evelyn" type="CharacterBody2D"]
 position = Vector2(0, 12)
 script = ExtResource("1_q0msv")
 
