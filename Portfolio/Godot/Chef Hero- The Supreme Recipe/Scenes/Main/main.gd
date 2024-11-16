@@ -23,6 +23,7 @@ var LimitTop
 var LimitLeft
 var LimitBottom
 var LimitRight
+var BakingCounter: int = 0
 #endregion
 #endregion
 
@@ -34,7 +35,9 @@ func _ready():
 	#_set_baking_area()
 
 func _process(_delta):
-	_baking()
+	BakingCounter += 1
+	if BakingCounter % 30 == 0:
+		_baking()
 	_HUD_keys()
 	match Global.NPCsearch:
 		32:
@@ -52,8 +55,8 @@ func _on_timerhud_timeout():
 		"Debug": #K
 			print("Debug Mode!")
 			PET.get_node("NavigationAgent2D").debug_enabled = true
-			#for NPC in NPCs.get_children():
-			#	NPC.get_node("NavigationAgent2D").debug_enabled = true
+			for NPC in NPCs.get_children():
+				NPC.get_node("NavigationAgent2D").debug_enabled = true
 		"ActionA": #C
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed

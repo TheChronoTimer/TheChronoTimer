@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends StaticBody2D
 
 #region Var
 #region Funcionamento
@@ -14,6 +14,7 @@ extends CharacterBody2D
 #region Auxiliar
 var Pointed
 var PointedBak
+var velocity: Vector2
 #endregion
 #endregion
 
@@ -37,7 +38,8 @@ func _walk():
 	input_vector.y = Input.get_action_strength("Down") - Input.get_action_strength("Up")
 	
 	velocity = input_vector.normalized() * speed
-	move_and_slide()
+	position += velocity * get_physics_process_delta_time()
+	#move_and_slide()
 
 func _animation():
 	Sprite.speed_scale = frameSpeed

@@ -16,10 +16,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
 size = Vector2(10, 10)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="StaticBody2D"]
 y_sort_enabled = true
 texture_filter = 1
-motion_mode = 1
 script = ExtResource("1_tge0j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

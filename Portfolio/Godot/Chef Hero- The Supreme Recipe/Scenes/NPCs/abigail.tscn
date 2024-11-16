@@ -6,7 +6,7 @@
 
 [node name="Abigail" type="StaticBody2D"]
 position = Vector2(0, 12)
-script = ExtResource("1_0ee6b")s
+script = ExtResource("1_0ee6b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -25,5 +25,4 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 32
-path_postprocessing = 1
 avoidance_enabled = true
