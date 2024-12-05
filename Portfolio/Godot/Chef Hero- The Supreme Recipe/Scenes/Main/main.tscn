@@ -52,7 +52,7 @@ texture_filter = 1
 scale = Vector2(4, 4)
 script = ExtResource("1_q7xxs")
 
-[node name="Player" parent="." groups=["navigation"] instance=ExtResource("2_lf818")]
+[node name="Player" parent="." instance=ExtResource("2_lf818")]
 z_index = 2
 collision_mask = 255
 
@@ -66,7 +66,7 @@ position_smoothing_enabled = true
 Player = NodePath("../Player")
 Target = NodePath("../NPCs/Haley")
 
-[node name="Animals" type="Node2D" parent="." groups=["navigation"]]
+[node name="Animals" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1
@@ -83,7 +83,7 @@ pixelDistance = 64
 distanceLimit = 32
 runDistance = 430
 
-[node name="NPCs" type="Node2D" parent="." groups=["navigation"]]
+[node name="NPCs" type="Node2D" parent="."]
 z_index = 2
 y_sort_enabled = true
 texture_filter = 1

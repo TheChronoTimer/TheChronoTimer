@@ -17,7 +17,7 @@ enum Modes {
 #endregion
 
 #region Controle
-@export var speed: int = 32
+@export var speed: int = 64
 @export var frameSpeed: int = 5
 @export var modes: Modes
 @export var target: Node2D

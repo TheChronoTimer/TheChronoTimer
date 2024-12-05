@@ -14,6 +14,10 @@ extends Node2D
 @onready var nav_region = $NavigationRegion2D
 #endregion
 
+#
+@export var BakingFrequency: int = 15
+#
+
 #region Auxiliar
 var HUDKey: String
 var CloneLocation
@@ -36,7 +40,7 @@ func _ready():
 
 func _process(_delta):
 	BakingCounter += 1
-	if BakingCounter % 30 == 0:
+	if BakingCounter % BakingFrequency == 0:
 		_baking()
 	_HUD_keys()
 	match Global.NPCsearch:

@@ -1,0 +1,65 @@
+#include "beremiz.h"
+#ifndef __POUS_H
+#define __POUS_H
+
+#include "accessor.h"
+#include "iec_std_lib.h"
+
+__DECLARE_ENUMERATED_TYPE(LOGLEVEL,
+  LOGLEVEL__CRITICAL,
+  LOGLEVEL__WARNING,
+  LOGLEVEL__INFO,
+  LOGLEVEL__DEBUG
+)
+// FUNCTION_BLOCK LOGGER
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,MSG)
+  __DECLARE_VAR(LOGLEVEL,LEVEL)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,TRIG0)
+
+} LOGGER;
+
+void LOGGER_init__(LOGGER *data__, BOOL retain);
+// Code part
+void LOGGER_body__(LOGGER *data__);
+// PROGRAM HELLOWORLD
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,SET)
+  __DECLARE_VAR(BOOL,RESET)
+  __DECLARE_VAR(BOOL,HELLO_WORLD)
+  __DECLARE_VAR(INT,SELECT)
+  __DECLARE_VAR(BOOL,MODE_1)
+  __DECLARE_VAR(BOOL,MODE_2)
+  __DECLARE_VAR(BOOL,MODE_3)
+  __DECLARE_VAR(BOOL,MODE_4)
+  __DECLARE_VAR(BOOL,LED)
+  __DECLARE_VAR(BOOL,LED0)
+  R_TRIG R_TRIG0;
+  F_TRIG F_TRIG0;
+  __DECLARE_VAR(BOOL,_TMP_MOVE27_ENO)
+  __DECLARE_VAR(INT,_TMP_MOVE27_OUT)
+  __DECLARE_VAR(BOOL,_TMP_MOVE1_ENO)
+  __DECLARE_VAR(INT,_TMP_MOVE1_OUT)
+  __DECLARE_VAR(BOOL,_TMP_MOVE2_ENO)
+  __DECLARE_VAR(INT,_TMP_MOVE2_OUT)
+  __DECLARE_VAR(BOOL,_TMP_MOVE3_ENO)
+  __DECLARE_VAR(INT,_TMP_MOVE3_OUT)
+  __DECLARE_VAR(BOOL,_TMP_EQ35_OUT)
+
+} HELLOWORLD;
+
+void HELLOWORLD_init__(HELLOWORLD *data__, BOOL retain);
+// Code part
+void HELLOWORLD_body__(HELLOWORLD *data__);
+#endif //__POUS_H
