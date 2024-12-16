@@ -29,32 +29,15 @@ typedef struct {
 void LOGGER_init__(LOGGER *data__, BOOL retain);
 // Code part
 void LOGGER_body__(LOGGER *data__);
-// FUNCTION_BLOCK ONS
-// Data part
-typedef struct {
-  // FB Interface - IN, OUT, IN_OUT variables
-  __DECLARE_VAR(BOOL,EN)
-  __DECLARE_VAR(BOOL,ENO)
-  __DECLARE_VAR(BOOL,INPUT)
-  __DECLARE_VAR(BOOL,OUTPUT)
-
-  // FB private variables - TEMP, private and located variables
-  __DECLARE_VAR(BOOL,LATCH)
-
-} ONS;
-
-void ONS_init__(ONS *data__, BOOL retain);
-// Code part
-void ONS_body__(ONS *data__);
 // PROGRAM MAIN
 // Data part
 typedef struct {
   // PROGRAM Interface - IN, OUT, IN_OUT variables
 
   // PROGRAM private variables - TEMP, private and located variables
-  ONS ONS0;
-  __DECLARE_VAR(BOOL,INPUT)
-  __DECLARE_VAR(BOOL,LATCH)
+  __DECLARE_VAR(BOOL,AA1)
+  __DECLARE_VAR(BOOL,AA2)
+  __DECLARE_VAR(BOOL,AA3)
 
 } MAIN;
 

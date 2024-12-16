@@ -41,62 +41,17 @@ __end:
 
 
 
-void ONS_init__(ONS *data__, BOOL retain) {
-  __INIT_VAR(data__->EN,__BOOL_LITERAL(TRUE),retain)
-  __INIT_VAR(data__->ENO,__BOOL_LITERAL(TRUE),retain)
-  __INIT_VAR(data__->INPUT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->OUTPUT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->LATCH,__BOOL_LITERAL(FALSE),retain)
-}
-
-// Code part
-void ONS_body__(ONS *data__) {
-  // Control execution
-  if (!__GET_VAR(data__->EN)) {
-    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(FALSE));
-    return;
-  }
-  else {
-    __SET_VAR(data__->,ENO,,__BOOL_LITERAL(TRUE));
-  }
-  // Initialise TEMP variables
-
-  __SET_VAR(data__->,OUTPUT,,(!(__GET_VAR(data__->LATCH,)) && __GET_VAR(data__->INPUT,)));
-  if (__GET_VAR(data__->INPUT,)) {
-    __SET_VAR(data__->,LATCH,,__BOOL_LITERAL(TRUE));
-  };
-  if (!(__GET_VAR(data__->INPUT,))) {
-    __SET_VAR(data__->,LATCH,,__BOOL_LITERAL(FALSE));
-  };
-
-  goto __end;
-
-__end:
-  return;
-} // ONS_body__() 
-
-
-
-
-
 void MAIN_init__(MAIN *data__, BOOL retain) {
-  ONS_init__(&data__->ONS0,retain);
-  __INIT_VAR(data__->INPUT,__BOOL_LITERAL(FALSE),retain)
-  __INIT_VAR(data__->LATCH,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->AA1,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->AA2,__BOOL_LITERAL(FALSE),retain)
+  __INIT_VAR(data__->AA3,__BOOL_LITERAL(FALSE),retain)
 }
 
 // Code part
 void MAIN_body__(MAIN *data__) {
   // Initialise TEMP variables
 
-  __SET_VAR(data__->ONS0.,INPUT,,__GET_VAR(data__->INPUT,));
-  ONS_body__(&data__->ONS0);
-  if ((!(__GET_VAR(data__->LATCH,)) && __GET_VAR(data__->ONS0.OUTPUT,))) {
-    __SET_VAR(data__->,LATCH,,__BOOL_LITERAL(TRUE));
-  };
-  if ((__GET_VAR(data__->LATCH,) && __GET_VAR(data__->ONS0.OUTPUT,))) {
-    __SET_VAR(data__->,LATCH,,__BOOL_LITERAL(FALSE));
-  };
+  __SET_VAR(data__->,AA3,,!((__GET_VAR(data__->AA3,) && __GET_VAR(data__->AA1,))));
 
   goto __end;
 
