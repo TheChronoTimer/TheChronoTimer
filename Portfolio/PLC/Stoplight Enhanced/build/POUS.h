@@ -1,0 +1,123 @@
+#include "beremiz.h"
+#ifndef __POUS_H
+#define __POUS_H
+
+#include "accessor.h"
+#include "iec_std_lib.h"
+
+__DECLARE_ENUMERATED_TYPE(LOGLEVEL,
+  LOGLEVEL__CRITICAL,
+  LOGLEVEL__WARNING,
+  LOGLEVEL__INFO,
+  LOGLEVEL__DEBUG
+)
+// FUNCTION_BLOCK LOGGER
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,TRIG)
+  __DECLARE_VAR(STRING,MSG)
+  __DECLARE_VAR(LOGLEVEL,LEVEL)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,TRIG0)
+
+} LOGGER;
+
+void LOGGER_init__(LOGGER *data__, BOOL retain);
+// Code part
+void LOGGER_body__(LOGGER *data__);
+// FUNCTION_BLOCK TFF
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,INPUT)
+  __DECLARE_VAR(BOOL,OUTPUT)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,LATCH)
+
+} TFF;
+
+void TFF_init__(TFF *data__, BOOL retain);
+// Code part
+void TFF_body__(TFF *data__);
+// FUNCTION_BLOCK LIGHTS
+// Data part
+typedef struct {
+  // FB Interface - IN, OUT, IN_OUT variables
+  __DECLARE_VAR(BOOL,EN)
+  __DECLARE_VAR(BOOL,ENO)
+  __DECLARE_VAR(BOOL,INPUT)
+  __DECLARE_VAR(BOOL,O_G)
+  __DECLARE_VAR(BOOL,O_Y)
+  __DECLARE_VAR(BOOL,O_R)
+  __DECLARE_VAR(DINT,STOP_TIME)
+  __DECLARE_VAR(DINT,EXT_CTER)
+  __DECLARE_VAR(DINT,EXT_STOP_TIME)
+  __DECLARE_VAR(BOOL,DUAL_Y)
+
+  // FB private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,DUAL_Y_CTER)
+  R_TRIG R_TRIG0;
+  TFF TFF0;
+  __DECLARE_VAR(DINT,_TMP_SUB72_OUT)
+  __DECLARE_VAR(BOOL,_TMP_GE75_OUT)
+  __DECLARE_VAR(BOOL,_TMP_NOT80_OUT)
+  __DECLARE_VAR(BOOL,_TMP_AND1_OUT)
+  __DECLARE_VAR(BOOL,_TMP_AND4_OUT)
+
+} LIGHTS;
+
+void LIGHTS_init__(LIGHTS *data__, BOOL retain);
+// Code part
+void LIGHTS_body__(LIGHTS *data__);
+// PROGRAM STOPLIGHT_ENHANCED
+// Data part
+typedef struct {
+  // PROGRAM Interface - IN, OUT, IN_OUT variables
+
+  // PROGRAM private variables - TEMP, private and located variables
+  __DECLARE_VAR(BOOL,TIMER)
+  __DECLARE_VAR(DINT,COUNTER)
+  __DECLARE_VAR(DINT,STOPLIGHT_STOP_TIME)
+  __DECLARE_VAR(DINT,YELLOW_STOP_TIME)
+  __DECLARE_VAR(DINT,STATE)
+  __DECLARE_VAR(BOOL,A1)
+  __DECLARE_VAR(BOOL,A2)
+  __DECLARE_VAR(BOOL,AP)
+  __DECLARE_VAR(BOOL,B1)
+  __DECLARE_VAR(BOOL,B2)
+  __DECLARE_VAR(BOOL,BP)
+  __DECLARE_VAR(BOOL,C1)
+  __DECLARE_VAR(BOOL,C2)
+  __DECLARE_VAR(BOOL,CP)
+  LIGHTS LIGHTS0;
+  __DECLARE_VAR(BOOL,A1G)
+  __DECLARE_VAR(BOOL,A1Y)
+  __DECLARE_VAR(BOOL,A1R)
+  __DECLARE_VAR(BOOL,A1_MODE)
+  __DECLARE_VAR(BOOL,_TMP_ADD6_ENO)
+  __DECLARE_VAR(DINT,_TMP_ADD6_OUT)
+  __DECLARE_VAR(BOOL,_TMP_GE10_OUT)
+  __DECLARE_VAR(BOOL,_TMP_MOVE47_ENO)
+  __DECLARE_VAR(DINT,_TMP_MOVE47_OUT)
+  __DECLARE_VAR(BOOL,_TMP_GE23_OUT)
+  __DECLARE_VAR(BOOL,_TMP_MOVE8_ENO)
+  __DECLARE_VAR(DINT,_TMP_MOVE8_OUT)
+  __DECLARE_VAR(BOOL,_TMP_EQ39_OUT)
+  __DECLARE_VAR(BOOL,_TMP_EQ41_OUT)
+  __DECLARE_VAR(BOOL,_TMP_EQ43_OUT)
+  __DECLARE_VAR(BOOL,_TMP_ADD19_ENO)
+  __DECLARE_VAR(DINT,_TMP_ADD19_OUT)
+
+} STOPLIGHT_ENHANCED;
+
+void STOPLIGHT_ENHANCED_init__(STOPLIGHT_ENHANCED *data__, BOOL retain);
+// Code part
+void STOPLIGHT_ENHANCED_body__(STOPLIGHT_ENHANCED *data__);
+#endif //__POUS_H
