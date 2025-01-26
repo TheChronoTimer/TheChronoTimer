@@ -11,7 +11,7 @@ extends Node2D
 @onready var PET = $"/root/Main/Animals/PET"
 @onready var NPCs = $"/root/Main/NPCs"
 @onready var TimerHUD = $Timers/TimerHUD
-@onready var nav_region = $NavigationRegion2D
+#@onready var nav_region = $NavigationRegion2D
 #endregion
 
 #
@@ -124,15 +124,17 @@ func _close_menu(except = null):
 		HUD.VisibPETMenu = false
 
 func _baking():
-	nav_region.bake_navigation_polygon()
+	#nav_region.bake_navigation_polygon()
+	pass
 
 func _set_baking_area():
-	nav_region.navigation_polygon.set_vertices([
-		Vector2(LimitLeft, LimitTop),
-		Vector2(LimitRight, LimitTop), 
-		Vector2(LimitRight, LimitBottom),
-		Vector2(LimitLeft, LimitBottom)
-	])
+#	nav_region.navigation_polygon.set_vertices([
+#		Vector2(LimitLeft, LimitTop),
+#		Vector2(LimitRight, LimitTop), 
+#		Vector2(LimitRight, LimitBottom),
+#		Vector2(LimitLeft, LimitBottom)
+#	])
+	pass
 
 func _camera():
 	Camera.limit_top = LimitTop
