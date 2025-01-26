@@ -128,12 +128,12 @@ func _baking():
 	pass
 
 func _set_baking_area():
-#	nav_region.navigation_polygon.set_vertices([
-#		Vector2(LimitLeft, LimitTop),
-#		Vector2(LimitRight, LimitTop), 
-#		Vector2(LimitRight, LimitBottom),
-#		Vector2(LimitLeft, LimitBottom)
-#	])
+	#nav_region.navigation_polygon.set_vertices([
+	#	Vector2(LimitLeft, LimitTop),
+	#	Vector2(LimitRight, LimitTop), 
+	#	Vector2(LimitRight, LimitBottom),
+	#	Vector2(LimitLeft, LimitBottom)
+	#])
 	pass
 
 func _camera():
