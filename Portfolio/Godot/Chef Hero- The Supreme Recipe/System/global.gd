@@ -43,5 +43,4 @@ var NPClist = {
 }
 #endregion
 
-var collision_array = []
-var collision_layer_count: int = 0
+var collision_array[x][y] = {bool}

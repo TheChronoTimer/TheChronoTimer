@@ -38,7 +38,6 @@ func _walk():
 	input_vector.y = Input.get_action_strength("Down") - Input.get_action_strength("Up")
 	
 	velocity = input_vector.normalized() * speed
-	#position += velocity * get_physics_process_delta_time()
 	move_and_slide()
 
 func _animation():

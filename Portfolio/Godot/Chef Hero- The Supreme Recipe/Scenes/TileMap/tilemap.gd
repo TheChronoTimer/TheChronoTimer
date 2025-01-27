@@ -1,20 +1,47 @@
 extends TileMapLayer
 
-func _ready():
-	# Tamanho do retângulo usado pelo TileMap
-	var used_rect = get_used_rect()
+#region Var
+#region Funcionamento
+@onready var ground = $Ground
+#endregion
 
-	# Itera sobre todas as coordenadas usadas no TileMap
-	for x in range(used_rect.position.x, used_rect.end.x):
-		for y in range(used_rect.position.y, used_rect.end.y):
-			
-			# Itera sobre os filhos do TileMap
-			for child in get_children():
-				if child is TileMapLayer:  # Garante que o filho é um TileMap
-					var child_cell = child.get_cell_tile_data(Vector2(x, y))  # Obtém o ID do tile na coordenada
-					if child_cell:
-						if child_cell.get_collision_polygons_count(0) > 0:  # Se o tile existir, há colisão
-							# Define o estado de "não caminhável" no layer Ground
+#region Controle
+@export var cost_false: int = 2
+@export var cost_true: int = 1
+@export var discounted_tiles: Array[int] = [1, 2, 3, 4]
+#endregion
+
+#region Auxiliar
+var used_rect = get_used_rect()
+var cost
+var collision_size = 2
+#endregion
+#endregion
+
+#region Start
+func _ready():
+	_navigation_lock()
+	_export_table()
+#endregion
+#region Func
+func _navigation_lock():
+	_for_xy(used_rect, func(x, y):
+		for child in get_children():
+			if child is TileMapLayer:
+				var child_cell = child.get_cell_tile_data(Vector2(x, y))
+				if child_cell:
+					for i in range(collision_size):
+						if child_cell.get_collision_polygons_count(i) > 0:
 							var cell_data = self.get_cell_tile_data(Vector2(x, y))
-							if cell_data:  # Verifica se existe um tile na posição atual
+							if cell_data:
 								self.set_cell(Vector2i(x, y), -1)
+	)
+
+func _for_xy(square: Rect2, callable_function: Callable):
+	for x in range(square.position.x, square.end.x):
+		for y in range(square.position.y, square.end.y):
+			callable_function.call(x, y)
+
+func _export_table():
+	
+#endregion

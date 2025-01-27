@@ -39,9 +39,6 @@ func _ready():
 	#_set_baking_area()
 
 func _process(_delta):
-	BakingCounter += 1
-	if BakingCounter % BakingFrequency == 0:
-		_baking()
 	_HUD_keys()
 	match Global.NPCsearch:
 		32:
@@ -122,19 +119,6 @@ func _close_menu(except = null):
 		HUD.VisibNPCMenu = false
 	if except != HUD.VisibPETMenu:
 		HUD.VisibPETMenu = false
-
-func _baking():
-	#nav_region.bake_navigation_polygon()
-	pass
-
-func _set_baking_area():
-	#nav_region.navigation_polygon.set_vertices([
-	#	Vector2(LimitLeft, LimitTop),
-	#	Vector2(LimitRight, LimitTop), 
-	#	Vector2(LimitRight, LimitBottom),
-	#	Vector2(LimitLeft, LimitBottom)
-	#])
-	pass
 
 func _camera():
 	Camera.limit_top = LimitTop
