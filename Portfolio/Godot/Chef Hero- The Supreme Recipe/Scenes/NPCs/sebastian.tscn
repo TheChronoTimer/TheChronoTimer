@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://brff1i4lml34s" path="res://System/NPCs/sebastian.tres" id="2_p4nqx"]
 
 [node name="Sebastian" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_0ee6b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

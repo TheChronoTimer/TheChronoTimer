@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://gusframe" path="res://System/NPCs/gus.tres" id="2_xfvbk"]
 
 [node name="Gus" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_utp37")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

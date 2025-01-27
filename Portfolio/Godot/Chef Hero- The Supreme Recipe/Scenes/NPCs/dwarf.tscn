@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://dwarfframe" path="res://System/NPCs/dwarf.tres" id="2_jlb6c"]
 
 [node name="Dwarf" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_q0t87")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

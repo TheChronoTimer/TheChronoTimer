@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/hair.gd" id="9_5qne6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmsrp"]
-size = Vector2(10, 10)
+size = Vector2(12, 12)
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -27,7 +27,6 @@ texture_filter = 1
 shape = SubResource("RectangleShape2D_kmsrp")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -12)
 sprite_frames = ExtResource("2_msy07")

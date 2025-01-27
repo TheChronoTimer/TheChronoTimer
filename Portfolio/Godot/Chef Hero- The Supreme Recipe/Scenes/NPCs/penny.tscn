@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://pennyframe" path="res://System/NPCs/penny.tres" id="2_x56c7"]
 
 [node name="Penny" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://jodiframe" path="res://System/NPCs/jodi.tres" id="2_xvewt"]
 
 [node name="Jodi" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_8hvi3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://pierreframe" path="res://System/NPCs/pierre.tres" id="2_svtdw"]
 
 [node name="Pierre" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

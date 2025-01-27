@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://elliotframe" path="res://System/NPCs/elliot.tres" id="2_tep0p"]
 
 [node name="Elliot" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

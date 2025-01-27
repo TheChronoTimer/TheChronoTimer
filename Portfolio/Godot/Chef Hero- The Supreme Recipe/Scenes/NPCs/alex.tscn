@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://lexframe" path="res://System/NPCs/alex.tres" id="2_kod2u"]
 
 [node name="Alex" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_lwmro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

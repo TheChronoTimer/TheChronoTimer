@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://samframe" path="res://System/NPCs/sam.tres" id="2_dybmd"]
 
 [node name="Sam" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_li23c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

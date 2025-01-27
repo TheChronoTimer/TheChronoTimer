@@ -5,7 +5,6 @@
 [ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_u1i6x"]
 
 [node name="Demetrius" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_mcdqs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

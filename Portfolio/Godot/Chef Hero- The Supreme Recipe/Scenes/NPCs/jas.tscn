@@ -5,7 +5,6 @@
 [ext_resource type="SpriteFrames" uid="uid://jasframe" path="res://System/NPCs/jas.tres" id="2_br74m"]
 
 [node name="Jas" type="CharacterBody2D"]
-position = Vector2(0, 12)
 script = ExtResource("1_kimyq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
