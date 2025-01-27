@@ -6,7 +6,8 @@ extends CanvasLayer
 @export var Target: Node2D
 @export var NumPopUp: int = 33
 @export var VisibNPCMenu: bool = false
-@export var VisibPETMenu: bool = false
+@export var VisibDogMenu: bool = false
+@export var VisibCatMenu: bool = false
 #endregion
 
 #region Controle
@@ -14,10 +15,13 @@ extends CanvasLayer
 @onready var Icon = $Compass/Sphere/Icon
 @onready var NPCMenu = $"NPC Menu"
 @onready var NPCPopUp = $"NPC Menu/Pop-Up"
-@onready var PETPopUp = $"PET Menu/Pop-Up"
+@onready var DogPopUp = $"Dog Menu/Pop-Up"
+@onready var CatPopUp = $"Cat Menu/Pop-Up"
 @onready var ButtonX = $ButtonX
-@onready var PETMenu = $"PET Menu"
-@onready var PET = $"/root/Main/Animals/PET"
+@onready var DogMenu = $"Dog Menu"
+@onready var CatMenu = $"Cat Menu"
+@onready var Dog = $"/root/Main/Animals/Dog"
+@onready var Cat = $"/root/Main/Animals/Cat"
 #endregion
 
 #region Auxiliar
@@ -64,8 +68,10 @@ func _change_npc_menu_icons():
 func _close_menu(except = null):
 	if except != VisibNPCMenu:
 		VisibNPCMenu = false
-	if except != VisibPETMenu:
-		VisibPETMenu = false
+	if except != VisibDogMenu:
+		VisibDogMenu = false
+	if except != VisibCatMenu:
+		VisibCatMenu = false
 
 func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	var texture_size: Vector2
@@ -84,28 +90,41 @@ func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	)
 	return rect.has_point(mouse_position)
 
-func _set_pet_mode(mode_index):
-	if PET:
+func _set_Dog_mode(mode_index):
+	if Dog:
 		match mode_index:
 			0:
-				PET.modes = PET.Modes.FollowPlayer
+				Dog.modes = Dog.Modes.FollowPlayer
 			1:
-				PET.modes = PET.Modes.Stop
+				Dog.modes = Dog.Modes.Stop
 			2:
-				PET.modes = PET.Modes.Sleep
+				Dog.modes = Dog.Modes.Sleep
+
+func _set_Cat_mode(mode_index):
+	if Cat:
+		match mode_index:
+			0:
+				Cat.modes = Cat.Modes.FollowPlayer
+			1:
+				Cat.modes = Cat.Modes.Stop
+			2:
+				Cat.modes = Cat.Modes.Sleep
 
 func _update_menu_visibility():
 	NPCMenu.visible = VisibNPCMenu
-	PETMenu.visible = VisibPETMenu
-	ButtonX.visible = VisibNPCMenu or VisibPETMenu
+	DogMenu.visible = VisibDogMenu
+	CatMenu.visible = VisibCatMenu
+	ButtonX.visible = VisibNPCMenu or VisibDogMenu or VisibCatMenu
 
 func _update_button_x_position():
 	var visible_menu = null
 	match true:
 		VisibNPCMenu:
 			visible_menu = NPCPopUp
-		VisibPETMenu:
-			visible_menu = PETPopUp
+		VisibDogMenu:
+			visible_menu = DogPopUp
+		VisibCatMenu:
+			visible_menu = CatPopUp
 		_:
 			visible_menu = null
 	if visible_menu:
@@ -115,18 +134,30 @@ func _update_button_x_position():
 		ButtonX.position = Vector2(viewport_size) + pop_up_location
 
 func _handle_menu_input(_event: InputEvent):
-	if VisibPETMenu:
-		_handle_pet_menu_input(_event)
+	if VisibDogMenu:
+		_handle_Dog_menu_input(_event)
+	if VisibCatMenu:
+		_handle_Cat_menu_input(_event)
 	elif VisibNPCMenu:
 		_handle_npc_menu_input(_event)
 
-func _handle_pet_menu_input(_event: InputEvent):
-	var mouse_position = PETPopUp.get_local_mouse_position()
+func _handle_Dog_menu_input(_event: InputEvent):
+	var mouse_position = DogPopUp.get_local_mouse_position()
 	var options = ["Follow Player", "Stop", "Sleep"]
 	for i in range(options.size()):
-		var icon_node = PETPopUp.get_node_or_null(options[i])
+		var icon_node = DogPopUp.get_node_or_null(options[i])
 		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
-			_set_pet_mode(i)
+			_set_Dog_mode(i)
+			_close_menu()
+			return
+
+func _handle_Cat_menu_input(_event: InputEvent):
+	var mouse_position = CatPopUp.get_local_mouse_position()
+	var options = ["Follow Player", "Stop", "Sleep"]
+	for i in range(options.size()):
+		var icon_node = CatPopUp.get_node_or_null(options[i])
+		if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
+			_set_Cat_mode(i)
 			_close_menu()
 			return
 

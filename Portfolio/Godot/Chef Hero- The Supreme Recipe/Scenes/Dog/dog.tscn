@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://13e0sal8w0te"]
+
+[ext_resource type="Script" path="res://Scenes/Dog/dog.gd" id="1_ekfwq"]
+[ext_resource type="SpriteFrames" uid="uid://cy7ek8dsh3y0p" path="res://System/Pet/dog.tres" id="1_ihjcl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ja57o"]
+radius = 7.0
+
+[node name="Dog" type="CharacterBody2D"]
+script = ExtResource("1_ekfwq")
+speed = 256
+frameSpeed = 10
+modes = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -9)
+sprite_frames = ExtResource("1_ihjcl")
+animation = &"Run Right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ja57o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 32
+path_postprocessing = 1
+avoidance_enabled = true

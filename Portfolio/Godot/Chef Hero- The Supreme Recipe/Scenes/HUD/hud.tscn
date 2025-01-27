@@ -352,7 +352,7 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_x8pkg")
 animation = &"NPCs"
 
-[node name="PET Menu" type="Control" parent="."]
+[node name="Dog Menu" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -365,7 +365,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
-[node name="Follow Player" type="Label" parent="PET Menu"]
+[node name="Follow Player" type="Label" parent="Dog Menu"]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -385,7 +385,7 @@ theme_override_font_sizes/font_size = 21
 text = "Follow Player"
 horizontal_alignment = 1
 
-[node name="Stop" type="Label" parent="PET Menu"]
+[node name="Stop" type="Label" parent="Dog Menu"]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -405,7 +405,7 @@ theme_override_font_sizes/font_size = 21
 text = "Stop"
 horizontal_alignment = 1
 
-[node name="Sleep" type="Label" parent="PET Menu"]
+[node name="Sleep" type="Label" parent="Dog Menu"]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -425,14 +425,14 @@ theme_override_font_sizes/font_size = 21
 text = "Sleep"
 horizontal_alignment = 1
 
-[node name="Pop-Up" type="Sprite2D" parent="PET Menu"]
+[node name="Pop-Up" type="Sprite2D" parent="Dog Menu"]
 texture_filter = 1
 scale = Vector2(5, 5)
 texture = ExtResource("5_8s54n")
 region_enabled = true
 region_rect = Rect2(534, 18, 40, 40)
 
-[node name="Follow Player" type="Sprite2D" parent="PET Menu/Pop-Up"]
+[node name="Follow Player" type="Sprite2D" parent="Dog Menu/Pop-Up"]
 texture_filter = 1
 position = Vector2(0, -10.88)
 scale = Vector2(0.72, 0.72)
@@ -440,7 +440,7 @@ texture = ExtResource("3_35gw4")
 region_enabled = true
 region_rect = Rect2(26, 3, 42, 12)
 
-[node name="Stop" type="Sprite2D" parent="PET Menu/Pop-Up"]
+[node name="Stop" type="Sprite2D" parent="Dog Menu/Pop-Up"]
 texture_filter = 1
 position = Vector2(0, -0.213333)
 scale = Vector2(0.72, 0.72)
@@ -448,7 +448,111 @@ texture = ExtResource("3_35gw4")
 region_enabled = true
 region_rect = Rect2(26, 3, 42, 12)
 
-[node name="Sleep" type="Sprite2D" parent="PET Menu/Pop-Up"]
+[node name="Sleep" type="Sprite2D" parent="Dog Menu/Pop-Up"]
+texture_filter = 1
+position = Vector2(0, 10.4533)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("3_35gw4")
+region_enabled = true
+region_rect = Rect2(26, 3, 42, 12)
+
+[node name="Cat Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="Follow Player" type="Label" parent="Cat Menu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -70.0
+offset_right = 77.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533333, 0.313726, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Follow Player"
+horizontal_alignment = 1
+
+[node name="Stop" type="Label" parent="Cat Menu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -17.0
+offset_right = 77.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533333, 0.313726, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Stop"
+horizontal_alignment = 1
+
+[node name="Sleep" type="Label" parent="Cat Menu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = 37.0
+offset_right = 77.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.533333, 0.313726, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Sleep"
+horizontal_alignment = 1
+
+[node name="Pop-Up" type="Sprite2D" parent="Cat Menu"]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("5_8s54n")
+region_enabled = true
+region_rect = Rect2(534, 18, 40, 40)
+
+[node name="Follow Player" type="Sprite2D" parent="Cat Menu/Pop-Up"]
+texture_filter = 1
+position = Vector2(0, -10.88)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("3_35gw4")
+region_enabled = true
+region_rect = Rect2(26, 3, 42, 12)
+
+[node name="Stop" type="Sprite2D" parent="Cat Menu/Pop-Up"]
+texture_filter = 1
+position = Vector2(0, -0.213333)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("3_35gw4")
+region_enabled = true
+region_rect = Rect2(26, 3, 42, 12)
+
+[node name="Sleep" type="Sprite2D" parent="Cat Menu/Pop-Up"]
 texture_filter = 1
 position = Vector2(0, 10.4533)
 scale = Vector2(0.72, 0.72)

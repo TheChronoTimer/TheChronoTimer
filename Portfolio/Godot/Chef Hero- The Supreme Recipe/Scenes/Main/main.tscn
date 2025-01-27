@@ -1,10 +1,11 @@
-[gd_scene load_steps=39 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=40 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
 [ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/TileMap/tilemap.tscn" id="2_paxs4"]
 [ext_resource type="PackedScene" uid="uid://ijhl6tdb5o05" path="res://Scenes/HUD/hud.tscn" id="5_1vxud"]
 [ext_resource type="PackedScene" uid="uid://haleytotal" path="res://Scenes/NPCs/haley.tscn" id="5_6pvaf"]
+[ext_resource type="PackedScene" uid="uid://cvaqtng8kwo1u" path="res://Scenes/Cat/cat.tscn" id="6_eu4av"]
 [ext_resource type="PackedScene" uid="uid://lextotal" path="res://Scenes/NPCs/alex.tscn" id="6_sgqh1"]
 [ext_resource type="PackedScene" uid="uid://bigailtotal" path="res://Scenes/NPCs/abigail.tscn" id="7_upn61"]
 [ext_resource type="PackedScene" uid="uid://carolinetotal" path="res://Scenes/NPCs/caroline.tscn" id="8_defj4"]
@@ -37,7 +38,7 @@
 [ext_resource type="PackedScene" uid="uid://vincenttotal" path="res://Scenes/NPCs/vincent.tscn" id="34_ffqv1"]
 [ext_resource type="PackedScene" uid="uid://willytotal" path="res://Scenes/NPCs/willy.tscn" id="35_nsifo"]
 [ext_resource type="PackedScene" uid="uid://wi0ardtotal" path="res://Scenes/NPCs/wizard.tscn" id="36_b48rn"]
-[ext_resource type="PackedScene" uid="uid://13e0sal8w0te" path="res://Scenes/PET/pet.tscn" id="37_i3xyh"]
+[ext_resource type="PackedScene" uid="uid://13e0sal8w0te" path="res://Scenes/Dog/dog.tscn" id="37_i3xyh"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -64,7 +65,7 @@ z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 
-[node name="PET" parent="Animals" instance=ExtResource("37_i3xyh")]
+[node name="Dog" parent="Animals" instance=ExtResource("37_i3xyh")]
 y_sort_enabled = true
 position = Vector2(-24, -1.5)
 collision_layer = 17
@@ -75,6 +76,15 @@ modes = 1
 pixelDistance = 64
 distanceLimit = 32
 runDistance = 430
+
+[node name="Cat" parent="Animals" instance=ExtResource("6_eu4av")]
+position = Vector2(0, 32)
+modes = 1
+
+[node name="Label" type="Label" parent="Animals/Cat"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GATO"
 
 [node name="NPCs" type="Node2D" parent="."]
 z_index = 2
@@ -102,7 +112,7 @@ texture_filter = 1
 position = Vector2(167.75, -261.5)
 collision_layer = 52
 collision_mask = 255
-target = NodePath("../../Animals/PET")
+target = NodePath("../../Animals/Dog")
 pixelDistance = 16
 distanceLimit = 16
 
@@ -379,6 +389,3 @@ distanceLimit = 16
 [node name="TimerHUD" type="Timer" parent="Timers"]
 wait_time = 0.2
 one_shot = true
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(-24, -136)

@@ -8,7 +8,6 @@ extends TileMapLayer
 #region Controle
 @export var cost_false: int = 2
 @export var cost_true: int = 1
-@export var discounted_tiles: Array[int] = [1, 2, 3, 4]
 #endregion
 
 #region Auxiliar
@@ -22,6 +21,9 @@ var collision_size = 2
 func _ready():
 	_navigation_lock()
 	_export_table()
+
+func _process(_delta):
+	pass
 #endregion
 #region Func
 func _navigation_lock():
@@ -43,5 +45,18 @@ func _for_xy(square: Rect2, callable_function: Callable):
 			callable_function.call(x, y)
 
 func _export_table():
+	if not Global.collision_array:
+		Global.collision_array = []
+		for x in range(used_rect.size.x):
+			var row = []
+			for y in range(used_rect.size.y):
+				row.append(false)
+			Global.collision_array.append(row)
 	
+	_for_xy(used_rect, func(x, y):
+		if self.get_cell_source_id(Vector2(x, y)) == -1:
+			Global.collision_array[x][y] = false
+		else:
+			Global.collision_array[x][y] = true
+	)
 #endregion

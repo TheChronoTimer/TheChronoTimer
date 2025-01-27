@@ -43,4 +43,12 @@ var NPClist = {
 }
 #endregion
 
-var collision_array[x][y] = {bool}
+#region PETList
+var PETlist = {
+"Dog":			0,
+"Cat":			1
+}
+#endregion
+
+var collision_array : Array = []
+var npc_array : Array = []

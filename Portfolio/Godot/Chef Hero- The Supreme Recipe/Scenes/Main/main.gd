@@ -8,7 +8,7 @@ extends Node2D
 @onready var MapScale = scale
 @onready var HUD = $HUD
 @onready var Player = $Player
-@onready var PET = $"/root/Main/Animals/PET"
+@onready var Dog = $"/root/Main/Animals/Dog"
 @onready var NPCs = $"/root/Main/NPCs"
 @onready var TimerHUD = $Timers/TimerHUD
 #@onready var nav_region = $NavigationRegion2D
@@ -36,26 +36,26 @@ func _ready():
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
 	_variables()
 	_camera()
-	#_set_baking_area()
 
 func _process(_delta):
 	_HUD_keys()
 	match Global.NPCsearch:
 		32:
-			HUD.Target = PET
+			HUD.Target = Dog
 		_:
 			HUD.Target = NPCs.get_node(_reverse_dict_search(Global.NPClist, Global.NPCsearch))
+	_check_npc_obstacles()
 #endregion
 
 #region Signal
 func _on_timerhud_timeout():
 	match HUDKey:
-		"Compass": #N
+		"Compass": #B
 			_close_menu(HUD.VisibNPCMenu)
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
 		"Debug": #K
 			print("Debug Mode!")
-			PET.get_node("NavigationAgent2D").debug_enabled = true
+			Dog.get_node("NavigationAgent2D").debug_enabled = true
 			for NPC in NPCs.get_children():
 				NPC.get_node("NavigationAgent2D").debug_enabled = true
 		"ActionA": #C
@@ -71,9 +71,12 @@ func _on_timerhud_timeout():
 			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
-		"Pet Mode": #M
-			_close_menu(HUD.VisibPETMenu)
-			HUD.VisibPETMenu = not HUD.VisibPETMenu
+		"Dog Mode": #M
+			_close_menu(HUD.VisibDogMenu)
+			HUD.VisibDogMenu = not HUD.VisibDogMenu
+		"Cat Mode": #N
+			_close_menu(HUD.VisibCatMenu)
+			HUD.VisibCatMenu = not HUD.VisibCatMenu
 	HUDKey = ""
 #endregion
 
@@ -101,8 +104,11 @@ func _HUD_keys():
 		Player.speed = Global.DefaultSpeed
 	if Input.is_action_pressed("Esc"):
 		_close_menu()
-	if Input.is_action_pressed("Pet Mode"):
-		HUDKey = "Pet Mode"
+	if Input.is_action_pressed("Dog Mode"):
+		HUDKey = "Dog Mode"
+		_timer_start()
+	if Input.is_action_pressed("Cat Mode"):
+		HUDKey = "Cat Mode"
 		_timer_start()
 
 func _reverse_dict_search(where, target: int):
@@ -117,8 +123,8 @@ func _timer_start():
 func _close_menu(except = null):
 	if except != HUD.VisibNPCMenu:
 		HUD.VisibNPCMenu = false
-	if except != HUD.VisibPETMenu:
-		HUD.VisibPETMenu = false
+	if except != HUD.VisibDogMenu:
+		HUD.VisibDogMenu = false
 
 func _camera():
 	Camera.limit_top = LimitTop
@@ -133,4 +139,15 @@ func _variables():
 	LimitLeft = (MapLimits.position.x * CellX) + CellX
 	LimitBottom = (MapLimits.end.y * CellY) - CellY
 	LimitRight = (MapLimits.end.x * CellX) - CellX
+
+
+func _check_npc_obstacles():
+	if Global.npc_array == []:
+		Global.npc_array.resize(Global.NPClist.size())
+	
+	for i in Global.NPClist.size():
+		var NPCcoords = Vector2i(NPCs.get_node(_reverse_dict_search(Global.NPClist, i)).global_position/64)
+		NPCcoords.y *= -1
+		Global.npc_array[i] = NPCcoords
+	print(Global.npc_array)
 #endregion
