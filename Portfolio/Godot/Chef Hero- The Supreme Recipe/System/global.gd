@@ -52,3 +52,5 @@ var PETlist = {
 
 var collision_array : Array = []
 var npc_array : Array = []
+var dog_coords : Vector2i
+var cat_coords : Vector2i

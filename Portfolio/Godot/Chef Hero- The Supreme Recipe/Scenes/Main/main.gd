@@ -10,13 +10,13 @@ extends Node2D
 @onready var Player = $Player
 @onready var Dog = $"/root/Main/Animals/Dog"
 @onready var NPCs = $"/root/Main/NPCs"
+@onready var Animals = $"/root/Main/Animals"
 @onready var TimerHUD = $Timers/TimerHUD
-#@onready var nav_region = $NavigationRegion2D
 #endregion
 
-#
+#region Controle
 @export var BakingFrequency: int = 15
-#
+#endregion
 
 #region Auxiliar
 var HUDKey: String
@@ -111,6 +111,9 @@ func _HUD_keys():
 		HUDKey = "Cat Mode"
 		_timer_start()
 
+func _round_to_dec(num, digit):
+	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
 		if where[key] == target:
@@ -140,14 +143,17 @@ func _variables():
 	LimitBottom = (MapLimits.end.y * CellY) - CellY
 	LimitRight = (MapLimits.end.x * CellX) - CellX
 
-
 func _check_npc_obstacles():
+	var num
 	if Global.npc_array == []:
 		Global.npc_array.resize(Global.NPClist.size())
 	
 	for i in Global.NPClist.size():
-		var NPCcoords = Vector2i(NPCs.get_node(_reverse_dict_search(Global.NPClist, i)).global_position/64)
-		NPCcoords.y *= -1
-		Global.npc_array[i] = NPCcoords
-	print(Global.npc_array)
+		num = NPCs.get_node(_reverse_dict_search(Global.NPClist, i)).global_position/64
+		num.x = _round_to_dec(num.x, 0)
+		num.y = _round_to_dec(num.y, 0)-1
+		Global.npc_array[i] = num
+	print(Global.npc_array[23])
+	Global.dog_coords = Vector2i(Animals.get_node("Dog").global_position/64)
+	Global.cat_coords = Vector2i(Animals.get_node("Cat").global_position/64)
 #endregion

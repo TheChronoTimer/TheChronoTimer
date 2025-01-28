@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://d26umm6n54d3a"]
+[gd_scene load_steps=41 format=3 uid="uid://d26umm6n54d3a"]
 
 [ext_resource type="Script" path="res://Scenes/Main/main.gd" id="1_q7xxs"]
 [ext_resource type="PackedScene" uid="uid://d2y2yqurs2ymu" path="res://Scenes/Player/player.tscn" id="2_lf818"]
 [ext_resource type="PackedScene" uid="uid://bybv52xnrx1tr" path="res://Scenes/TileMap/tilemap.tscn" id="2_paxs4"]
+[ext_resource type="TileSet" uid="uid://wa6axc745jp2" path="res://System/TileMap/tileset.tres" id="4_xu3q8"]
 [ext_resource type="PackedScene" uid="uid://ijhl6tdb5o05" path="res://Scenes/HUD/hud.tscn" id="5_1vxud"]
 [ext_resource type="PackedScene" uid="uid://haleytotal" path="res://Scenes/NPCs/haley.tscn" id="5_6pvaf"]
 [ext_resource type="PackedScene" uid="uid://cvaqtng8kwo1u" path="res://Scenes/Cat/cat.tscn" id="6_eu4av"]
@@ -55,6 +56,7 @@ texture_filter = 1
 position_smoothing_enabled = true
 
 [node name="TileMap" parent="." groups=["navigation"] instance=ExtResource("2_paxs4")]
+tileset = ExtResource("4_xu3q8")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]
 Player = NodePath("../Player")
