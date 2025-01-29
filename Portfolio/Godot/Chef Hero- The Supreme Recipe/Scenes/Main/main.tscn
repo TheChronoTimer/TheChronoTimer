@@ -56,6 +56,8 @@ texture_filter = 1
 position_smoothing_enabled = true
 
 [node name="TileMap" parent="." groups=["navigation"] instance=ExtResource("2_paxs4")]
+cost_false = 2
+cost_true = 1
 tileset = ExtResource("4_xu3q8")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player", "Target") instance=ExtResource("5_1vxud")]

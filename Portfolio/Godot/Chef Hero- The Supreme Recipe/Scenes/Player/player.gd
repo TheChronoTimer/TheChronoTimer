@@ -29,6 +29,11 @@ func _physics_process(_delta):
 func _process(_delta):
 	_animation()
 	_frame()
+	Global.player_coords = Vector2i(self.position/16)
+	if self.position.x < 0:
+		Global.player_coords.x -= 1
+	if self.position.y < 0:
+		Global.player_coords.y -= 1
 #endregion
 
 #region Func

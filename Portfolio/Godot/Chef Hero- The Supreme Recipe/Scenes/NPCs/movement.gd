@@ -88,7 +88,6 @@ func _walk():
 		dir = to_local(Nav.get_next_path_position()).normalized()
 		velocity = dir * speed
 		if Nav.is_target_reachable() or not Nav.is_navigation_finished():
-			#position += velocity * get_physics_process_delta_time()
 			move_and_slide()
 		pixelEdge = pixelDistance
 	else:

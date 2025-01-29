@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/NPCs/movement.gd" id="1_0ee6b"]
 [ext_resource type="SpriteFrames" uid="uid://willyframe" path="res://System/NPCs/willy.tres" id="2_8ae64"]
-[ext_resource type="Shape2D" uid="uid://cahqn20kqugbq" path="res://System/NPCs/collision_area.tres" id="2_g10hg"]
+[ext_resource type="Shape2D" uid="uid://b45eo1x2e31fq" path="res://System/NPCs/collision_area.tres" id="2_g10hg"]
 
 [node name="Willy" type="CharacterBody2D"]
 script = ExtResource("1_0ee6b")
@@ -24,5 +24,4 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 32
-path_postprocessing = 1
 avoidance_enabled = true

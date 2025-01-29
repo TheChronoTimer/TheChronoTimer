@@ -44,7 +44,6 @@ func _process(_delta):
 			HUD.Target = Dog
 		_:
 			HUD.Target = NPCs.get_node(_reverse_dict_search(Global.NPClist, Global.NPCsearch))
-	_check_npc_obstacles()
 #endregion
 
 #region Signal
@@ -112,7 +111,11 @@ func _HUD_keys():
 		_timer_start()
 
 func _round_to_dec(num, digit):
-	return round(num * pow(10.0, digit)) / pow(10.0, digit)
+	var section = (round(num * pow(10, digit - 1)) - round(num * pow(10, digit))) / 10
+	if section >= 5:
+		return round(num * pow(10, digit)) / pow(10, digit)
+	else:
+		return floor(num * pow(10, digit)) / pow(10, digit)
 
 func _reverse_dict_search(where, target: int):
 	for key in where.keys():
@@ -143,17 +146,8 @@ func _variables():
 	LimitBottom = (MapLimits.end.y * CellY) - CellY
 	LimitRight = (MapLimits.end.x * CellX) - CellX
 
-func _check_npc_obstacles():
-	var num
-	if Global.npc_array == []:
-		Global.npc_array.resize(Global.NPClist.size())
-	
-	for i in Global.NPClist.size():
-		num = NPCs.get_node(_reverse_dict_search(Global.NPClist, i)).global_position/64
-		num.x = _round_to_dec(num.x, 0)
-		num.y = _round_to_dec(num.y, 0)-1
-		Global.npc_array[i] = num
-	print(Global.npc_array[23])
-	Global.dog_coords = Vector2i(Animals.get_node("Dog").global_position/64)
-	Global.cat_coords = Vector2i(Animals.get_node("Cat").global_position/64)
+func _for_xy(square: Rect2, callable_function: Callable):
+	for x in range(square.position.x, square.end.x):
+		for y in range(square.position.y, square.end.y):
+			callable_function.call(x, y)
 #endregion
