@@ -54,16 +54,32 @@ func _export_table():
 				row.append(false)
 			Global.collision_array.append(row)
 	_for_xy(used_rect, func(x, y):
-		if self.get_cell_source_id(Vector2(x, y)) == -1:
+		var pos = Vector2i(x, y)
+		if self.get_cell_source_id(pos) == -1:
 			Global.collision_array[x][y] = false
 		else:
-			Global.collision_array[x][y] = true
+			var neighbors = self.get_surrounding_cells(pos)
+			var has_empty_neighbor = false
+			for neighbor in neighbors:
+				if self.get_cell_source_id(neighbor) == -1:
+					has_empty_neighbor = true
+					break
+			if has_empty_neighbor:
+				Global.collision_array[x][y] = false
+			else:
+				Global.collision_array[x][y] = true
+	)
+	_for_xy(used_rect, func(x, y):
+		if Global.collision_array[x][y] == false:
+			self.set_cell(Vector2(x, y), -1)
+		elif Global.collision_array[x][y] == true:
+			self.set_cell(Vector2i(x, y), 53, Vector2i(7, 72))
 	)
 
 func _update_table():
-	print(Global.player_coords)
 	_for_xy(used_rect, func(x, y):
-		if Vector2i(x, y) == Global.player_coords:
+		var dif = Vector2i(x, y) - Global.player_coords
+		if dif.x >= -1 and dif.x <= 1 and dif.y >= -1 and dif.y <= 1:
 			self.set_cell(Vector2(x, y), -1)
 		elif Global.collision_array[x][y] == true:
 			self.set_cell(Vector2i(x, y), 53, Vector2i(7, 72))
