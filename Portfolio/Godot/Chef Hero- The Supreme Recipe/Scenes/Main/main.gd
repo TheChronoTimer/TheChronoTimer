@@ -141,10 +141,10 @@ func _camera():
 func _variables():
 	CellX = (MapScale.x * CellSize.x)
 	CellY = (MapScale.y * CellSize.y)
-	LimitTop = (MapLimits.position.y * CellY) + CellY
-	LimitLeft = (MapLimits.position.x * CellX) + CellX
-	LimitBottom = (MapLimits.end.y * CellY) - CellY
-	LimitRight = (MapLimits.end.x * CellX) - CellX
+	LimitTop = (MapLimits.position.y * CellY) - CellY
+	LimitLeft = (MapLimits.position.x * CellX) - CellX
+	LimitBottom = (MapLimits.end.y * CellY) + CellY
+	LimitRight = (MapLimits.end.x * CellX) + CellX
 
 func _for_xy(square: Rect2, callable_function: Callable):
 	for x in range(square.position.x, square.end.x):

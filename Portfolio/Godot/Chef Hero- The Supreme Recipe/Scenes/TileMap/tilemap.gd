@@ -6,8 +6,6 @@ extends TileMapLayer
 #endregion
 
 #region Controle
-@export var cost_false: int = 2
-@export var cost_true: int = 1
 @export var tileset : TileSet
 #endregion
 
@@ -33,11 +31,10 @@ func _navigation_lock():
 			if child is TileMapLayer:
 				var child_cell = child.get_cell_tile_data(Vector2(x, y))
 				if child_cell:
-					for i in range(collision_size):
-						if child_cell.get_collision_polygons_count(i) > 0:
-							var cell_data = self.get_cell_tile_data(Vector2(x, y))
-							if cell_data:
-								self.set_cell(Vector2i(x, y), -1)
+					if child_cell.get_collision_polygons_count(0) > 0:
+						var cell_data = self.get_cell_tile_data(Vector2(x, y))
+						if cell_data:
+							self.set_cell(Vector2i(x, y), -1)
 	)
 
 func _for_xy(square: Rect2, callable_function: Callable):
@@ -73,15 +70,15 @@ func _export_table():
 		if Global.collision_array[x][y] == false:
 			self.set_cell(Vector2(x, y), -1)
 		elif Global.collision_array[x][y] == true:
-			self.set_cell(Vector2i(x, y), 53, Vector2i(7, 72))
+			self.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 	)
 
 func _update_table():
 	_for_xy(used_rect, func(x, y):
 		var dif = Vector2i(x, y) - Global.player_coords
-		if dif.x >= -1 and dif.x <= 1 and dif.y >= -1 and dif.y <= 1:
+		if (dif.x == 0 and (dif.y >= -1 and dif.y <= 1)) or (dif.y == 0 and (dif.x >= -1 and dif.x <= 1)):
 			self.set_cell(Vector2(x, y), -1)
 		elif Global.collision_array[x][y] == true:
-			self.set_cell(Vector2i(x, y), 53, Vector2i(7, 72))
+			self.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 	)
 #endregion
