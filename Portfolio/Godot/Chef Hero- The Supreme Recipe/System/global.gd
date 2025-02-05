@@ -6,6 +6,8 @@ var NPCsearch: int = 4
 var DefaultFrameSpeed: float = 0.0
 var DefaultSpeed: float = 0.0
 
+var Hotkey: int = 0
+
 #region NPCList
 var NPClist = {
 "Alex":			6,

@@ -4,10 +4,12 @@ extends CanvasLayer
 #region Funcionamento
 @export var Player: Node2D
 @export var Target: Node2D
-@export var NumPopUp: int = 33
+@export var NumPopUp: int = 34
 @export var VisibNPCMenu: bool = false
 @export var VisibDogMenu: bool = false
 @export var VisibCatMenu: bool = false
+@export var VisibInvMenu: bool = false
+@export var tileset : TileSet
 #endregion
 
 #region Controle
@@ -17,11 +19,14 @@ extends CanvasLayer
 @onready var NPCPopUp = $"NPC Menu/Pop-Up"
 @onready var DogPopUp = $"Dog Menu/Pop-Up"
 @onready var CatPopUp = $"Cat Menu/Pop-Up"
+@onready var InvPopUp = $"Inv Menu/Pop-Up"
 @onready var ButtonX = $ButtonX
 @onready var DogMenu = $"Dog Menu"
 @onready var CatMenu = $"Cat Menu"
+@onready var InvMenu = $"Inv Menu"
 @onready var Dog = $"/root/Main/Animals/Dog"
 @onready var Cat = $"/root/Main/Animals/Cat"
+@onready var Hotkey = $"Menu Bar/Toolbar/Hotkey"
 #endregion
 
 #region Auxiliar
@@ -40,6 +45,11 @@ func _physics_process(_delta):
 	Icon.frame = Global.NPCsearch
 	_update_menu_visibility()
 	_update_button_x_position()
+	for i in 10:
+		if i == Global.Hotkey:
+			Hotkey.set_cell(Vector2i(i-5, 0), 7, Vector2i(0, 14))
+		else:
+			Hotkey.set_cell(Vector2i(i-5, 0), -1)
 
 func _input(_event):
 	if _event is InputEventMouseButton and _event.button_index == MOUSE_BUTTON_LEFT and _event.is_pressed():
@@ -72,6 +82,8 @@ func _close_menu(except = null):
 		VisibDogMenu = false
 	if except != VisibCatMenu:
 		VisibCatMenu = false
+	if except != VisibInvMenu:
+		VisibInvMenu = false
 
 func _is_mouse_over_icon(mouse_position: Vector2, icon_node: Node):
 	var texture_size: Vector2
@@ -114,7 +126,8 @@ func _update_menu_visibility():
 	NPCMenu.visible = VisibNPCMenu
 	DogMenu.visible = VisibDogMenu
 	CatMenu.visible = VisibCatMenu
-	ButtonX.visible = VisibNPCMenu or VisibDogMenu or VisibCatMenu
+	InvMenu.visible = VisibInvMenu
+	ButtonX.visible = VisibNPCMenu or VisibDogMenu or VisibCatMenu or VisibInvMenu
 
 func _update_button_x_position():
 	var visible_menu = null
@@ -125,6 +138,8 @@ func _update_button_x_position():
 			visible_menu = DogPopUp
 		VisibCatMenu:
 			visible_menu = CatPopUp
+		VisibInvMenu:
+			visible_menu = InvPopUp
 		_:
 			visible_menu = null
 	if visible_menu:
@@ -135,13 +150,15 @@ func _update_button_x_position():
 
 func _handle_menu_input(_event: InputEvent):
 	if VisibDogMenu:
-		_handle_Dog_menu_input(_event)
+		_handle_dog_menu_input(_event)
 	if VisibCatMenu:
-		_handle_Cat_menu_input(_event)
-	elif VisibNPCMenu:
+		_handle_cat_menu_input(_event)
+	if VisibNPCMenu:
 		_handle_npc_menu_input(_event)
+	if VisibInvMenu:
+		_handle_inv_menu_input(_event)
 
-func _handle_Dog_menu_input(_event: InputEvent):
+func _handle_dog_menu_input(_event: InputEvent):
 	var mouse_position = DogPopUp.get_local_mouse_position()
 	var options = ["Follow Player", "Stop", "Sleep"]
 	for i in range(options.size()):
@@ -151,7 +168,7 @@ func _handle_Dog_menu_input(_event: InputEvent):
 			_close_menu()
 			return
 
-func _handle_Cat_menu_input(_event: InputEvent):
+func _handle_cat_menu_input(_event: InputEvent):
 	var mouse_position = CatPopUp.get_local_mouse_position()
 	var options = ["Follow Player", "Stop", "Sleep"]
 	for i in range(options.size()):
@@ -169,4 +186,14 @@ func _handle_npc_menu_input(_event: InputEvent):
 			Global.NPCsearch = i
 			_close_menu()
 			return
+
+func _handle_inv_menu_input(_event: InputEvent):
+	pass
+	#var mouse_position = NPCPopUp.get_local_mouse_position()
+	#for i in range(NumPopUp):
+	#	var icon_node = NPCPopUp.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
+	#	if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
+	#		Global.NPCsearch = i
+	#		_close_menu()
+	#		return
 #endregion
