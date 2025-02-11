@@ -36,7 +36,7 @@ var BakingCounter: int = 0
 func _ready():
 	print_rich("[bgcolor=green][color=black][b][center]Hello World!")
 	Global.inventory_ready = true
-	print("apagar em main/ready")
+	print("apagar em main/ready e fazer o import")
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
 	_variables()
 	_camera()
@@ -223,8 +223,8 @@ func _is_integer(value: String):
 	return true
 
 func _export_json():
-	var json_data = JSON.stringify(Global.inventory_dict)
-	var file = FileAccess.open("user://json.json", FileAccess.WRITE)
+	var json_data = JSON.stringify(Global.inventory_dict, "\t")
+	var file = FileAccess.open("/home/user/json.json", FileAccess.WRITE)
 	if not file:
 		push_error("Erro ao abrir o arquivo para escrita")
 		return
@@ -232,7 +232,7 @@ func _export_json():
 	file.close()
 
 func _import_json():
-	var file = FileAccess.open("user://json.json", FileAccess.READ)
+	var file = FileAccess.open("/home/user/json.json", FileAccess.READ)
 	if not file:
 		push_error("Erro ao abrir o arquivo para leitura")
 		return
