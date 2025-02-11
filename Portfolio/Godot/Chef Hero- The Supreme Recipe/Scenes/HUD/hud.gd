@@ -41,6 +41,9 @@ func _ready():
 	_change_npc_menu_icons()
 
 func _physics_process(_delta):
+	if Global.inventory_ready:
+		_handle_inventory()
+		Global.inventory_ready = false
 	_set_compass_angle()
 	Icon.frame = Global.NPCsearch
 	_update_menu_visibility()
@@ -54,6 +57,7 @@ func _physics_process(_delta):
 func _input(_event):
 	if _event is InputEventMouseButton and _event.button_index == MOUSE_BUTTON_LEFT and _event.is_pressed():
 		_handle_menu_input(_event)
+		_handle_inv_menu_input(_event)
 #endregion
 
 #region Signal
@@ -189,11 +193,18 @@ func _handle_npc_menu_input(_event: InputEvent):
 
 func _handle_inv_menu_input(_event: InputEvent):
 	pass
-	#var mouse_position = NPCPopUp.get_local_mouse_position()
-	#for i in range(NumPopUp):
-	#	var icon_node = NPCPopUp.get_node_or_null("Icon" + str(i + 1).pad_zeros(2))
-	#	if icon_node and _is_mouse_over_icon(mouse_position, icon_node):
-	#		Global.NPCsearch = i
-	#		_close_menu()
-	#		return
+
+func _handle_inventory():
+	set_process_input(true)
+	for i in range(36):
+		var icon_name = "Icon" + str(i + 1).pad_zeros(2)
+		var icon_node = InvPopUp.get_node_or_null(icon_name)
+		if icon_node:
+			icon_node.frame = Global.inventory_dict[i][0]
+			var label = Label.new()
+			label.text = str(Global.inventory_dict[i][1])
+			label.position = Vector2(8, 4)
+			label.scale = Vector2(0.5, 0.5)
+			label["theme_override_colors/font_color"] = Color(0.0,0.0,0.0,1.0)
+			icon_node.add_child(label)
 #endregion

@@ -105,6 +105,7 @@ animation = &"NPCs"
 frame = 4
 
 [node name="NPC Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -569,7 +570,6 @@ region_enabled = true
 region_rect = Rect2(26, 3, 42, 12)
 
 [node name="Inv Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

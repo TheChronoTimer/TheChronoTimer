@@ -34,9 +34,14 @@ var BakingCounter: int = 0
 
 #region Start
 func _ready():
+	print_rich("[bgcolor=green][color=black][b][center]Hello World!")
+	Global.inventory_ready = true
+	print("apagar em main/ready")
 	TimerHUD.timeout.connect(_on_timerhud_timeout)
 	_variables()
 	_camera()
+	_export_json()
+	#_import_json()
 
 func _process(_delta):
 	_HUD_keys()
@@ -53,13 +58,19 @@ func _process(_delta):
 func _on_timerhud_timeout():
 	match HUDKey:
 		"Compass": #B
+			if !HUD.VisibNPCMenu and Global.debug:
+				print_rich("[color=yellow]NPC Menu [color=green]ON")
 			_close_menu(HUD.VisibNPCMenu)
 			HUD.VisibNPCMenu = not HUD.VisibNPCMenu
 		"Debug": #K
-			print("Debug Mode!")
-			Dog.get_node("NavigationAgent2D").debug_enabled = true
+			Global.debug = !Global.debug
+			Dog.get_node("NavigationAgent2D").debug_enabled = Global.debug
 			for NPC in NPCs.get_children():
-				NPC.get_node("NavigationAgent2D").debug_enabled = true
+				NPC.get_node("NavigationAgent2D").debug_enabled = Global.debug
+			if Global.debug:
+				print_rich("[color=red][b] DEBUG MODE ON ")
+			else:
+				print_rich("[color=green][b] DEBUG MODE OFF ")
 		"CtrlC": #Ctrl+C
 			Player.Pointed = Player.Ray.get_collider()
 			Player.PointedBak = Player.Pointed
@@ -67,17 +78,23 @@ func _on_timerhud_timeout():
 			if Player.PointedBak == CloneLocation.get_node("Wizard"):
 				print("Hey")
 			Player.PointedBak = null
+			print_rich("[color=yellow]Ctrl+C")
 		"CtrlV": #Ctrl+V
 			var New = Player.Pointed.duplicate()
 			New.global_position = Vector2i.ZERO
 			CloneLocation.add_child(New)
 			New.get_node("Timer").start()
 			Player.Pointed = null
+			print_rich("[color=yellow]Ctrl+V")
 		"Dog Mode": #M
 			_close_menu(HUD.VisibDogMenu)
+			if !HUD.VisibDogMenu and Global.debug:
+				print_rich("[color=yellow]Dog Menu [color=green]ON")
 			HUD.VisibDogMenu = not HUD.VisibDogMenu
 		"Cat Mode": #N
 			_close_menu(HUD.VisibCatMenu)
+			if !HUD.VisibCatMenu and Global.debug:
+				print_rich("[color=yellow]Cat Menu [color=green]ON")
 			HUD.VisibCatMenu = not HUD.VisibCatMenu
 		"ActionA": #C
 			pass
@@ -85,6 +102,8 @@ func _on_timerhud_timeout():
 			pass
 		"Inventory": #E/I
 			_close_menu(HUD.VisibInvMenu)
+			if !HUD.VisibInvMenu and Global.debug:
+				print_rich("[color=yellow]Inventory Menu [color=green]ON")
 			HUD.VisibInvMenu = not HUD.VisibInvMenu
 	HUDKey = ""
 #endregion
@@ -154,12 +173,20 @@ func _timer_start():
 
 func _close_menu(except = null):
 	if except != HUD.VisibNPCMenu:
+		if HUD.VisibNPCMenu and Global.debug:
+			print_rich("[color=yellow]NPC Menu [color=red]OFF")
 		HUD.VisibNPCMenu = false
 	if except != HUD.VisibDogMenu:
+		if HUD.VisibDogMenu and Global.debug:
+			print_rich("[color=yellow]Dog Menu [color=red]OFF")
 		HUD.VisibDogMenu = false
 	if except != HUD.VisibCatMenu:
+		if HUD.VisibCatMenu and Global.debug:
+			print_rich("[color=yellow]Cat Menu [color=red]OFF")
 		HUD.VisibCatMenu = false
 	if except != HUD.VisibInvMenu:
+		if HUD.VisibInvMenu and Global.debug:
+			print_rich("[color=yellow]Inventory Menu [color=red]OFF")
 		HUD.VisibInvMenu = false
 
 func _camera():
@@ -194,4 +221,27 @@ func _is_integer(value: String):
 		if letter < "0" or letter > "9":
 			return false
 	return true
+
+func _export_json():
+	var json_data = JSON.stringify(Global.inventory_dict)
+	var file = FileAccess.open("user://json.json", FileAccess.WRITE)
+	if not file:
+		push_error("Erro ao abrir o arquivo para escrita")
+		return
+	file.store_string(json_data)
+	file.close()
+
+func _import_json():
+	var file = FileAccess.open("user://json.json", FileAccess.READ)
+	if not file:
+		push_error("Erro ao abrir o arquivo para leitura")
+		return
+	var json_data = file.get_as_text()
+	var json = JSON.new()
+	var result = json.parse(json_data)
+	if result.error != OK:
+		push_error("Erro ao analisar o JSON")
+		return
+	Global.inventory_dict = result.result
+	file.close()
 #endregion

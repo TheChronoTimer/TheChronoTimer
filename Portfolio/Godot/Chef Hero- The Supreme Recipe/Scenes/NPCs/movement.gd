@@ -37,7 +37,6 @@ var ArrSize
 var Arr = 0
 var _tooNear = true
 var pixelEdge = pixelDistance
-#var velocity: Vector2
 #endregion
 #endregion
 

@@ -14,16 +14,17 @@ var used_rect = get_used_rect()
 var cost
 var collision_size = 2
 #endregion
-#endregionpl
+#endregion
 
 #region Start
 func _ready():
 	_navigation_lock()
-	_export_table()
+	_export_nav_table()
 
 func _process(_delta):
-	_update_table()
+	_update_nav_table()
 #endregion
+
 #region Func
 func _navigation_lock():
 	_for_xy(used_rect, func(x, y):
@@ -42,7 +43,7 @@ func _for_xy(square: Rect2, callable_function: Callable):
 		for y in range(square.position.y, square.end.y):
 			callable_function.call(x, y)
 
-func _export_table():
+func _export_nav_table():
 	if not Global.collision_array:
 		Global.collision_array = []
 		for x in range(used_rect.size.x):
@@ -73,7 +74,7 @@ func _export_table():
 			self.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 	)
 
-func _update_table():
+func _update_nav_table():
 	_for_xy(used_rect, func(x, y):
 		var dif = Vector2i(x, y) - Global.player_coords
 		if (dif.x == 0 and (dif.y >= -1 and dif.y <= 1)) or (dif.y == 0 and (dif.x >= -1 and dif.x <= 1)):
