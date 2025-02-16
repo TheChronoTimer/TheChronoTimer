@@ -19,6 +19,10 @@ config/icon="res://System/icon.png"
 
 Global="*res://System/global.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dev_time_tracker/plugin.cfg")
+
 [input]
 
 Right={
