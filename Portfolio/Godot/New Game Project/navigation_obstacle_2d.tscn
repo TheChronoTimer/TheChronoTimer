@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://buglqwuphgqpm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v55gd"]
+size = Vector2(16, 16)
+
+[node name="NavigationObstacle2D" type="StaticBody2D" groups=["navigation"]]
+position = Vector2(2.38419e-07, 2.38419e-07)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["navigation"]]
+position = Vector2(-4.26326e-13, -4.26326e-13)
+shape = SubResource("RectangleShape2D_v55gd")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 32.0
+affect_navigation_mesh = true
+avoidance_layers = 4
