@@ -25,7 +25,7 @@ A collection of my completed projects.
 [![Godot](https://img.shields.io/badge/Godot-478CBF?style=for-the-badge&logo=godot-engine&logoColor=white)](https://godotengine.org/)
 [![Linux](https://img.shields.io/badge/Linux-FCB624?style=for-the-badge&logo=linux&logoColor=black)](https://www.linux.org/)
 [![Debian](https://img.shields.io/badge/Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)](https://debian.org)
-[![Mint](https://img.shields.io/badge/Linux_Mint-87CF3E?style=for-the-badge&logo=linuxmint&logoColor=white)](https://debian.org)
+[![Mint](https://img.shields.io/badge/Linux_Mint-87CF3E?style=for-the-badge&logo=linuxmint&logoColor=white)](https://linuxmint.com)
 
 ---
 
