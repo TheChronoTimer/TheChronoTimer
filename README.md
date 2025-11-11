@@ -1,10 +1,10 @@
 # Folder contents
 
-## 1. [Portfolio](Portfolio)
-A collection of my completed projects.
-
-## 2. [Certificates](Certificates)
+## 1. [Certificates](Certificates)
 Includes academic transcripts and professional certifications.
+
+## 2. [Portfolio](Portfolio)
+A collection of my completed projects.
 
 > **Note:** This portfolio does not represent my full body of work.  
 > Some older projects predate my GitHub account, others were sold,  
